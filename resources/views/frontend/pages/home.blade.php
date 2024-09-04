@@ -221,8 +221,7 @@
                                                                 @endphp
                                                                 <img src="{{ $thumbnailSrc }}"
                                                                     alt="{{ $latest_product->meta_title }}"
-                                                                    width="210" height="210"
-                                                                    />
+                                                                    width="210" height="210" />
                                                             @else
                                                                 @foreach ($latest_product->multiImages->slice(0, 2) as $image)
                                                                     @php
@@ -234,8 +233,7 @@
                                                                     @endphp
                                                                     <img src="{{ $imageSrc }}"
                                                                         alt="{{ $latest_product->meta_title }}"
-                                                                        width="210" height="210"
-                                                                        />
+                                                                        width="210" height="210" />
                                                                 @endforeach
                                                             @endif
                                                         </figure>
@@ -278,14 +276,17 @@
                                                                     class="ps-product__del">£{{ $latest_product->box_price }}</span>
                                                             </div>
                                                         @else
-                                                            <div class="ps-product__meta"><span
+                                                            <div class="ps-product__meta">
+                                                                <span
                                                                     class="ps-product__price sale">£{{ $latest_product->box_price }}</span>
                                                             </div>
                                                         @endif
                                                         <a href="{{ route('cart.store', $latest_product->id) }}"
                                                             class="btn ps-btn--warning my-3 btn-block add_to_cart"
                                                             data-product_id="{{ $latest_product->id }}"
-                                                            data-product_qty="1">Add To Cart</a>
+                                                            data-product_qty="1">
+                                                            Add To Cart
+                                                        </a>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <a href="{{ route('login') }}"
@@ -333,8 +334,8 @@
                         </div>
                     </div>
                 </div>
+            </section>
         @endif
-        </section>
         @if ($deals->count() > 0 || $deal_products->count() > 0)
             <div class="container">
                 @if ($deals->count() > 0)
@@ -463,16 +464,14 @@
                                                     <figure>
                                                         @if (!empty($deal_product->thumbnail))
                                                             @php
-                                                                $thumbnailPath =
-                                                                    'storage/' . $deal_product->thumbnail;
+                                                                $thumbnailPath = 'storage/' . $deal_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
                                                                     : asset('frontend/img/no-product.jpg');
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
                                                                 alt="{{ $deal_product->meta_title }}"
-                                                                width="210" height="210"
-                                                                />
+                                                                width="210" height="210" />
                                                         @else
                                                             @foreach ($deal_product->multiImages->slice(0, 2) as $image)
                                                                 @php
@@ -484,8 +483,7 @@
                                                                 @endphp
                                                                 <img src="{{ $imageSrc }}"
                                                                     alt="{{ $deal_product->meta_title }}"
-                                                                    width="210" height="210"
-                                                                    />
+                                                                    width="210" height="210" />
                                                             @endforeach
                                                         @endif
                                                     </figure>

@@ -252,20 +252,20 @@
                     </div>
                     <div class="ps-product__content">
                         <ul class="nav nav-tabs ps-tab-list bg-white p-3" id="productContentTabs" role="tablist">
-                            <li class="nav-item ml-3" role="presentation">
+                            <li class="nav-item ml-3 pr-info-tabs" role="presentation">
                                 <a class="nav-link active" id="description-tab" data-toggle="tab"
                                     href="#description-content" role="tab" aria-controls="description-content"
                                     aria-selected="true">
                                     Key Features
                                 </a>
                             </li>
-                            <li class="nav-item ml-3" role="presentation">
+                            <li class="nav-item ml-3 pr-info-tabs" role="presentation">
                                 <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
                                     role="tab" aria-controls="information-content" aria-selected="false">
                                     Description
                                 </a>
                             </li>
-                            <li class="nav-item ml-3" role="presentation">
+                            <li class="nav-item ml-3 pr-inf-tabs" role="presentation">
                                 <a class="nav-link" id="specification-tab" data-toggle="tab"
                                     href="#specification-content" role="tab"
                                     aria-controls="specification-content" aria-selected="false">
@@ -507,7 +507,7 @@
                 </div>
             </div>
             <div class="ps-delivery"
-                style="background-image: url('{{ asset('frontend/promotion/banner-delivery-2.jpg') }}')">
+                style="background-image: url({{ asset('frontend/img/promotion/banner-delivery-2.jpg') }})">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a

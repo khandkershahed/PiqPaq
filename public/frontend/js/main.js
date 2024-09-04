@@ -39,42 +39,45 @@
                         .length >= 2
                 ) {
                     el.owlCarousel({
-                        animateIn: dataAnimateIn,
-                        animateOut: dataAnimateOut,
-                        margin: dataGap,
-                        autoplay: dataAuto,
-                        autoplayTimeout: dataSpeed,
-                        autoplayHoverPause: true,
-                        loop: dataLoop,
-                        nav: dataNav,
-                        mouseDrag: datamouseDrag,
-                        touchDrag: true,
-                        autoplaySpeed: duration,
-                        navSpeed: duration,
-                        dotsSpeed: duration,
-                        dragEndSpeed: duration,
-                        navText: [dataNavLeft, dataNavRight],
-                        dots: dataDots,
-                        items: dataDefaultItem,
-                        center: Boolean(center),
+                        animateIn: "fadeIn", // Animation when slide appears
+                        animateOut: "fadeOut", // Animation when slide disappears
+                        margin: 10, // Space between items in pixels
+                        autoplay: true, // Enables automatic sliding
+                        autoplayTimeout: 5000, // Time between slides in milliseconds (5 seconds)
+                        autoplayHoverPause: true, // Pauses autoplay on mouse hover
+                        loop: true, // Enables infinite loop
+                        nav: true, // Displays next/prev navigation buttons
+                        mouseDrag: true, // Allows sliding by dragging with the mouse
+                        touchDrag: true, // Allows sliding by dragging with touch
+                        autoplaySpeed: 1000, // Speed of autoplay transition
+                        navSpeed: 800, // Speed of navigation button transitions
+                        dotsSpeed: 800, // Speed of dots/pagination transitions
+                        dragEndSpeed: 600, // Speed when dragging ends
+                        navText: [
+                            '<i class="icon-left"></i>',
+                            '<i class="icon-right"></i>',
+                        ], // Custom HTML for nav buttons
+                        dots: true, // Shows pagination dots
+                        items: 3, // Number of items displayed per slide
+                        center: true, // Center the active item
                         responsive: {
                             0: {
-                                items: dataItemXS,
+                                items: 1,
                             },
                             480: {
-                                items: dataItemSM,
+                                items: 1,
                             },
                             768: {
-                                items: dataItemMD,
+                                items: 1,
                             },
                             992: {
-                                items: dataItemLG,
+                                items: 2,
                             },
                             1200: {
-                                items: dataItemXL,
+                                items: 4,
                             },
                             1680: {
-                                items: dataDefaultItem,
+                                items: 4,
                             },
                         },
                     });

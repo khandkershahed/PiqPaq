@@ -48,9 +48,9 @@
             margin: auto;
         }
     </style>
-    <div class="ps-account my-5 py-5">
+    <div class="ps-account my-lg-5 py-lg-5 my-0 py-0">
         <div class="container">
-            <div class="row row-equal-height my-5 align-items-center gx-5 bg-white">
+            <div class="row row-equal-height my-lg-5 my-0 py-5 py-lg-0 align-items-center gx-5 bg-white">
                 <div class="col-12 col-md-6 bg-white column-equal-height">
                     <div class="row pl-5">
                         <div class="col-lg-12 pl-5">
@@ -67,11 +67,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row pl-5">
-                        <div class="col-lg-12 px-0 pl-5">
+                    <div class="row pl-0 pl-lg-5">
+                        <div class="col-lg-12 px-5 px-lg-0 pl-0 pl-lg-5">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <div class="ps-form--review w-75">
+                                <div class="ps-form--review w-100 w-lg-75">
                                     <div class="ps-form__group">
                                         <x-input-label class="form-label form__label" for="email"
                                             :value="__('Email')" />
