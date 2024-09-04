@@ -1,5 +1,12 @@
 <x-frontend-app-layout :title="'Login'">
     <style>
+        ::placeholder {
+            color: #000 !important;
+            opacity: 1;
+            font-size: 16px;
+            /* Firefox */
+        }
+
         body {
             background-color: #eee;
         }
@@ -31,7 +38,8 @@
             position: relative;
             top: -3px;
         }
-        .divider-text{
+
+        .divider-text {
             position: relative;
             bottom: -10px;
             z-index: 5;
@@ -95,7 +103,7 @@
                                             </div>
                                             <div>
                                                 @if (Route::has('password.request'))
-                                                    <a class="ps-account__link text-primary mt-0"
+                                                    <a class="ps-account__link text-info mt-0"
                                                         href="{{ route('password.request') }}">Forgot your password
                                                         ?</a>
                                                 @endif
@@ -104,7 +112,7 @@
                                     </div>
 
                                     <div class="mt-5">
-                                        <button class="btn btn-primary w-100 p-3 text-white display-4 rounded-3"
+                                        <button class="btn btn-info w-100 p-3 text-white display-4 rounded-3"
                                             type="submit">
                                             Log in
                                         </button>
@@ -122,7 +130,7 @@
                                     @if (Route::has('password.request'))
                                         <p class="text-center"><span class="ps-5 text-center">
                                                 Don't Have Account
-                                                <a class="ps-account__link text-primary" href="{{ route('register') }}">
+                                                <a class="ps-account__link text-info" href="{{ route('register') }}">
                                                     Create New Accounts
                                                 </a>
                                             </span></p>

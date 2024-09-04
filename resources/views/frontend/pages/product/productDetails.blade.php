@@ -178,7 +178,7 @@
                                                             {{ $product->unit_price }}
                                                         @else
                                                             <a href="{{ route('login') }}"
-                                                                class="btn btn-warning btn-block">Login</a>
+                                                                class="btn btn-info btn-block">Login</a>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -256,7 +256,7 @@
                                 <a class="nav-link active" id="description-tab" data-toggle="tab"
                                     href="#description-content" role="tab" aria-controls="description-content"
                                     aria-selected="true">
-                                    Overview
+                                    Key Features
                                 </a>
                             </li>
                             <li class="nav-item ml-3" role="presentation">

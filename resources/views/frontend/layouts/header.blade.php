@@ -2,6 +2,12 @@
     .dropdown-item {
         font-size: 16px !important;
     }
+
+    ::placeholder {
+        color: #000 !important;
+        opacity: 1;
+        /* Firefox */
+    }
 </style>
 <header class="ps-header ps-header--2">
     @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
@@ -74,7 +80,7 @@
                 <ul class="ps-header__icons">
                     <li>
                         {{-- Log Out --}}
-                        <a class="ps-header__item" href="#" id="login-modal">
+                        <a class="ps-header__item" href="javascript:void(0)" id="login-modal">
                             <i class="icon-user"></i>
                         </a>
                         @auth
