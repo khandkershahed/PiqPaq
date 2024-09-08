@@ -39,42 +39,45 @@
                         .length >= 2
                 ) {
                     el.owlCarousel({
-                        animateIn: dataAnimateIn,
-                        animateOut: dataAnimateOut,
-                        margin: dataGap,
-                        autoplay: dataAuto,
-                        autoplayTimeout: dataSpeed,
-                        autoplayHoverPause: true,
-                        loop: dataLoop,
-                        nav: dataNav,
-                        mouseDrag: datamouseDrag,
-                        touchDrag: true,
-                        autoplaySpeed: duration,
-                        navSpeed: duration,
-                        dotsSpeed: duration,
-                        dragEndSpeed: duration,
-                        navText: [dataNavLeft, dataNavRight],
-                        dots: dataDots,
-                        items: dataDefaultItem,
-                        center: Boolean(center),
+                        animateIn: "fadeIn", // Animation when slide appears
+                        animateOut: "fadeOut", // Animation when slide disappears
+                        margin: 10, // Space between items in pixels
+                        autoplay: true, // Enables automatic sliding
+                        autoplayTimeout: 5000, // Time between slides in milliseconds (5 seconds)
+                        autoplayHoverPause: true, // Pauses autoplay on mouse hover
+                        loop: true, // Enables infinite loop
+                        nav: true, // Displays next/prev navigation buttons
+                        mouseDrag: true, // Allows sliding by dragging with the mouse
+                        touchDrag: true, // Allows sliding by dragging with touch
+                        autoplaySpeed: 1000, // Speed of autoplay transition
+                        navSpeed: 800, // Speed of navigation button transitions
+                        dotsSpeed: 800, // Speed of dots/pagination transitions
+                        dragEndSpeed: 600, // Speed when dragging ends
+                        navText: [
+                            '<i class="icon-left"></i>',
+                            '<i class="icon-right"></i>',
+                        ], // Custom HTML for nav buttons
+                        dots: true, // Shows pagination dots
+                        items: 3, // Number of items displayed per slide
+                        center: true, // Center the active item
                         responsive: {
                             0: {
-                                items: dataItemXS,
+                                items: 1,
                             },
                             480: {
-                                items: dataItemSM,
+                                items: 1,
                             },
                             768: {
-                                items: dataItemMD,
+                                items: 1,
                             },
                             992: {
-                                items: dataItemLG,
+                                items: 2,
                             },
                             1200: {
-                                items: dataItemXL,
+                                items: 4,
                             },
                             1680: {
-                                items: dataDefaultItem,
+                                items: 4,
                             },
                         },
                     });
@@ -330,9 +333,10 @@
         $(window).scroll(function (event) {
             var scroll = $(window).scrollTop();
             var innerWidth = $(window).innerWidth();
-            if (scroll > 200 && innerWidth > 760) {
+
+            if (scroll > 100 && innerWidth > 760) {
                 $(".ps-header").addClass("ps-header--sticky");
-            } else if (scroll > 700 && innerWidth < 760) {
+            } else if (scroll > 600 && innerWidth < 660) {
                 $(".ps-header").addClass("ps-header--sticky");
                 $(".ps-search--result").removeClass("active");
             } else {
@@ -340,9 +344,9 @@
             }
 
             if (scroll > 100) {
-                $(".scroll-top").show();
+                $(".scroll-top").fadeIn(1000); // Fade in with 300ms duration
             } else {
-                $(".scroll-top").hide();
+                $(".scroll-top").fadeOut(1000); // Fade out with 300ms duration
             }
         });
 
@@ -462,13 +466,13 @@
 
             //remove active class from all thumbnail slides
             $(".ps-gallery--image .slick-slide").removeClass("slick-active");
-    //         //remove active class from all thumbnail slides
-    //         $('.ps-gallery--image .slick-slide').removeClass('slick-active');
+            //         //remove active class from all thumbnail slides
+            //         $('.ps-gallery--image .slick-slide').removeClass('slick-active');
 
             //set active class to first thumbnail slides
             $(".ps-gallery--image .slick-slide").eq(0).addClass("slick-active");
-    //         //set active class to first thumbnail slides
-    //         $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
+            //         //set active class to first thumbnail slides
+            //         $('.ps-gallery--image .slick-slide').eq(0).addClass('slick-active');
 
             // On before slide change match active thumbnail to current slide
             $(".ps-product--gallery .ps-product__thumbnail").on(

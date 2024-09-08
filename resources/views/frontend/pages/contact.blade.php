@@ -148,7 +148,7 @@
             </div>
             <form action="{{ route('contact.add') }}" method="post">
                 @csrf
-                <div class="ps-form--contact">
+                <div class="ps-form--contact bg-white p-5">
                     <h2 class="ps-form__title">
                         Fill up the form if you have any question
                     </h2>
@@ -173,7 +173,7 @@
                         </div>
                         <div class="col-12">
                             <div class="ps-form__group">
-                                <textarea class="form-control ps-form__textarea" rows="5" name="message" placeholder="Message"></textarea>
+                                <textarea class="form-control ps-form__textarea" rows="5" name="message" placeholder="Message" style="border-radius: 8px"></textarea>
                             </div>
                         </div>
                     </div>

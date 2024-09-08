@@ -1,5 +1,12 @@
 <x-frontend-app-layout :title="'Login'">
     <style>
+        ::placeholder {
+            color: #000 !important;
+            opacity: 1;
+            font-size: 16px;
+            /* Firefox */
+        }
+
         body {
             background-color: #eee;
         }
@@ -31,7 +38,8 @@
             position: relative;
             top: -3px;
         }
-        .divider-text{
+
+        .divider-text {
             position: relative;
             bottom: -10px;
             z-index: 5;
@@ -40,9 +48,9 @@
             margin: auto;
         }
     </style>
-    <div class="ps-account my-5 py-5">
+    <div class="ps-account my-lg-5 py-lg-5 my-0 py-0">
         <div class="container">
-            <div class="row row-equal-height my-5 align-items-center gx-5 bg-white">
+            <div class="row row-equal-height my-lg-5 my-0 py-5 py-lg-0 align-items-center gx-5 bg-white">
                 <div class="col-12 col-md-6 bg-white column-equal-height">
                     <div class="row pl-5">
                         <div class="col-lg-12 pl-5">
@@ -59,11 +67,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row pl-5">
-                        <div class="col-lg-12 px-0 pl-5">
+                    <div class="row pl-0 pl-lg-5">
+                        <div class="col-lg-12 px-5 px-lg-0 pl-0 pl-lg-5">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <div class="ps-form--review w-75">
+                                <div class="ps-form--review w-100 w-lg-75">
                                     <div class="ps-form__group">
                                         <x-input-label class="form-label form__label" for="email"
                                             :value="__('Email')" />
@@ -95,7 +103,7 @@
                                             </div>
                                             <div>
                                                 @if (Route::has('password.request'))
-                                                    <a class="ps-account__link text-primary mt-0"
+                                                    <a class="ps-account__link text-info mt-0"
                                                         href="{{ route('password.request') }}">Forgot your password
                                                         ?</a>
                                                 @endif
@@ -104,7 +112,7 @@
                                     </div>
 
                                     <div class="mt-5">
-                                        <button class="btn btn-primary w-100 p-3 text-white display-4 rounded-3"
+                                        <button class="btn btn-info w-100 p-3 text-white display-4 rounded-3"
                                             type="submit">
                                             Log in
                                         </button>
@@ -122,7 +130,7 @@
                                     @if (Route::has('password.request'))
                                         <p class="text-center"><span class="ps-5 text-center">
                                                 Don't Have Account
-                                                <a class="ps-account__link text-primary" href="{{ route('register') }}">
+                                                <a class="ps-account__link text-info" href="{{ route('register') }}">
                                                     Create New Accounts
                                                 </a>
                                             </span></p>

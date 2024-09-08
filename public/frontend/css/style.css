@@ -1247,12 +1247,6 @@ textarea.form-control {
     width: 100%;
 }
 
-@media (max-width: 767px) {
-    .form-group--inline {
-        display: block;
-    }
-}
-
 .form-group--number {
     display: inline-block;
     position: relative;
@@ -2850,7 +2844,7 @@ textarea.form-control {
     height: 30px;
     display: inline-block;
     right: 0;
-    top: 15px;
+    top: 8px;
     text-align: center;
     text-indent: 0;
     z-index: 8;
@@ -4324,14 +4318,6 @@ textarea.form-control {
     margin-bottom: 60px;
 }
 
-@media (max-width: 768px) {
-    .ps-product--detail .ps-product__feature {
-        margin-top: 0;
-    }
-    .ps-post .ps-section--blog {
-        padding: 0 !important;
-    }
-}
 @media (min-width: 768px) {
     .ps-product--detail .ps-product__feature {
         margin-top: 0;
@@ -6198,37 +6184,6 @@ textarea.form-control {
     font-size: 14px;
 }
 
-@media (max-width: 768px) {
-    .ps-table--responsive {
-        border: none;
-    }
-    .ps-table--responsive thead {
-        display: none;
-    }
-    .ps-table--responsive tbody {
-        display: block;
-    }
-    .ps-table--responsive tbody tr {
-        display: block;
-        margin-bottom: var(--space-md);
-        border: 1px solid #f0f2f5;
-    }
-    .ps-table--responsive tbody tr td[data-label] {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: none;
-        border-top: 1px solid #f0f2f5;
-    }
-    .ps-table--responsive tbody tr td[data-label]:before {
-        content: attr(data-label) ":";
-        font-weight: 600;
-    }
-    .ps-table--responsive tbody tr td[data-label]:first-child {
-        border-top: none;
-    }
-}
-
 .ps-table--product {
     border: none;
 }
@@ -6464,35 +6419,6 @@ textarea.form-control {
 .ps-modal.active {
     visibility: visible;
     opacity: 1;
-}
-
-@media (max-width: 991px) {
-    .ps-modal__container {
-        max-width: 90%;
-    }
-    .ps-modal__close {
-        transform: translate(0, 0);
-        width: 30px;
-        height: 30px;
-        background-color: transparent;
-    }
-    .ps-modal__close i {
-        color: #5e6b9d;
-    }
-}
-
-@media (max-width: 767px) {
-    .ps-modal {
-        overflow: auto;
-    }
-    .ps-modal__container {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 3rem auto;
-        overflow: auto;
-        transform: translate(0, 0);
-    }
 }
 
 @media (max-width: 479px) {
@@ -8113,6 +8039,7 @@ textarea.form-control {
 
 .ps-form--review {
     color: #103178;
+    font-size: 18px;
 }
 
 .ps-form--review input:focus {
@@ -8147,12 +8074,12 @@ textarea.form-control {
 
 .ps-form--review .ps-form__input,
 .ps-form--review .ps-form__textarea {
-    color: #8cbf4491;
+    color: #00000091;
     background-color: #f0f2f5;
-    font-size: 16px;
+    font-size: 20px;
     padding: 5px 15px;
-    /* border-radius: 40px; */
     border-color: #f0f2f5;
+    font-weight: 500;
 }
 
 .ps-form--review .ps-form__textarea {
@@ -8992,7 +8919,7 @@ textarea.form-control {
 }
 
 .ps-categogy .ps-delivery {
-    margin: 30px 0 80px;
+    margin: 30px 0 30px;
 }
 
 .ps-categogy .ps-delivery .ps-delivery__text {
@@ -10751,45 +10678,6 @@ textarea.form-control {
     font-size: 22px;
     line-height: 30px;
 }
-
-@media (max-width: 768px) {
-    .ps-section--newsletter .ps-section__title {
-        margin-bottom: 10px;
-        color: #103178;
-        font-size: 18px;
-        line-height: 25px;
-        text-align: center;
-        font-weight: 600;
-    }
-    .ps-form--subscribe .ps-input {
-        border-radius: 40px;
-        width: 75%;
-        margin: auto;
-        height: 44px;
-        background-color: #f0f2f5;
-        color: #8cbf4491;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-    .ps-product--list .ps-product__content {
-        display: flex;
-        border-bottom: 1px solid #f0f2f5;
-        flex-direction: column;
-    }
-    .ps-footer__middle {
-        text-align: center;
-    }
-    .ps-widget--product {
-        padding: 0px 14px 65px;
-    }
-    .ps-product__content {
-        padding: 10px 0px 0px;
-    }
-    .ps-product--list .ps-product__desc {
-        display: block;
-        text-align: justify;
-    }
-}
 @media (min-width: 1024px) {
     .ps-section--newsletter .ps-section__title {
         font-size: 40px;
@@ -12232,7 +12120,7 @@ textarea.form-control {
 
 .ps-account .ps-form__label {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .ps-account .form-check {
@@ -12378,6 +12266,7 @@ textarea.form-control {
     padding: 15px 20px 20px;
     border-radius: 4px;
     margin-bottom: 50px;
+    background-color: #fff;
 }
 
 .ps-checkout .ps-checkout__order {
@@ -12385,6 +12274,7 @@ textarea.form-control {
     border-radius: 4px;
     padding: 25px 20px 30px;
     margin-bottom: 50px;
+    background-color: #fff;
 }
 
 .ps-checkout .ps-checkout__order .form-check label {
@@ -18100,4 +17990,162 @@ table.dataTable tbody td:last-child {
     background-color: var(--site-green);
     border-color: var(--site-green);
     padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .ps-table--responsive {
+        border: none;
+    }
+    .ps-table--responsive thead {
+        display: none;
+    }
+    .ps-table--responsive tbody {
+        display: block;
+    }
+    .ps-table--responsive tbody tr {
+        display: block;
+        margin-bottom: var(--space-md);
+        border: 1px solid #f0f2f5;
+    }
+    .ps-table--responsive tbody tr td[data-label] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+        border-top: 1px solid #f0f2f5;
+    }
+    .ps-table--responsive tbody tr td[data-label]:before {
+        content: attr(data-label) ":";
+        font-weight: 600;
+    }
+    .ps-table--responsive tbody tr td[data-label]:first-child {
+        border-top: none;
+    }
+    .ps-product--detail .ps-product__feature {
+        margin-top: 0;
+    }
+    .ps-post .ps-section--blog {
+        padding: 0 !important;
+    }
+    .ps-widget--promo {
+        display: none;
+    }
+    .ps-block-control {
+        background: var(--site-green);
+    }
+    .form-select {
+        border: 1px solid #dfdfdf !important;
+    }
+    .form-group--inline {
+        display: block;
+    }
+    .ps-modal__container {
+        max-width: 90%;
+    }
+    .ps-modal__close {
+        transform: translate(0, 0);
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+    }
+    .ps-modal__close i {
+        color: #5e6b9d;
+    }
+    .ps-modal {
+        overflow: auto;
+    }
+    .ps-modal__container {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 3rem auto;
+        overflow: auto;
+        transform: translate(0, 0);
+    }
+    .ps-section--newsletter .ps-section__title {
+        margin-bottom: 10px;
+        color: #103178;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        font-weight: 600;
+    }
+    .ps-form--subscribe .ps-input {
+        border-radius: 40px;
+        width: 75%;
+        margin: auto;
+        height: 44px;
+        background-color: #f0f2f5;
+        color: #8cbf4491;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .ps-product--list .ps-product__content {
+        display: flex;
+        border-bottom: 1px solid #f0f2f5;
+        flex-direction: column;
+    }
+    .ps-footer__middle {
+        text-align: center;
+    }
+    .pr-info-tabs {
+        display: flex;
+        align-items: center;
+    }
+    .ps-footer__middle .row {
+        justify-content: center;
+    }
+    .ps-widget--product {
+        padding: 0px 14px 65px;
+    }
+    .ps-product__content {
+        padding: 10px 0px 0px;
+    }
+    .ps-product--list .ps-product__desc {
+        display: block;
+        text-align: justify;
+    }
+    .ps-banner--round .ps-banner__title {
+        font-size: 24px;
+        margin-bottom: 35px;
+        text-align: justify;
+    }
+    .ps-about .ps-about__banner {
+        text-align: center;
+    }
+    .ps-form--contact .ps-btn {
+        width: 100%;
+    }
+    .ps-widget .ps-widget__block {
+        padding: 38px 0px;
+        border: 1px solid #00605a;
+    }
+    .ps-widget .ps-widget__block .ps-block-control {
+        position: absolute;
+        width: 30px;
+        height: 38px;
+        display: inline-block;
+        right: 0;
+        top: 0px;
+        text-align: center;
+        text-indent: 0;
+        z-index: 8;
+        line-height: 38px;
+    }
+    .ps-product--detail .ps-product__title {
+        font-size: 20px;
+    }
+    .ps-form--review,
+    .ps-account .ps-form__label {
+        font-size: 15px;
+    }
+    .login-imge {
+        display: none;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    .ps-form--review .ps-form__input, .ps-form--review .ps-form__textarea{
+        font-size: 16px;
+    }
 }

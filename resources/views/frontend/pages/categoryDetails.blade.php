@@ -9,7 +9,7 @@
     </style>
 
     <div class="ps-categogy ps-categogy--dark">
-        <div class="container pt-5">
+        <div class="container pt-0 pt-lg-5">
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <!-- Breadcrumbs -->
@@ -53,7 +53,7 @@
                                         <div class="row m-0">
 
                                             @forelse ($catProducts as $category_product)
-                                                <div class="col-6 col-lg-4 col-xl-3 p-0">
+                                                <div class="col-12 col-lg-4 col-xl-3 p-0">
                                                     <div class="ps-product ps-product--standard">
                                                         <div class="ps-product__thumbnail">
                                                             <a class="ps-product__image"
