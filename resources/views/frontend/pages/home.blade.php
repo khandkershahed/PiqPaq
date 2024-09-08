@@ -34,8 +34,7 @@
             <div class="ps-section__loading"></div>
         </div>
         <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true" data-owl-speed="15000"
-            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1"
-            data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000"
+            data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-duration="1000"
             data-owl-mousedrag="on">
             <div class="owl-stage-outer">
                 <div class="owl-stage">
@@ -578,14 +577,14 @@
             <section class="ps-section--blog container mb-5">
                 <h3 class="ps-section__title" style="font-size: 30px;">From the blog</h3>
                 <div class="ps-section__carousel">
-                    <div class="owl-carousel owl-loaded owl-drag" data-owl-auto="false" data-owl-loop="true"
+                    <div class="owl-carousel owl-loaded owl-drag row" data-owl-auto="false" data-owl-loop="true"
                         data-owl-speed="13000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true"
                         data-owl-item="3" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="2"
                         data-owl-item-lg="3" data-owl-item-xl="3" data-owl-duration="1000"
                         data-owl-mousedrag="on">
 
                         @foreach ($blog_posts as $blog_post)
-                            <div class="ps-section__item">
+                            <div class="ps-section__item col-xl-4 col-12">
                                 <div class="ps-blog--latset">
                                     <div class="ps-blog__thumbnail">
                                         <a href="{{ route('blog.details', $blog_post->slug) }}">
