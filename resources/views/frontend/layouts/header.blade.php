@@ -256,7 +256,8 @@
         <div class="container">
             <div class="ps-header__left">
                 <ul class="ps-header__icons">
-                    <li><a class="ps-header__item open-search" href="#"><i class="fa fa-search" aria-hidden="true" style="font-family: 'FontAwesome';"></i></a>
+                    <li><a class="ps-header__item open-search" href="#"><i class="fa fa-search"
+                                aria-hidden="true" style="font-family: 'FontAwesome';"></i></a>
                     </li>
                 </ul>
             </div>
