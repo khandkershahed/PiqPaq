@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class OrderManagementController extends Controller
 {
@@ -92,6 +93,16 @@ class OrderManagementController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    public function statusUpdate(Request $request, string $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->update([
+            'status' => $request->status,
+            'external_order_id' => $request->external_order_id,
+        ]);
+        Session::flash('success', 'Order Status Updated Successfully');
+        return redirect()->back();
+    }
     public function update(Request $request, string $id)
     {
         //

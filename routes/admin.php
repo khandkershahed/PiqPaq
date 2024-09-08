@@ -147,6 +147,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/order-management', 'index')->name('order-management.index');
         Route::get('/order/{id}/details', 'orderDetails')->name('orderDetails');
         Route::get('/order/report', 'orderReport')->name('orderReport');
+        Route::put('/order/update/{id}', 'statusUpdate')->name('order.update');
+
     });
 
     Route::get('active-mail-configuration', [EmailSettingController::class, 'activeMailConfiguration'])->name('active.mail.configuration');
