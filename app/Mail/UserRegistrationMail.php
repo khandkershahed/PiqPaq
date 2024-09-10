@@ -31,8 +31,8 @@ class UserRegistrationMail extends Mailable
 
     public function build()
     {
-        return $this->from('support@neezpackages.com', 'NeezPackages')
-            ->subject('Welcome to NeezPackages!')
+        return $this->from('support@neezpackages.com', '{{$setting->website_name}}')
+            ->subject('Welcome to {{$setting->website_name}}!')
             ->view('mail.user_registration', [
                 'data' => $this->data,
             ]);
@@ -41,7 +41,7 @@ class UserRegistrationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Welcome to NeezPackages!',
+            subject: 'Welcome to {{$setting->website_name}}!',
         );
     }
 

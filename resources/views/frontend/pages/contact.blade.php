@@ -184,7 +184,7 @@
             </form>
             {{-- <section class="ps-section--instagram">
                 <h3 class="ps-section__title">
-                    Follow <strong>@NeezPackages </strong>on instagram
+                    Follow <strong>@{{$setting->website_name}} </strong>on instagram
                 </h3>
                 <div class="ps-section__content">
                     <div class="row m-0">
