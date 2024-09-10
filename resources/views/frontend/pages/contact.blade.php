@@ -15,7 +15,7 @@
                             <p class="ps-contact__text">
                                 We are at your disposal 7 days a week!
                             </p>
-                            <h3 class="ps-contact__fax">{{ $setting->contact_email }}</h3>
+                            <h3 class="ps-contact__fax">{{ optional($setting)->contact_email }}</h3>
                             @php
                                 // Fetch the work hours data
                                 $workHours = DB::table('settings')->first();
@@ -62,9 +62,9 @@
                                 {!! $workHoursText !!}
                             </div>
                             <ul class="ps-social">
-                                @if ($setting->facebook_url)
+                                @if (optional($setting)->facebook_url)
                                     <li>
-                                        <a class="ps-social__link facebook" href="{{ $setting->facebook_url }}"
+                                        <a class="ps-social__link facebook" href="{{ optional($setting)->facebook_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-facebook"></i>
                                             <span class="ps-tooltip">Facebook</span>
@@ -72,9 +72,9 @@
                                     </li>
                                 @endif
 
-                                @if ($setting->instagram_url)
+                                @if (optional($setting)->instagram_url)
                                     <li>
-                                        <a class="ps-social__link instagram" href="{{ $setting->instagram_url }}"
+                                        <a class="ps-social__link instagram" href="{{ optional($setting)->instagram_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-instagram"></i>
                                             <span class="ps-tooltip">Instagram</span>
@@ -82,9 +82,9 @@
                                     </li>
                                 @endif
 
-                                @if ($setting->youtube_url)
+                                @if (optional($setting)->youtube_url)
                                     <li>
-                                        <a class="ps-social__link youtube" href="{{ $setting->youtube_url }}"
+                                        <a class="ps-social__link youtube" href="{{ optional($setting)->youtube_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-youtube-play"></i>
                                             <span class="ps-tooltip">YouTube</span>
@@ -92,9 +92,9 @@
                                     </li>
                                 @endif
 
-                                @if ($setting->pinterest_url)
+                                @if (optional($setting)->pinterest_url)
                                     <li>
-                                        <a class="ps-social__link pinterest" href="{{ $setting->pinterest_url }}"
+                                        <a class="ps-social__link pinterest" href="{{ optional($setting)->pinterest_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-pinterest-p"></i>
                                             <span class="ps-tooltip">Pinterest</span>
@@ -102,9 +102,9 @@
                                     </li>
                                 @endif
 
-                                @if ($setting->linkedin_url)
+                                @if (optional($setting)->linkedin_url)
                                     <li>
-                                        <a class="ps-social__link linkedin" href="{{ $setting->linkedin_url }}"
+                                        <a class="ps-social__link linkedin" href="{{ optional($setting)->linkedin_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-linkedin"></i>
                                             <span class="ps-tooltip">LinkedIn</span>
@@ -114,9 +114,9 @@
 
                                 <!-- Add additional social media links similarly -->
 
-                                @if ($setting->twitter_url)
+                                @if (optional($setting)->twitter_url)
                                     <li>
-                                        <a class="ps-social__link twitter" href="{{ $setting->twitter_url }}"
+                                        <a class="ps-social__link twitter" href="{{ optional($setting)->twitter_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-twitter"></i>
                                             <span class="ps-tooltip">Twitter</span>
@@ -124,9 +124,9 @@
                                     </li>
                                 @endif
 
-                                @if ($setting->whatsapp_url)
+                                @if (optional($setting)->whatsapp_url)
                                     <li>
-                                        <a class="ps-social__link whatsapp" href="{{ $setting->whatsapp_url }}"
+                                        <a class="ps-social__link whatsapp" href="{{ optional($setting)->whatsapp_url }}"
                                             target="_blank" rel="noopener noreferrer">
                                             <i class="fa fa-whatsapp"></i>
                                             <span class="ps-tooltip">WhatsApp</span>
@@ -184,7 +184,7 @@
             </form>
             {{-- <section class="ps-section--instagram">
                 <h3 class="ps-section__title">
-                    Follow <strong>@{{$setting->website_name}} </strong>on instagram
+                    Follow <strong>@{{optional($setting)->website_name}} </strong>on instagram
                 </h3>
                 <div class="ps-section__content">
                     <div class="row m-0">

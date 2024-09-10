@@ -25,7 +25,7 @@
                         <div style="padding-bottom: 30px; font-size: 17px;">
                             <strong>Hi {{ $data }}</strong>
                         </div>
-                        <div style="padding-bottom: 30px">Welcome to {{$setting->website_name}}! We're thrilled to have you on board.</div>
+                        <div style="padding-bottom: 30px">Welcome to {{optional($setting)->website_name}}! We're thrilled to have you on board.</div>
                         <div style="padding-bottom: 30px">
                             Your account has been successfully created. You can now access your personalized dashboard
                             packed with features to enhance your experience.
@@ -41,7 +41,7 @@
                             Hi,
                         </div>
                         <div style="padding-bottom: 30px">
-                            Thank you for registering with {{$setting->website_name}}! Your account is currently pending approval. We will review your information and notify you as soon as your account is activated.
+                            Thank you for registering with {{optional($setting)->website_name}}! Your account is currently pending approval. We will review your information and notify you as soon as your account is activated.
                         </div>
                         <div style="padding-bottom: 40px; text-align:center;">
                             <a href="{{ route('contact') }}" rel="noopener"
@@ -57,17 +57,17 @@
                             Our friendly support team is always happy to assist you. You can find answers to most
                             questions and contact us through
                             <a href="{{ route('contact') }}" rel="noopener" target="_blank"
-                                style="text-decoration:none;color: #009EF7">{{$setting->website_name}} Contact</a>.
+                                style="text-decoration:none;color: #009EF7">{{optional($setting)->website_name}} Contact</a>.
                         </div>
                         <!--end:Email content-->
-                        <div style="padding-bottom: 10px">Sincerely,<br>The {{$setting->website_name}} Team.</div>
+                        <div style="padding-bottom: 10px">Sincerely,<br>The {{optional($setting)->website_name}} Team.</div>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td align="center" valign="center"
                     style="font-size: 13px; text-align:center;padding: 20px; color: #6d6e7c;">
-                    <p>Copyright © <a href="{{ route('home') }}" rel="noopener" target="_blank">{{$setting->website_name}}</a>.</p>
+                    <p>Copyright © <a href="{{ route('home') }}" rel="noopener" target="_blank">{{optional($setting)->website_name}}</a>.</p>
                 </td>
             </tr>
         </tbody>

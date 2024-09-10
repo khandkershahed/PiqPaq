@@ -75,11 +75,11 @@
                                     <div class="col-lg-6">
                                         <div class="text-right">
                                             <span class="font-weight-bold">Shipping From:</span>
-                                            <p class="mb-0">{{$setting->website_name}}</p>
-                                            <p class="mb-0">{{ $setting->primary_phone }}</p>
-                                            <p class="mb-0">{{ $setting->contact_email }}</p>
-                                            <p class="mb-0">{{ $setting->address_line_one }}</p>
-                                            <p class="mb-0">{{ $setting->address_line_two }}</p>
+                                            <p class="mb-0">{{optional($setting)->website_name}}</p>
+                                            <p class="mb-0">{{ optional($setting)->primary_phone }}</p>
+                                            <p class="mb-0">{{ optional($setting)->contact_email }}</p>
+                                            <p class="mb-0">{{ optional($setting)->address_line_one }}</p>
+                                            <p class="mb-0">{{ optional($setting)->address_line_two }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
-                                © {{$setting->website_name}}, LTD 2024.
+                                © {{optional($setting)->website_name}}, LTD 2024.
                             </div>
                         </div> --}}
                     </div>

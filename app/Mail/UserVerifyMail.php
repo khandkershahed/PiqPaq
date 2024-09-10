@@ -13,14 +13,15 @@ class UserVerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $data, $setting;
 
     /**
-     * Create a new message instance.
+     * Create a new notification instance.
      */
-    public function __construct($data)
+    public function __construct($data, $setting)
     {
         $this->data = $data;
+        $this->setting = $setting;
     }
 
     /**
@@ -28,8 +29,8 @@ class UserVerifyMail extends Mailable
      */
     public function build()
     {
-        return $this->from('support@neezpackages.com', '{{$setting->website_name}}')
-            ->subject('{{$setting->website_name}} Acccount Verified!')
+        return $this->from('support@neezpackages.com', $this->setting->website_name)
+            ->subject($this->setting->website_name . 'Acccount Verified!')
             ->view('mail.user_verify', [
                 'data' => $this->data,
             ]);
@@ -38,7 +39,7 @@ class UserVerifyMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: '{{$setting->website_name}} Acccount Verified!',
+            subject: $this->setting->website_name . 'Acccount Verified!',
         );
     }
 

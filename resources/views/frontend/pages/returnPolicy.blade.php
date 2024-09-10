@@ -20,10 +20,10 @@
         </ul>
         <div class="row align-items-center">
             <div class="col-lg-12">
-                <h1 class="text-start mb-5 display-4">{{$setting->website_name}}</h1>
+                <h1 class="text-start mb-5 display-4">{{optional($setting)->website_name}}</h1>
                 <p class="lead">Last updated: August 11, 2024</p>
-                <p class="mb-5">Thank you for choosing {{$setting->website_name}} for your shopping needs!
-                    At {{$setting->website_name}}, we are committed to ensuring that each of our customers has a positive and satisfying
+                <p class="mb-5">Thank you for choosing {{optional($setting)->website_name}} for your shopping needs!
+                    At {{optional($setting)->website_name}}, we are committed to ensuring that each of our customers has a positive and satisfying
                     shopping experience. Your satisfaction is our top priority. We understand that sometimes things
                     might not turn out as expected, and we're here to assist you if that happens.
 

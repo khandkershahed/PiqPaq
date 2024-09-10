@@ -90,13 +90,13 @@
         </x-metronic.label>
 
         <textarea name="address_line_one" id="address_line_one" cols="1" rows="1" class="form-control"
-            placeholder="Enter Address Line One">{!! $setting ? $setting->address_line_one : '' !!}</textarea>
+            placeholder="Enter Address Line One">{!! optional($setting) ? optional($setting)->address_line_one : '' !!}</textarea>
     </div>
     <div class="col-lg-6 mb-7">
         <x-metronic.label for="address_line_two" class="col-form-label fw-bold fs-6">{{ __('Address Line Two') }}
         </x-metronic.label>
 
         <textarea name="address_line_two" id="address_line_two" cols="1" rows="1" class="form-control"
-            placeholder="Enter Address Line Two'">{!! $setting ? $setting->address_line_two : '' !!}</textarea>
+            placeholder="Enter Address Line Two'">{!! optional($setting) ? optional($setting)->address_line_two : '' !!}</textarea>
     </div>
 </div>
