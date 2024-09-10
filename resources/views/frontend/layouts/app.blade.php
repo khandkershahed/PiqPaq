@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="{{ asset('frontend/img/favicon.png') }}" rel="apple-touch-icon-precomposed">
-    <link href="{{ asset('frontend/img/favicon.png') }}" rel="shortcut icon" type="image/png">
+    <link href="{{ asset('storage/' . $setting->site_favicon) }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ asset('storage/' . $setting->site_favicon) }}" rel="shortcut icon" type="image/png">
     <meta name="title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
     <meta name="description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
 
