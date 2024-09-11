@@ -35,12 +35,12 @@ class PageBannerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'page_name'   => 'required',
-            'image'       => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_name'   => 'nullable',
+            'image'       => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
             'badge'       => 'nullable|string|max:191',
             'button_name' => 'nullable|string|max:200',
             'button_link' => 'nullable|string',
-            'status'      => 'required|in:active,inactive',
+            'status'      => 'nullable|in:active,inactive',
         ], [
             'page_name.required'        => 'The Page Name is required.',
             'image.required'            => 'The Image field is required.',
@@ -125,12 +125,12 @@ class PageBannerController extends Controller
     {
         $banner = PageBanner::findOrFail($id);
         $validator = Validator::make($request->all(), [
-            'page_name'   => 'required',
+            'page_name'   => 'nullable',
             'image'       => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
             'badge'       => 'nullable|string|max:191',
             'button_name' => 'nullable|string|max:200',
             'button_link' => 'nullable|string',
-            'status'      => 'required|in:active,inactive',
+            'status'      => 'nullable|in:active,inactive',
         ], [
             'page_name.required'        => 'The Page Name is required.',
             'image.required'            => 'The Image field is required.',
