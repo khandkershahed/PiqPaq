@@ -52,6 +52,7 @@ class PageBannerController extends Controller
         ]);
 
         if ($validator->fails()) {
+            Session::flash('error',$validator);
             return redirect()->back()->withErrors($validator)->withInput();
         }
         DB::beginTransaction();
@@ -142,6 +143,7 @@ class PageBannerController extends Controller
         ]);
 
         if ($validator->fails()) {
+            Session::flash('error',$validator);
             return redirect()->back()->withErrors($validator)->withInput();
         }
         DB::beginTransaction();
