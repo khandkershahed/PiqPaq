@@ -19,7 +19,7 @@
     <meta property="og:title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
     <meta property="og:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
     <meta property="og:image"
-        content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . $setting->site_logo)) ? asset('storage/' . $setting->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+        content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -28,7 +28,7 @@
         content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
     <meta property="twitter:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
     <meta property="twitter:image"
-        content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . $setting->site_logo)) ? asset('storage/' . $setting->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+        content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
 
     <title>{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}</title>
 
