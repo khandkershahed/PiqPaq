@@ -52,7 +52,7 @@ class PageBannerController extends Controller
         ]);
 
         if ($validator->fails()) {
-            Session::flash('error',$validator);
+            Session::flash('error', $validator);
             return redirect()->back()->withErrors($validator)->withInput();
         }
         DB::beginTransaction();
@@ -94,7 +94,7 @@ class PageBannerController extends Controller
         } catch (\Exception $e) {
             // Rollback the database transaction in case of an error
             DB::rollback();
-            Session::flash('error',$e->getMessage());
+            Session::flash('error', $e->getMessage());
             // Return back with error message
             return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Brand: ' . $e->getMessage());
         }
@@ -143,7 +143,7 @@ class PageBannerController extends Controller
         ]);
 
         if ($validator->fails()) {
-            Session::flash('error',$validator);
+            Session::flash('error', $validator);
             return redirect()->back()->withErrors($validator)->withInput();
         }
         DB::beginTransaction();
@@ -191,7 +191,7 @@ class PageBannerController extends Controller
         } catch (\Exception $e) {
             // Rollback the database transaction in case of an error
             DB::rollback();
-            Session::flash('error',$e->getMessage());
+            Session::flash('error', $e->getMessage());
             // Return back with error message
             return redirect()->back()->withInput()->with('error', 'An error occurred while creating the Brand: ' . $e->getMessage());
         }
