@@ -13,8 +13,11 @@ use App\Models\ShippingMethod;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\UserOrderMail;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
@@ -302,9 +305,11 @@ class CartController extends Controller
 
             // Clear the cart after successful order
             Cart::instance('cart')->destroy();
+            $order = Order::with('orderItems')->where('id', $order->id)->first();
+            $user = Auth::user();
             $data = [
-                'order' => Order::with('orderItems')->where('id', $order->id)->first(),
-                'user'  => Auth::user(),
+                'order' =>  $order,
+                'user'  => $user,
             ];
             // dd($data['order']);
             // return view('pdf.invoice', $data);
@@ -328,6 +333,13 @@ class CartController extends Controller
                 flash()->error('Failed to generate PDF: ' . $e->getMessage());
                 // Session::flash('error', 'Failed to generate PDF: ' . $e->getMessage());
             }
+            $setting = Setting::first();
+            $data = [
+                'order'       => $order,
+                'order_items' => $order->orderItems,
+                'user'        => $user,
+            ];
+            Mail::to([$request->input('billing_email'), $user->email])->send(new UserOrderMail($user->name, $data, $setting));
             // Redirect to a confirmation page or thank you page
             if ($order->payment_method == "stripe") {
                 flash()->success('Order placed successfully!');

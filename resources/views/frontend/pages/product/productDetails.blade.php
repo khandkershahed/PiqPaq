@@ -1,5 +1,5 @@
-<x-frontend-app-layout :title="'Product Details'">
-    @push('head')
+<x-frontend-app-layout :title="'Product Details'" :product="$product">
+    @push('heads')
         @php
             $isProductPage = true; // Flag to indicate this is a product details page
             $metaTitle = $product->meta_title ?? $product->name;

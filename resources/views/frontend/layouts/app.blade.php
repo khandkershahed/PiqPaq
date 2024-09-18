@@ -10,21 +10,36 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="{{ asset('storage/' . $setting->site_favicon) }}" rel="apple-touch-icon-precomposed">
     <link href="{{ asset('storage/' . $setting->site_favicon) }}" rel="shortcut icon" type="image/png">
-    <meta name="title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
-    <meta name="description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
 
-    @stack('head')
-    @if (isset($isProductPage) && $isProductPage)
+    @stack('heads')
+    @props(['product'])
+
+    @if (Route::currentRouteName() === 'product.details')
+        @php
+            $metaTitle = $product->meta_title ?? $product->name;
+            $metaDescription = strip_tags(
+                $product->meta_description ?? substr(htmlspecialchars($product->description), 0, 150),
+            );
+            $metaImage = $product->thumbnail ?? ''; // Default image
+        @endphp
+
         <meta name="title" content="{{ $metaTitle }}" />
         <meta name="description" content="{{ $metaDescription }}" />
         <meta property="og:title" content="{{ $metaTitle }}" />
         <meta property="og:description" content="{{ $metaDescription }}" />
-        <meta property="og:image" content="{{ $metaImage ? asset('storage/' . $setting->site_logo_black) : '' }}" />
+        <meta property="og:image" content="{{ $metaImage ? asset('storage/' . $metaImage) : '' }}" />
+        <meta property="og:type" content="product" />
+
+        <meta property="og:url" content="{{ request()->fullUrl() }}" />
+        <meta property="og:site_name" content="{{ optional($setting)->site_title ?: config('app.name') }}" />
+        <meta property="og:locale" content="en_US" />
+
         <meta property="twitter:title" content="{{ $metaTitle }}" />
         <meta property="twitter:description" content="{{ $metaDescription }}" />
-        <meta property="twitter:image"
-            content="{{ $metaImage ? asset('storage/' . $setting->site_logo_black) : '' }}" />
+        <meta property="twitter:image" content="{{ $metaImage ? asset('storage/' . $metaImage) : '' }}" />
     @else
+        <meta name="title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+        <meta name="description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ optional($setting)->site_url ?: config('app.url') }}" />
         <meta property="og:title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
@@ -44,7 +59,7 @@
     @endif
 
     <title>
-        {{ isset($isProductPage) && $isProductPage ? $metaTitle : (optional($setting)->site_title ? optional($setting)->site_title : config('app.name', 'E-Commerce')) }}
+        {{ isset($metaTitle) && $metaTitle ? $metaTitle : (optional($setting)->site_title ? optional($setting)->site_title : config('app.name', 'E-Commerce')) }}
     </title>
     <!-- Open Graph / Facebook -->
 
