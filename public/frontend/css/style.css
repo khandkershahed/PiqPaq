@@ -12229,26 +12229,26 @@ textarea.form-control {
     border: none;
     width: 100%;
     background-color: #f0f2f5;
-    color: #8cbf4491;
+    color: #000000;
     font-size: 14px;
     padding: 10px 20px;
 }
 
 .ps-checkout .ps-input::-moz-placeholder,
 .ps-checkout .ps-textarea::-moz-placeholder {
-    color: #8cbf4491;
+    color: #000000;
     font-size: 14px;
 }
 
 .ps-checkout .ps-input:-ms-input-placeholder,
 .ps-checkout .ps-textarea:-ms-input-placeholder {
-    color: #8cbf4491;
+    color: #000000;
     font-size: 14px;
 }
 
 .ps-checkout .ps-input::placeholder,
 .ps-checkout .ps-textarea::placeholder {
-    color: #8cbf4491;
+    color: #000000;
     font-size: 14px;
 }
 
@@ -13219,7 +13219,8 @@ textarea.form-control {
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
-    color: var(--site-green);
+    color: #474646;
+    /* color: var(--site-green); */
     text-transform: capitalize;
     transform-style: preserve-3d;
 }
@@ -16040,7 +16041,7 @@ textarea.form-control {
 
 .ps-footer--block .ps-block__list li a {
     display: block;
-    color: #8cbf4491;
+    color: #222121;
 }
 
 .ps-footer--block .ps-block__list li a:hover {
@@ -16113,7 +16114,7 @@ textarea.form-control {
 .ps-footer--address p {
     font-size: 16px;
     line-height: 26px;
-    color: #8cbf4491;
+    color: #222121;
 }
 
 .ps-footer--address p a {
@@ -16182,7 +16183,7 @@ textarea.form-control {
     margin-bottom: 18px;
     padding-left: 40px;
     font-size: 14px;
-    color: #8cbf4491;
+    color: #222121;
 }
 
 .ps-footer--contact hr {
@@ -17877,7 +17878,7 @@ html .bg--parallax {
     height: 44px;
     border: none;
     width: 100%;
-    background-color: #f0f2f5;
+    background-color: #000000;
     color: #8cbf4491;
     font-size: 14px;
     padding: 10px 20px;
