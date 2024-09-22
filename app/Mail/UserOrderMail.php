@@ -38,7 +38,8 @@ class UserOrderMail extends Mailable
             ->subject($this->setting->website_name . ' Order Placed. (Order #' . $this->data['order']->order_number . ')')
             ->view('mail.user_order')
             ->with([
-                'data' => $this->data,
+                'order'       => $this->data['order'],
+                'order_items' => $this->data['order_items'],
             ]);
     }
 }
