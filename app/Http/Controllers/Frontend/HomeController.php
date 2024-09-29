@@ -20,6 +20,7 @@ use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class HomeController extends Controller
@@ -106,7 +107,7 @@ class HomeController extends Controller
     public function productDetails($slug)
     {
         $data = [
-            'product'               => Product::where('slug', $slug)->first(),
+            'product'          => Product::where('slug', $slug)->first(),
             'related_products' => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->where('status', 'published')->inRandomOrder()->limit(12)->get(),
         ];
         return view('frontend.pages.product.productDetails', $data);
@@ -147,7 +148,7 @@ class HomeController extends Controller
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
 
-        if ($subTotal > $minimumOrderAmount ) {
+        if ($subTotal > $minimumOrderAmount) {
             $data = [
                 'shippingmethods' => ShippingMethod::active()->get(),
                 'cartItems'       => Cart::instance('cart')->content(),
@@ -159,7 +160,9 @@ class HomeController extends Controller
             return view('frontend.pages.cart.checkout', $data);
         } else {
             // Redirect back with error message
-            return redirect()->back()->with('error', 'The added product price must be greater than 500£ to proceed to check out.');
+            Session::flash('error', 'The added product price must be greater than 500£ to proceed to check out.');
+            // Session::flush();
+            return redirect()->back();
         }
     }
 

@@ -1,4 +1,12 @@
-<x-frontend-app-layout :title="'Product Details'">
+<x-frontend-app-layout :title="'Product Details'" :product="$product">
+    @push('heads')
+        @php
+            $isProductPage = true; // Flag to indicate this is a product details page
+            $metaTitle = $product->meta_title ?? $product->name;
+            $metaDescription = $product->meta_description ?? substr($product->description, 0, 150);
+            $metaImage = $product->thumbnail ?? ''; // Default image
+        @endphp
+    @endpush
     <style>
         .slider-nav-thumbnails {
             margin-top: 10px;
@@ -260,8 +268,9 @@
                                 </a>
                             </li>
                             <li class="nav-item ml-3 pr-info-tabs" role="presentation">
-                                <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
-                                    role="tab" aria-controls="information-content" aria-selected="false">
+                                <a class="nav-link" id="information-tab" data-toggle="tab"
+                                    href="#information-content" role="tab" aria-controls="information-content"
+                                    aria-selected="false">
                                     Description
                                 </a>
                             </li>
@@ -396,8 +405,7 @@
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
                                                                 alt="{{ $related_product->meta_title }}"
-                                                                width="210" height="210"
-                                                                />
+                                                                width="210" height="210" />
                                                         @else
                                                             @foreach ($related_product->multiImages->slice(0, 2) as $image)
                                                                 @php
@@ -409,8 +417,7 @@
                                                                 @endphp
                                                                 <img src="{{ $imageSrc }}"
                                                                     alt="{{ $related_product->meta_title }}"
-                                                                    width="210" height="210"
-                                                                    />
+                                                                    width="210" height="210" />
                                                             @endforeach
                                                         @endif
                                                     </figure>
