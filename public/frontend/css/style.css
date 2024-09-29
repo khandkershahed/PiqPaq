@@ -3271,11 +3271,29 @@ textarea.form-control {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 23px;
-    color: white;
 }
-
-.owl-carousel .owl-nav > *:hover {
-    background-color: var(--site-green) !important;
+.owl-carousel .owl-nav > * {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    width: 56px;
+    height: 56px;
+    background-color: #8cbf4466 !important;
+    transition: all 0.4s ease;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+.owl-prev i:hover,
+.owl-next i:hover {
+    color: white !important;
+}
+.owl-carousel .owl-nav > * i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 23px;
+    color: white !important;
 }
 
 .owl-carousel .owl-nav .owl-prev {
@@ -12577,7 +12595,7 @@ textarea.form-control {
 } */
 .ps-product__title {
     width: 100%;
-    height: 100px;
+    height: 70px;
     font-size: 16px;
     line-height: 20px;
     overflow: hidden;
@@ -18146,7 +18164,51 @@ table.dataTable tbody td:last-child {
     h1 {
         font-size: 30px;
     }
-    .ps-form--review .ps-form__input, .ps-form--review .ps-form__textarea{
+    .ps-form--review .ps-form__input,
+    .ps-form--review .ps-form__textarea {
         font-size: 16px;
     }
+}
+
+/* Deal Carousel */
+.dealCarousel-prev,
+.dealCarousel-next {
+    background: #fff;
+    /* Background color */
+    color: #000;
+    /* Text color */
+    border: 1px solid #ddd;
+    /* Border styling */
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dealCarousel-prev {
+    position: absolute;
+    left: 10px;
+    /* Positioning */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dealCarousel-next {
+    position: absolute;
+    right: 10px;
+    /* Positioning */
+    top: 50%;
+    transform: translateY(-50%);
+}
+.ps-home--14 .owl-nav button {
+    color: white;
+    font-size: 29px;
+}
+.ps-home--14 .owl-nav button:hover {
+    color: white;
+    font-size: 29px;
+}
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel button.owl-dot {
+    font-size: 29px !important;
 }
