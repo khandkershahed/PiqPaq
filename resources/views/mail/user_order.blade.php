@@ -1,4 +1,4 @@
-{{-- resources/views/mail/user_order.blade.php --}}
+
 <!DOCTYPE html>
 <html>
 
