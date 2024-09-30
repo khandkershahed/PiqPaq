@@ -29,16 +29,22 @@ class HomeController extends Controller
     {
         $categoryone = Category::inRandomOrder()->active()->first();
 
+        $categoryoneproducts = $categoryone->products()->inRandomOrder()->paginate(8);
         if ($categoryone) {
             $categorytwo = Category::where('id', '!=', $categoryone->id)
                 ->inRandomOrder()->active()->first();
+            $categorytwoproducts = $categorytwo->products()->inRandomOrder()->paginate(8);
         }
 
         if (isset($categoryone, $categorytwo)) {
             $categorythree = Category::where('id', '!=', $categoryone->id)
                 ->where('id', '!=', $categorytwo->id)
                 ->inRandomOrder()->active()->first();
+            $categorythreeproducts = $categorythree->products()->inRandomOrder()->paginate(8);
         }
+        $categoryoneproducts = $categoryoneproducts ?? collect(); // Empty collection if categoryone is null
+        $categorytwoproducts = $categorytwoproducts ?? collect(); // Empty collection if categorytwo is null
+        $categorythreeproducts = $categorythreeproducts ?? collect();
         $data = [
 
             'sliders'                   => PageBanner::active()->where('page_name', 'home_slider')->latest('id')->get(),
@@ -50,11 +56,11 @@ class HomeController extends Controller
             'blog'                      => BlogPost::inRandomOrder()->active()->first(),
             'categorys'                 => Category::orderBy('name', 'ASC')->active()->get(),
             'categoryone'               => $categoryone,
-            'categoryoneproducts'       => $categoryone->products()->inRandomOrder()->paginate(8),
+            'categoryoneproducts'       => $categoryoneproducts,
             'categorytwo'               => $categorytwo,
-            'categorytwoproducts'       => $categorytwo->products()->inRandomOrder()->paginate(8),
+            'categorytwoproducts'       => $categorytwoproducts,
             'categorythree'             => $categorythree,
-            'categorythreeproducts'     => $categorythree->products()->inRandomOrder()->paginate(8),
+            'categorythreeproducts'     => $categorythreeproducts,
             'latest_products'           => Product::with('multiImages')->inRandomOrder()->where('status', 'published')->paginate(8),
             'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->inRandomOrder()->limit(10)->get(),
         ];
