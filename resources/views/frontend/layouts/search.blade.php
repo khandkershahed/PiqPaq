@@ -30,7 +30,7 @@
                 @if (is_countable($blogs) && count($blogs) > 0)
                     <div class="row mt-2 mb-4">
                         <h4 class="fw-bold border-bottom">Blogs</h4>
-                        <div class="col-12">
+                        <div class="col-12 pl-0">
                             @foreach ($blogs as $blog)
                                 <h4>
                                     <a class="search_titles"href="{{ route('blog.details', $blog->slug) }}">
@@ -54,13 +54,13 @@
                                     </figure>
                                 </a>
                             </div>
-                            <div class="ps-product__content">
+                            <div class="ps-product__content pt-0">
                                 <h4 class="ps-product__title" style="height: auto; min-height:auto">
                                     <a href="{{ route('product.details', $search_product->slug) }}">
                                         {{ $search_product->name }}
                                     </a>
                                 </h4>
-                                <p class="ps-product__desc" style="display: block">{!! $search_product->short_description !!}</p>
+                                <p class="ps-product__desc d-none" style="display: block">{!! $search_product->short_description !!}</p>
                                 @if (Auth::check() && Auth::user()->status == 'active')
                                     @if (!empty($search_product->box_discount_price))
                                         <div class="ps-product__meta">
