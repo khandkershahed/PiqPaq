@@ -29,18 +29,27 @@ class HomeController extends Controller
     {
         $categoryone = Category::inRandomOrder()->active()->first();
 
-        $categoryoneproducts = $categoryone->products()->inRandomOrder()->paginate(8);
+        if ($categoryone) {
+            $categoryoneproducts = $categoryone->products()->inRandomOrder()->paginate(8);
+        }
+
         if ($categoryone) {
             $categorytwo = Category::where('id', '!=', $categoryone->id)
                 ->inRandomOrder()->active()->first();
-            $categorytwoproducts = $categorytwo->products()->inRandomOrder()->paginate(8);
+
+            if ($categorytwo) {
+                $categorytwoproducts = $categorytwo->products()->inRandomOrder()->paginate(8);
+            }
         }
 
         if (isset($categoryone, $categorytwo)) {
             $categorythree = Category::where('id', '!=', $categoryone->id)
                 ->where('id', '!=', $categorytwo->id)
                 ->inRandomOrder()->active()->first();
-            $categorythreeproducts = $categorythree->products()->inRandomOrder()->paginate(8);
+
+            if ($categorythree) {
+                $categorythreeproducts = $categorythree->products()->inRandomOrder()->paginate(8);
+            }
         }
         $categoryoneproducts = $categoryoneproducts ?? collect(); // Empty collection if categoryone is null
         $categorytwoproducts = $categorytwoproducts ?? collect(); // Empty collection if categorytwo is null
