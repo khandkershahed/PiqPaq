@@ -312,7 +312,7 @@
             <div class="container">
                 <div class="ps-home--block">
                     <h3 class="ps-section__title text-center pb-5" style="font-size: 30px;">
-                        {{ $categoryone->name }}</h3>
+                        {{ optional($categoryone)->name }}</h3>
                     <div class="ps-section__content">
                         <div class="row m-0">
                             @foreach ($categoryoneproducts as $categoryoneproduct)
@@ -461,7 +461,7 @@
     </div>
     <section class="ps-section--latest">
         <div class="container">
-            <h3 class="ps-section__title">{{ $categorytwo->name }}</h3>
+            <h3 class="ps-section__title">{{ optional($categorytwo)->name }}</h3>
             <div class="ps-section__carousel mb-0">
                 <div class="takeway-slider owl-carousel owl-loaded owl-drag">
                     <div class="owl-stage-outer">
@@ -607,7 +607,7 @@
     <div class="container">
         <div class="ps-home--block">
             <h3 class="ps-section__title text-center pb-5" style="font-size: 30px;">
-                {{ $categorythree->name }}</h3>
+                {{ optional($categorythree)->name }}</h3>
                 <div class="ps-section__content">
                     <div class="row m-0">
                         @foreach ($categorythreeproducts as $categorythreeproduct)
