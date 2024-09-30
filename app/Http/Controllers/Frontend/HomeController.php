@@ -50,13 +50,13 @@ class HomeController extends Controller
             'blog'                      => BlogPost::inRandomOrder()->active()->first(),
             'categorys'                 => Category::orderBy('name', 'ASC')->active()->get(),
             'categoryone'               => $categoryone,
-            'categoryoneproducts'       => $categoryone->products()->paginate(8),
+            'categoryoneproducts'       => $categoryone->products()->inRandomOrder()->paginate(8),
             'categorytwo'               => $categorytwo,
-            'categorytwoproducts'       => $categorytwo->products()->paginate(8),
+            'categorytwoproducts'       => $categorytwo->products()->inRandomOrder()->paginate(8),
             'categorythree'             => $categorythree,
-            'categorythreeproducts'     => $categorythree->products()->paginate(8),
-            'latest_products'           => Product::with('multiImages')->latest('id')->where('status', 'published')->paginate(8),
-            'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->latest('id')->limit(10)->get(),
+            'categorythreeproducts'     => $categorythree->products()->inRandomOrder()->paginate(8),
+            'latest_products'           => Product::with('multiImages')->inRandomOrder()->where('status', 'published')->paginate(8),
+            'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->inRandomOrder()->limit(10)->get(),
         ];
         // dd($data['deal_products']);
         return view('frontend.pages.home', $data);
