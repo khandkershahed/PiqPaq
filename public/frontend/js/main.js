@@ -2,7 +2,7 @@
     "use strict";
 
     function owlCarouselConfig() {
-        var target = $(".owl-carousel");
+        var target = $(".owl-carousel-banner");
         if (target.length > 0) {
             target.each(function () {
                 var el = $(this),
@@ -54,9 +54,9 @@
                         dotsSpeed: 800, // Speed of dots/pagination transitions
                         dragEndSpeed: 600, // Speed when dragging ends
                         navText: [
-                            '<i class="icon-left"></i>',
-                            '<i class="icon-right"></i>',
-                        ], // Custom HTML for nav buttons
+                            '<i class="fa fa-chevron-left"></i>',
+                            '<i class="fa fa-chevron-right"></i>',
+                        ],
                         dots: true, // Shows pagination dots
                         items: 3, // Number of items displayed per slide
                         center: true, // Center the active item
@@ -71,7 +71,7 @@
                                 items: 1,
                             },
                             992: {
-                                items: 2,
+                                items: 1,
                             },
                             1200: {
                                 items: 1,
@@ -676,3 +676,4 @@
 
     $(window).on("load", function () {});
 })(jQuery);
+

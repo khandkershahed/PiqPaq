@@ -47,7 +47,7 @@
         .main_product_img img {
             width: 530px;
             height: 430px;
-            object-fit: cover;
+            object-fit: contain;
         }
     </style>
     <div class="ps-page--product3">
