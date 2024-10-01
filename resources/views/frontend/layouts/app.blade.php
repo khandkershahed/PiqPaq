@@ -57,7 +57,8 @@
         <meta property="twitter:image"
             content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
     @endif
-
+        {{ optional($setting)->google_analytics }}
+        {{ optional($setting)->google_adsense }}
     <title>
         {{ isset($metaTitle) && $metaTitle ? $metaTitle : (optional($setting)->site_title ? optional($setting)->site_title : config('app.name', 'E-Commerce')) }}
     </title>
