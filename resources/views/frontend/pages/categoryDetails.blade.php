@@ -127,12 +127,12 @@
                                                                         <span
                                                                             class="ps-product__price sale">£{{ $category_product->box_discount_price }}</span>
                                                                         <span
-                                                                            class="ps-product__del">£{{ $category_product->box_price }}</span>
+                                                                            class="ps-product__del">£{{ $category_product->unit_price }} Per Unit</span>
                                                                     </div>
                                                                 @else
                                                                     <div class="ps-product__meta">
                                                                         <span
-                                                                            class="ps-product__price sale">£{{ $category_product->box_price }}</span>
+                                                                            class="ps-product__price sale">£{{ $category_product->unit_price }} Per Unit</span>
                                                                     </div>
                                                                 @endif
                                                                 <a href="{{ route('cart.store', $category_product->id) }}"
@@ -338,12 +338,12 @@
                                                             <span
                                                                 class="ps-product__price sale">£{{ $category_product->box_discount_price }}</span>
                                                             <span
-                                                                class="ps-product__del">£{{ $category_product->box_price }}</span>
+                                                                class="ps-product__del">£{{ $category_product->unit_price }} Per Unit</span>
                                                         </div>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <span
-                                                                class="ps-product__price sale">£{{ $category_product->box_price }}</span>
+                                                                class="ps-product__price sale">£{{ $category_product->unit_price }} Per Unit</span>
                                                         </div>
                                                     @endif
 

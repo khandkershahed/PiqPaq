@@ -242,12 +242,12 @@
                                                                 <span
                                                                     class="ps-product__price sale">£{{ $latest_product->box_discount_price }}</span>
                                                                 <span
-                                                                    class="ps-product__del">£{{ $latest_product->box_price }}</span>
+                                                                    class="ps-product__del">£{{ $latest_product->unit_price }} Per Unit</span>
                                                             </div>
                                                         @else
                                                             <div class="ps-product__meta">
                                                                 <span
-                                                                    class="ps-product__price sale">£{{ $latest_product->box_price }}</span>
+                                                                    class="ps-product__price sale">£{{ $latest_product->unit_price }} Per Unit</span>
                                                             </div>
                                                         @endif
                                                         <a href="{{ route('cart.store', $latest_product->id) }}"
@@ -385,12 +385,12 @@
                                                             <span
                                                                 class="ps-product__price sale">£{{ $categoryoneproduct->box_discount_price }}</span>
                                                             <span
-                                                                class="ps-product__del">£{{ $categoryoneproduct->box_price }}</span>
+                                                                class="ps-product__del">£{{ $categoryoneproduct->unit_price }} Per Unit</span>
                                                         </div>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <span
-                                                                class="ps-product__price sale">£{{ $categoryoneproduct->box_price }}</span>
+                                                                class="ps-product__price sale">£{{ $categoryoneproduct->unit_price }} Per Unit</span>
                                                         </div>
                                                     @endif
                                                     <a href="{{ route('cart.store', $categoryoneproduct->id) }}"
@@ -537,12 +537,12 @@
                                                             <span
                                                                 class="ps-product__price sale">£{{ $categorytwoproduct->box_discount_price }}</span>
                                                             <span
-                                                                class="ps-product__del">£{{ $categorytwoproduct->box_price }}</span>
+                                                                class="ps-product__del">£{{ $categorytwoproduct->unit_price }} Per Unit</span>
                                                         </div>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <span
-                                                                class="ps-product__price sale">£{{ $categorytwoproduct->box_price }}</span>
+                                                                class="ps-product__price sale">£{{ $categorytwoproduct->unit_price }} Per Unit</span>
                                                         </div>
                                                     @endif
                                                     <a href="{{ route('cart.store', $categorytwoproduct->id) }}"
@@ -680,12 +680,12 @@
                                                         <span
                                                             class="ps-product__price sale">£{{ $categorythreeproduct->box_discount_price }}</span>
                                                         <span
-                                                            class="ps-product__del">£{{ $categorythreeproduct->box_price }}</span>
+                                                            class="ps-product__del">£{{ $categorythreeproduct->unit_price }} Per Unit</span>
                                                     </div>
                                                 @else
                                                     <div class="ps-product__meta">
                                                         <span
-                                                            class="ps-product__price sale">£{{ $categorythreeproduct->box_price }}</span>
+                                                            class="ps-product__price sale">£{{ $categorythreeproduct->unit_price }} Per Unit</span>
                                                     </div>
                                                 @endif
                                                 <a href="{{ route('cart.store', $categorythreeproduct->id) }}"
@@ -909,12 +909,12 @@
                                             <span
                                                 class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
                                             <span
-                                                class="ps-product__del">£{{ $deal_product->box_price }}</span>
+                                                class="ps-product__del">£{{ $deal_product->unit_price }} Per Unit</span>
                                         </div>
                                     @else
                                         <div class="ps-product__meta">
                                             <span
-                                                class="ps-product__price sale">£{{ $deal_product->box_price }}</span>
+                                                class="ps-product__price sale">£{{ $deal_product->unit_price }} Per Unit</span>
                                         </div>
                                     @endif
                                     <a href="{{ route('cart.store', $deal_product->id) }}"
