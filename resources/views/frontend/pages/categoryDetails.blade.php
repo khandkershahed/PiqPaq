@@ -118,7 +118,7 @@
                                                             <h5 class="ps-product__title">
                                                                 <a
                                                                     href="{{ route('product.details', $category_product->slug) }}">
-                                                                    {{ $category_product->name }}
+                                                                    {{ implode(' ', array_slice(explode(' ', $category_product->name), 0, 8)) }}
                                                                 </a>
                                                             </h5>
                                                             @if (Auth::check() && Auth::user()->status == 'active')

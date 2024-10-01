@@ -233,7 +233,7 @@
                                                     <h5 class="ps-product__title">
                                                         <a
                                                             href="{{ route('product.details', $latest_product->slug) }}">
-                                                            {{ $latest_product->name }}
+                                                            {{ implode(' ', array_slice(explode(' ', $latest_product->name), 0, 8)) }}
                                                         </a>
                                                     </h5>
                                                     @if (Auth::check() && Auth::user()->status == 'active')
@@ -376,7 +376,7 @@
                                                 <h5 class="ps-product__title">
                                                     <a
                                                         href="{{ route('product.details', $categoryoneproduct->slug) }}">
-                                                        {{ $categoryoneproduct->name }}
+                                                        {{ implode(' ', array_slice(explode(' ', $categoryoneproduct->name), 0, 8)) }}
                                                     </a>
                                                 </h5>
                                                 @if (Auth::check() && Auth::user()->status == 'active')
@@ -528,7 +528,7 @@
                                                 <h5 class="ps-product__title">
                                                     <a
                                                         href="{{ route('product.details', $categorytwoproduct->slug) }}">
-                                                        {{ $categorytwoproduct->name }}
+                                                        {{ implode(' ', array_slice(explode(' ', $categorytwoproduct->name), 0, 8)) }}
                                                     </a>
                                                 </h5>
                                                 @if (Auth::check() && Auth::user()->status == 'active')
@@ -671,7 +671,7 @@
                                             <h5 class="ps-product__title">
                                                 <a
                                                     href="{{ route('product.details', $categorythreeproduct->slug) }}">
-                                                    {{ $categorythreeproduct->name }}
+                                                    {{ implode(' ', array_slice(explode(' ', $categorythreeproduct->name), 0, 8)) }}
                                                 </a>
                                             </h5>
                                             @if (Auth::check() && Auth::user()->status == 'active')
@@ -900,7 +900,7 @@
                             <div class="ps-product__content">
                                 <h5 class="ps-product__title">
                                     <a href="{{ route('product.details', $deal_product->slug) }}">
-                                        {{ $deal_product->name }}
+                                        {{ implode(' ', array_slice(explode(' ', $deal_product->name), 0, 8)) }}
                                     </a>
                                 </h5>
                                 @if (Auth::check() && Auth::user()->status == 'active')
