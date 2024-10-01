@@ -88,6 +88,6 @@
         </div>
     @endif
 </div>
-<div class="ps-pagination">
+{{-- <div class="ps-pagination">
     {{ $products->links() }}
-</div>
+</div> --}}

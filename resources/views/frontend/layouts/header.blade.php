@@ -276,7 +276,7 @@
         </div>
     </div>
 </header>
-<div class="ps-search">
+{{-- <div class="ps-search">
     <div class="ps-search__content ps-search--mobile"><a class="ps-search__close" href="#"
             id="close-search"><i class="icon-cross"></i></a>
         <h3>Search</h3>
@@ -354,7 +354,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <script>
     function handleLogout() {
         fetch('{{ route('logout') }}', {

@@ -161,6 +161,9 @@
                         <div id="productContainer">
                             @include('frontend.pages.product.partial.getProduct')
                         </div>
+                        <div class="ps-pagination">
+                            {{ $products->links() }}
+                        </div>
                         <div class="ps-delivery"
                             style="background-image: url({{ asset('frontend/img/promotion/banner-delivery-2.jpg') }});">
                             <div class="ps-delivery__content">
