@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'last_name'                     => 'nullable|string|max:100',
             'email'                         => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password'                      => ['required', 'string', 'min:8', 'confirmed'],
-            'phone'                         => 'nullable|max:20',
+            'phone'                         => 'nullable|max:20|min:9',
             'address_one'                   => 'nullable|string|max:255',
             'address_two'                   => 'nullable|string|max:255',
             'zipcode'                       => 'nullable|string|max:10',
@@ -105,18 +105,10 @@ class RegisteredUserController extends Controller
                 'status'                        => $status,
             ]);
 
-            // Trigger registration event
             event(new Registered($user));
-
-            // Send registration email
             Mail::to($user->email)->send(new UserRegistrationMail($user->name, $setting));
-
-            // Log in the user
             Auth::login($user);
-
-            // Set success message
             Session::flash('success', "You have registered Successfully");
-
             // Redirect to home
             return redirect(RouteServiceProvider::HOME);
         } catch (\Illuminate\Database\QueryException $e) {
