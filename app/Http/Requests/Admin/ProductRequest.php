@@ -38,7 +38,7 @@ class ProductRequest extends FormRequest
             'description'               => 'nullable|string',
             'specification'             => 'nullable|string',
             'warranty'                  => 'nullable|string',
-            'thumbnail'                 => 'nullable|image|mimes:png,jpg,jpeg|max:3072', // Make this nullable if it’s not required
+            'thumbnail'                 => 'nullable|image|mimes:png,jpg,jpeg,webp|max:3072', // Make this nullable if it’s not required
             'box_stock'                 => 'nullable|numeric',
             'stock'                     => 'nullable|numeric',
             'box_contains'              => 'nullable|numeric',

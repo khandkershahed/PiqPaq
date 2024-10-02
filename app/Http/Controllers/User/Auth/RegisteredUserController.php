@@ -105,18 +105,10 @@ class RegisteredUserController extends Controller
                 'status'                        => $status,
             ]);
 
-            // Trigger registration event
             event(new Registered($user));
-
-            // Send registration email
             Mail::to($user->email)->send(new UserRegistrationMail($user->name, $setting));
-
-            // Log in the user
             Auth::login($user);
-
-            // Set success message
             Session::flash('success', "You have registered Successfully");
-
             // Redirect to home
             return redirect(RouteServiceProvider::HOME);
         } catch (\Illuminate\Database\QueryException $e) {
