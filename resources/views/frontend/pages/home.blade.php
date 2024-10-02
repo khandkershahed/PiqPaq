@@ -450,7 +450,8 @@
             </div>
         </div>
     @endif
-    <div class="ps-delivery ps-delivery--info my-5"
+    <div class="container">
+        <div class="ps-delivery ps-delivery--info my-5"
         data-background="https://nouthemes.net/html/mymedi/img/promotion/banner-delivery-3.jpg"
         style="background-image: url(&quot;img/promotion/banner-delivery-3.jpg&quot;);">
         <div class="ps-delivery__content">
@@ -459,9 +460,10 @@
                 class="ps-delivery__more" href="#">More</a>
         </div>
     </div>
+    </div>
     <section class="ps-section--latest">
         <div class="container">
-            <h3 class="ps-section__title">{{ optional($categorytwo)->name }}</h3>
+            <h3 class="ps-section__title" style="font-size: 30px;">{{ optional($categorytwo)->name }}</h3>
             <div class="ps-section__carousel mb-0">
                 <div class="takeway-slider owl-carousel owl-loaded owl-drag">
                     <div class="owl-stage-outer">

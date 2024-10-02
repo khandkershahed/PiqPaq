@@ -330,34 +330,45 @@
     }
 
     function stickyMenu() {
-        $(window).scroll(function (event) {
-            var scroll = $(window).scrollTop();
-            var innerWidth = $(window).innerWidth();
+        // $(window).scroll(function () {
+        //     var scroll = $(window).scrollTop();
+        //     var innerWidth = $(window).innerWidth();
 
-            if (scroll > 100 && innerWidth > 760) {
-                $(".ps-header").addClass("ps-header--sticky");
-            } else if (scroll > 600 && innerWidth < 660) {
-                $(".ps-header").addClass("ps-header--sticky");
-                $(".ps-search--result").removeClass("active");
-            } else {
-                $(".ps-header").removeClass("ps-header--sticky");
-            }
+        //     if (scroll > 100 && innerWidth > 760) {
+        //         $(".ps-header").addClass("ps-header--sticky");
+        //         setTimeout(function () {
+        //             $(".ps-header").addClass("active"); // For smooth transition
+        //         }, 10);
+        //     } else if (scroll > 600 && innerWidth < 660) {
+        //         $(".ps-header").addClass("ps-header--sticky");
+        //         setTimeout(function () {
+        //             $(".ps-header").addClass("active");
+        //         }, 10);
+        //         $(".ps-search--result").removeClass("active");
+        //     } else {
+        //         $(".ps-header").removeClass("active");
+        //         setTimeout(function () {
+        //             $(".ps-header").removeClass("ps-header--sticky");
+        //         }, 500);
+        //     }
 
-            if (scroll > 100) {
-                $(".scroll-top").fadeIn(1000); // Fade in with 300ms duration
-            } else {
-                $(".scroll-top").fadeOut(1000); // Fade out with 300ms duration
-            }
-        });
+        //     // Scroll top button functionality
+        //     if (scroll > 100) {
+        //         $(".scroll-top").fadeIn(1000); // Show button with fade-in effect
+        //     } else {
+        //         $(".scroll-top").fadeOut(1000); // Hide button with fade-out effect
+        //     }
+        // });
 
         $(".ps-menu--sticky").on("click", function (event) {
             event.preventDefault();
             $(".ps-navigation").slideToggle();
         });
 
+        // Scroll to top functionality
         $(".scroll-top").on("click", function (e) {
             e.preventDefault();
-            $("html,body").animate({ scrollTop: 0 }, 500);
+            $("html,body").animate({ scrollTop: 0 }, 500); // Smooth scroll to the top
         });
 
         $('a[href="#home-block"]').on("click", function (event) {
@@ -676,4 +687,3 @@
 
     $(window).on("load", function () {});
 })(jQuery);
-

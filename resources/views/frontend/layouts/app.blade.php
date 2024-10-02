@@ -146,6 +146,7 @@
     <div id="preloader">
         <img width="100px" src="{{ asset('frontend/img/loader.gif') }}" alt="Loading...">
     </div>
+
     <div id="main-content" style="display: none;">
         <div class="ps-page">
             {{-- Header --}}
@@ -157,6 +158,10 @@
             {{-- Footer --}}
         </div>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top" style="display: none;">↑</a>
+
     @include('frontend.layouts.extra')
     <script src="{{ asset('frontend/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
@@ -455,7 +460,6 @@
             });
         });
     </script>
-
     <script>
         $(document).ready(function() {
             $('.add_to_wishlist').click(function(e) {
@@ -596,7 +600,6 @@
         miniCart();
     </script> --}}
     {{-- //MiNiCart Remove  --}}
-
     {{-- Search Script --}}
     <script>
         $(document).ready(function() {
@@ -795,6 +798,4 @@
     </script>
     {{-- add_to_cart_btn_product_single --}}
 </body>
-
-
 </html>

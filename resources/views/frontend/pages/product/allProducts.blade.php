@@ -20,6 +20,7 @@
             transition: background 0.2s ease, border-color 0.2s ease;
             display: inline-block;
             background: #fff;
+            width :  100%;
             position: relative;
         }
 
@@ -132,10 +133,9 @@
             <div class="ps-categogy__content pt-4">
                 <div class="row row-reverse">
                     <div class="col-12 col-md-9">
-                        <div class="ps-categogy__wrapper d-flex justify-content-center">
+                        <div class="ps-categogy__wrapper d-flex justify-content-center px-1">
                             <div class="ps-categogy__sort w-100 text-left py-0">
                                 <form>
-                                    <span>Sort by</span>
                                     <select id="sort-by" class="form-select">
                                         <option value="latest">Latest</option>
                                         <option value="oldest">Oldest</option>
@@ -144,6 +144,7 @@
                                         <option value="price-asc">Price: low to high</option>
                                         <option value="price-desc">Price: high to low</option>
                                     </select>
+                                    <span>Sort by</span>
                                 </form>
                             </div>
                             <div class="ps-categogy__show w-100 text-right py-0">
@@ -243,7 +244,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="ps-widget__block">
+                            <div class="ps-widget__block bg-white p-3">
                                 <h4 class="ps-widget__title">By price</h4><a class="ps-block-control" href="#"><i
                                         class="fa fa-angle-down"></i></a>
                                 <div class="ps-widget__content">

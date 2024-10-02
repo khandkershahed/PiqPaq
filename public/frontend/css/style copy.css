@@ -2936,6 +2936,7 @@ textarea.form-control {
     max-height: -webkit-max-content;
     max-height: -moz-max-content;
     max-height: max-content;
+    overflow: hidden;
 }
 
 .ps-widget--product .ps-widget__promo {
@@ -14188,15 +14189,18 @@ textarea.form-control {
     left: 0;
     width: 100%;
     z-index: 999;
+    transition: all 0.5s;
 }
 
 .ps-header.ps-header--sticky .ps-noti,
 .ps-header.ps-header--sticky .ps-navigation {
     display: none;
+    transition: all 0.5s;
 }
 
 .ps-header.ps-header--sticky .ps-logo img {
     display: none;
+    transition: all 0.5s;
 }
 
 .ps-header.ps-header--sticky .ps-logo .sticky-logo {
@@ -14210,12 +14214,14 @@ textarea.form-control {
 
 .ps-header.ps-header--sticky .ps-menu--sticky {
     display: table-cell;
+    transition: all 0.5s;
 }
 
 .ps-header.ps-header--sticky .ps-header__middle {
     padding-top: 5px;
     padding-bottom: 5px;
     box-shadow: 0 4px 2px -2px #f0f2f5;
+    transition: all 0.5s;
 }
 
 .ps-header.ps-header--sticky .ps-header__top {
@@ -14231,6 +14237,7 @@ textarea.form-control {
     height: 15px;
     width: 100%;
     box-shadow: 0 4px 2px -2px #f0f2f5;
+    transition: all 0.5s;
 }
 
 .ps-header .ps-navigation {

@@ -2903,6 +2903,7 @@ textarea.form-control {
 
 .ps-widget--product .ps-widget__block .ps-widget__content {
     max-height: 250px;
+    overflow: hidden;
     /* width */
     /* Track */
     /* Handle */
@@ -2937,6 +2938,7 @@ textarea.form-control {
     max-height: -webkit-max-content;
     max-height: -moz-max-content;
     max-height: max-content;
+    overflow: hidden;
 }
 
 .ps-widget--product .ps-widget__promo {
@@ -8951,7 +8953,7 @@ textarea.form-control {
 }
 
 .ps-categogy .ps-categogy__wrapper {
-    background-color: #f0f2f5;
+    background-color: #fff;
     border-radius: 5px;
     padding: 0 20px;
     display: flex;
@@ -8962,10 +8964,13 @@ textarea.form-control {
 }
 
 .ps-categogy .ps-categogy__wrapper .form-select {
-    border: none;
+    border: 1px solid #eee;
     background-color: transparent;
     font-weight: bold;
     color: #103178;
+    margin: 4px;
+    height: 42px;
+    border-radius: 5px;
 }
 
 .ps-categogy .ps-categogy__filter {
@@ -13896,12 +13901,14 @@ textarea.form-control {
 .ps-header {
     background-color: white;
     display: none;
+    transition: all 0.5s;
 }
 
 .ps-header .ps-header__middle {
     padding-top: 10px;
     padding-bottom: 10px;
     position: relative;
+    transition: all 0.5s;
 }
 
 .ps-header .ps-header__middle .container {
@@ -14146,12 +14153,14 @@ textarea.form-control {
     display: flex;
 }
 
+/* Mobile Menu */
 .ps-header.ps-header--sticky {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
+    transition: all 0.5s;
 }
 
 .ps-header.ps-header--sticky .ps-noti,
@@ -14196,7 +14205,7 @@ textarea.form-control {
     width: 100%;
     box-shadow: 0 4px 2px -2px #f0f2f5;
 }
-
+/* Mobile Menu End*/
 .ps-header .ps-navigation {
     position: relative;
     border-top: 1px solid #f0f2f5;
@@ -14254,6 +14263,7 @@ textarea.form-control {
         width: 65px;
         padding-right: 20px;
         position: initial;
+        transition: all 0.5s;
     }
     .ps-header .ps-navigation__right {
         display: table-cell;
@@ -14307,6 +14317,7 @@ textarea.form-control {
 
 .ps-header--mobile.ps-header--sticky .ps-logo img {
     display: block;
+    transition: all 0.5s;
 }
 
 .ps-header--mobile .ps-header__right .ps-header__item {
@@ -14364,6 +14375,24 @@ textarea.form-control {
     color: #103178;
     text-decoration: underline;
     font-weight: 600;
+}
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.5s ease-in-out; /* Smooth transition */
+}
+
+.scroll-top:hover {
+    background-color: #555;
 }
 
 .ps-search--result.active {
@@ -18213,7 +18242,7 @@ table.dataTable tbody td:last-child {
     font-size: 29px !important;
 }
 
- .ps-section__product {
+.ps-section__product {
     border-left: 1px solid #f0f2f5;
     border-bottom: 1px solid #f0f2f5;
 }
