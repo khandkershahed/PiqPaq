@@ -26,10 +26,10 @@
     </div>
     <div class="fv-row col-lg-12 mb-7">
         <x-metronic.label class="fw-semibold fs-6 mb-2">Google Analytics</x-metronic.label>
-        <textarea class="form-control form-control-solid mb-3 mb-lg-0" name="google_analytics" id="" rows="7">{!! optional($setting)->google_analytics !!}</textarea>
+        <textarea class="form-control form-control-solid mb-3 mb-lg-0 ckeditor" name="google_analytics" id="" rows="7">{!! optional($setting)->google_analytics !!}</textarea>
     </div>
     <div class="fv-row col-lg-12 mb-7">
         <x-metronic.label class="fw-semibold fs-6 mb-2">Google Adsense</x-metronic.label>
-        <textarea class="form-control form-control-solid mb-3 mb-lg-0" name="google_adsense" id="" rows="7">{!! optional($setting)->google_adsense !!}</textarea>
+        <textarea class="form-control form-control-solid mb-3 mb-lg-0 ckeditor" name="google_adsense" id="" rows="7">{!! optional($setting)->google_adsense !!}</textarea>
     </div>
 </div>

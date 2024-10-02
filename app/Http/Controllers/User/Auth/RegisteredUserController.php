@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'last_name'                     => 'nullable|string|max:100',
             'email'                         => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password'                      => ['required', 'string', 'min:8', 'confirmed'],
-            'phone'                         => 'nullable|max:20',
+            'phone'                         => 'nullable|max:20|min:9',
             'address_one'                   => 'nullable|string|max:255',
             'address_two'                   => 'nullable|string|max:255',
             'zipcode'                       => 'nullable|string|max:10',
