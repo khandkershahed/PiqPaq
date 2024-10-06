@@ -3387,6 +3387,7 @@ textarea.form-control {
     width: 100%;
     margin: auto;
     border-radius: 4px;
+    object-fit: contain;
 }
 
 .ps-product__actions {
@@ -3396,6 +3397,9 @@ textarea.form-control {
     z-index: 7;
     visibility: hidden;
     opacity: 0;
+}
+.pay-half{
+    width: 50%;
 }
 
 .ps-product__actions .ps-product__item {
@@ -18041,6 +18045,12 @@ table.dataTable tbody td:last-child {
 }
 
 @media (max-width: 768px) {
+    .payment-mobile{
+        flex-direction: column;
+    }
+    .pay-half{
+        width: 100% !important;
+    }
     .ps-table--responsive {
         border: none;
     }
