@@ -59,17 +59,22 @@
                                                     <div class="ps-product__row">
                                                         <div class="ps-product__label">Price:</div>
                                                         <div class="ps-product__value">
-                                                            <span
-                                                                class="ps-product__price sale">£{{ $wishlist->product->box_price }}
+                                                            <span class="ps-product__price sale">£
+                                                                {{ $wishlist->product->box_price }}
                                                         </div>
                                                     </div>
                                                 @endif
 
                                                 <div class="ps-product__row ps-product__stock">
                                                     <div class="ps-product__label">Stock:</div>
-                                                    <div class="ps-product__value"><span
-                                                            class="ps-product__out-stock">Out
-                                                            of stock </span>
+                                                    <div class="ps-product__value">
+                                                        <span class="ps-product__out-stock">
+                                                            @if ($wishlist->product->box_stock > 0)
+                                                                In Stock
+                                                            @else
+                                                                Out of Stock
+                                                            @endif
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div class="ps-product__cart">
@@ -136,7 +141,14 @@
                                                         {{-- <span
                                                                 class="ps-product__price">{{ $wishlist->product->box_price }}</span> --}}
                                                     </td>
-                                                    <td class="ps-product__status"> <span>In Stock</span>
+                                                    <td class="ps-product__status">
+                                                        <span>
+                                                            @if ($wishlist->product->box_stock > 0)
+                                                                In Stock
+                                                            @else
+                                                                Out of Stock
+                                                            @endif
+                                                        </span>
                                                     </td>
                                                     <td class="ps-product__cart">
                                                         <a href="{{ route('cart.store', $wishlist->product->id) }}"
@@ -145,7 +157,8 @@
                                                             data-product_qty="1">Add To Cart</a>
                                                     </td>
                                                     <td>
-                                                        <a class="delete" href="{{ route('wishlist.destroy',$wishlist->id) }}">
+                                                        <a class="delete"
+                                                            href="{{ route('wishlist.destroy', $wishlist->id) }}">
                                                             <i class="icon-cross"></i>
                                                         </a>
                                                     </td>

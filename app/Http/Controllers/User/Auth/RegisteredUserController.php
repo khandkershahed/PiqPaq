@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $setting = Setting::first();
+
         $userVerification = $setting->user_verification ?? '0'; // Default to '0' if null
         $status = $userVerification === '1' ? 'inactive' : 'active';
         // Define validation rules
@@ -105,6 +105,7 @@ class RegisteredUserController extends Controller
                 'status'                        => $status,
             ]);
 
+            $setting = Setting::first();
             event(new Registered($user));
             Mail::to($user->email)->send(new UserRegistrationMail($user->name, $setting));
             Auth::login($user);

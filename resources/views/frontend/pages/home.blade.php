@@ -1,4 +1,4 @@
-<x-frontend-app-layout :title="'Home'">
+<x-frontend-app-layout :title="'Home Page'">
     <section class="ps-section--banner">
         <div class="ps-section__overlay">
             <div class="ps-section__loading"></div>

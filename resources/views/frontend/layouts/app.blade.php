@@ -180,6 +180,76 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @stack('scripts')
+
+    <script>
+        function addToCart(e, csrfToken, cartUrl) {
+            e.preventDefault(); // Prevent the default action of the link
+
+            var button = e.currentTarget; // Get the button that triggered the event
+            var product_id = button.getAttribute('data-product_id');
+            var qty = button.getAttribute('data-product_qty'); // Get the quantity value
+            var cartHeader = document.querySelector('.miniCart');
+
+            // Check if quantity is valid
+            if (qty <= 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Quantity',
+                    text: 'Please select a valid quantity.'
+                });
+                return;
+            }
+
+            // AJAX request
+            fetch(cartUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token for security
+                    },
+                    body: JSON.stringify({
+                        quantity: qty
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const Toast = Swal.mixin({
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    if (data.success) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: data.success
+                        });
+                        button.disabled = true; // Disable the button
+                        button.innerText = 'Already added'; // Change button text
+                        document.querySelector(".cartCount").innerHTML = data.cartCount;
+                        cartHeader.innerHTML = data.cartHeader;
+                    } else if (data.error) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: data.error
+                        });
+                    }
+                })
+                .catch(xhr => {
+                    let errorMessage = 'An unexpected error occurred.';
+
+                    // Check if the response is JSON and contains an error message
+                    if (xhr.response && xhr.response.error) {
+                        errorMessage = xhr.response.error;
+                    }
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: errorMessage
+                    });
+                });
+        }
+    </script>
     {{-- Preloader --}}
     @if (session('error'))
         <script>
@@ -608,9 +678,9 @@
                 }
             });
 
-            var searchContainer = $('#search_container');
+            var searchContainer = $('.search_container');
             var path = "{{ route('global.search') }}";
-            var searchInput = $('#search_text');
+            var searchInput = $('.search_text');
 
             searchInput.autocomplete({
                 source: function(request, response) {
@@ -799,4 +869,5 @@
     {!! optional($setting)->google_adsense !!}
     {{-- add_to_cart_btn_product_single --}}
 </body>
+
 </html>

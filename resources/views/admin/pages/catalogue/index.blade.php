@@ -64,8 +64,7 @@
                                             data-bs-target="#catalogueEditModal{{ $catalogue->id }}">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
-                                        <a href="javascript:void(0)" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#catalogueEditModal{{ $catalogue->id }}">
+                                        <a href="{{ route('admin.catalogue.destroy') }}" class="btn btn-sm btn-warning delete">
                                             <i class="fa-solid fa-trash-alt"></i>
                                         </a>
                                     </td>

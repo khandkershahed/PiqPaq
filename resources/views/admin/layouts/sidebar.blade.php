@@ -346,11 +346,11 @@
                                     'routes' => ['admin.settings.index'],
                                     'route' => 'admin.settings.index',
                                 ],
-                                [
-                                    'title' => 'Email Setting',
-                                    'routes' => ['admin.email-settings.index'],
-                                    'route' => 'admin.email-settings.index',
-                                ],
+                                // [
+                                //     'title' => 'Email Setting',
+                                //     'routes' => ['admin.email-settings.index'],
+                                //     'route' => 'admin.email-settings.index',
+                                // ],
                             ],
                         ],
                     ];

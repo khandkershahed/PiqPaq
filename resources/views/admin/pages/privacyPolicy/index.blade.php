@@ -25,12 +25,13 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7">
                 <thead class="bg-light-danger">
                     <tr class="fw-semibold fs-6 text-gray-800">
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th width="5%">SL</th>
+                        <th width="37%">Name</th>
+                        <th width="12%">Version</th>
+                        <th width="13%">Effective Date</th>
+                        <th width="13%">Expiration Date</th>
+                        <th width="10%">Status</th>
+                        <th width="10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>

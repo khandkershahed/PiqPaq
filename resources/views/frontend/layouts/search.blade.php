@@ -76,8 +76,10 @@
                                     @endif
                                     <a href="{{ route('cart.store', $search_product->id) }}"
                                         class="btn ps-btn--warning my-3 btn-block add_to_cart"
-                                        data-product_id="{{ $search_product->id }}" data-product_qty="1">Add To
-                                        Cart</a>
+                                        data-product_id="{{ $search_product->id }}" data-product_qty="1"
+                                        onclick="addToCart(event, '{{ csrf_token() }}', '{{ route('cart.store', $search_product->id) }}')">
+                                        Add To Cart
+                                    </a>
                                 @else
                                     <div class="ps-product__meta">
                                         <a href="{{ route('login') }}" class="btn btn-info btn-block">Login
@@ -108,3 +110,4 @@
         </div>
     </div>
 @endif
+
