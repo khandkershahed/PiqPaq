@@ -399,8 +399,8 @@
                                             <option value="Uganda">Uganda</option>
                                             <option value="Ukraine">Ukraine</option>
                                             <option value="United Arab Emirates">United Arab Emirates</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="United State" selected>United State</option>
+                                            <option value="United Kingdom" selected>United Kingdom</option>
+                                            <option value="United State" >United State</option>
                                             <option value="Uruguay">Uruguay</option>
                                             <option value="U.S. Minor Outlying Islands">U.S. Minor Outlying Islands
                                             </option>
