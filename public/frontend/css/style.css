@@ -17927,12 +17927,11 @@ html .bg--parallax {
 
 .form-select {
     height: 44px;
-    border: none;
     width: 100%;
-    background-color: #000000;
     color: #8cbf4491;
     font-size: 14px;
     padding: 10px 20px;
+    border-radius: 5px;
 }
 
 /* Override default DataTable styles with Metronic-like styles */

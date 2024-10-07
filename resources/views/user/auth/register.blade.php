@@ -151,6 +151,14 @@
                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
                                 </div>
                                 <div class="ps-form__group col-12 col-xl-3">
+                                    <label class="ps-form__label" for="state">County</label>
+                                    <div class="input-group">
+                                        <input id="state" class="form-control ps-form__input" type="text"
+                                            value="{{ old('state') }}" placeholder="Enter Your County" name="state" autocomplete="state" />
+                                    </div>
+                                    <x-input-error :messages="$errors->get('state')" class="mt-2" />
+                                </div>
+                                <div class="ps-form__group col-12 col-xl-3">
                                     <label class="ps-form__label" for="Country">Country<span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -410,14 +418,6 @@
                                         </select>
                                     </div>
                                     <x-input-error :messages="$errors->get('country')" class="mt-2" />
-                                </div>
-                                <div class="ps-form__group col-12 col-xl-3">
-                                    <label class="ps-form__label" for="state">County</label>
-                                    <div class="input-group">
-                                        <input id="state" class="form-control ps-form__input" type="text"
-                                            value="{{ old('state') }}" placeholder="Enter Your County" name="state" autocomplete="state" />
-                                    </div>
-                                    <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                 </div>
                                 <div class="col-12 col-xl-12">
                                     <p>Company & My Details</p>
