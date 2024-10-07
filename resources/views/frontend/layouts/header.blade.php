@@ -49,8 +49,13 @@
                     </ul>
                 </div>
                 <ul class="menu-top">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    @auth
+                    <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">My Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('user.order.history') }}">My Order History</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    @endauth
                     <li class="nav-item"><a class="nav-link" href="{{ route('allBlog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
