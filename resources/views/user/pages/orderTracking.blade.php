@@ -523,7 +523,4 @@
             </div>
         </section>
     </div>
-    @push('scripts')
-        <script></script>
-    @endpush
 </x-frontend-app-layout>
