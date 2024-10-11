@@ -29,7 +29,12 @@
                             </a>
                         </h5>
                         <div class="ps-product__desc">
-                            {!! $product->short_description !!}
+                            @php
+                                $description = strip_tags($product->short_description); // Strip any HTML tags
+                                $words = explode(' ', $description); // Convert the description into an array of words
+                                $limitedWords = implode(' ', array_slice($words, 0, 20)); // Get the first 15 words and join them back into a string
+                            @endphp
+                            {!! $limitedWords !!}...
                         </div>
                     </div>
                 </div>

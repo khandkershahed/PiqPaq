@@ -12,7 +12,8 @@
                         <div class="ps-product__thumbnail">
                             <a class="ps-product__image" href="{{ route('product.details', $item->model->slug) }}">
                                 <figure>
-                                    <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt />
+                                    <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="no-preview-2">No Preview</div> <!-- Fallback for missing image -->
                                 </figure>
                             </a>
                         </div>
@@ -42,9 +43,25 @@
                             <div class="ps-product__cart">
                                 <button class="ps-btn">Add to cart</button>
                             </div>
-                            <div class="ps-product__row ps-product__quantity">
+                            {{-- <div class="ps-product__row ps-product__quantity">
                                 <div class="ps-product__label">Quantity:</div>
                                 <div class="ps-product__value">{{ $item->qty }}</div>
+                            </div> --}}
+                            <div class="ps-product__row ps-product__quantity d-flex justify-content-center">
+                                <div class="ps-product__value">
+                                    <div class="def-number-input number-input safari_only">
+                                        <button class="minus"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="icon-minus"></i>
+                                        </button>
+                                        <input class="quantity" min="0" name="quantity" value="{{ $item->qty }}"
+                                            type="number" data-row_id="{{ $item->rowId }}" />
+                                        <button class="plus"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="icon-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="ps-product__row ps-product__subtotal">
                                 <div class="ps-product__label">Subtotal:</div>
@@ -61,18 +78,22 @@
             <table class="table ps-table ps-table--product">
                 <thead>
                     <tr>
-                        <th class="ps-product__remove"></th>
-                        <th class="ps-product__thumbnail"></th>
-                        <th class="ps-product__name">Product name</th>
-                        <th class="ps-product__meta">Unit price</th>
-                        <th class="ps-product__quantity">Quantity</th>
-                        <th class="ps-product__subtotal">Subtotal</th>
+                        <th width="10%" class="ps-product__remove text-center">
+                            <div>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </th>
+                        <th width="15%" class="ps-product__thumbnail">Image</th>
+                        <th width="35%" class="ps-product__name">Product name</th>
+                        <th width="20%" class="ps-product__meta">Unit price</th>
+                        <th width="10%" class="ps-product__quantity">Quantity</th>
+                        <th width="10%" class="ps-product__subtotal">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($cartItems as $item)
                         <tr>
-                            <td class="ps-product__remove">
+                            <td class="ps-product__remove text-center">
                                 <a href="{{ route('cart.destroy', $item->rowId) }}" class="remove-from-cart delete">
                                     <i class="icon-cross"></i>
                                 </a>
@@ -80,7 +101,8 @@
                             <td class="ps-product__thumbnail">
                                 <a class="ps-product__image" href="{{ route('product.details', $item->model->slug) }}">
                                     <figure>
-                                        <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt />
+                                        <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                        <div class="no-preview">No Preview</div> <!-- Fallback for missing image -->
                                     </figure>
                                 </a>
                             </td>
@@ -105,21 +127,23 @@
                                     </button>
                                 </div>
                             </td>
-                            <td class="ps-product__subtotal">£{{ $item->price * $item->qty }}</td>
+                            <td class="ps-product__subtotal text-center">£{{ $item->price * $item->qty }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="ps-shopping__footer">
-            <div class="ps-shopping__button">
+        <div class="ps-shopping__footer justify-content-center">
+            <div class="ps-shopping__button d-flex justify-content-center align-items-center">
                 <a href="{{ route('cart.clear') }}" class="ps-btn ps-btn--primary delete">Clear All</a>
                 <button class="ps-btn ps-btn--primary" type="button" id="update-cart">Update cart</button>
             </div>
         </div>
     </div>
     <div class="col-12 col-md-5 col-lg-3">
-        <div class="ps-shopping__label">Cart totals</div>
+        <div class="ps-shopping__label">
+            <p class="">Cart totals</p>
+        </div>
         <div class="ps-shopping__box">
             <div class="ps-shopping__row">
                 <div class="ps-shopping__label">Subtotal</div>
