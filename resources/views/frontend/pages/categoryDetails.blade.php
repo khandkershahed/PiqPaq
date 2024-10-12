@@ -28,14 +28,16 @@
                     <div class="category-banner">
                         {{-- <img class="img-fluid" style="object-fit: cover;height: 125px;width: 100%;"
                             src="{{ asset('storage/' . $category->banner_image) }}" alt=""> --}}
-                        <img class="img-fluid ps-categogy__banner" style="object-fit: cover;height: 200px;width: 100%;"
-                            src="{{ asset('storage/' . $category->banner_image) }}"onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        <img class="img-fluid ps-categogy__banner"
+                            style="object-fit: cover; height: 200px; width: 100%;"
+                            src="{{ asset('storage/' . $category->banner_image) }}"
+                            onerror="this.onerror=null; this.src='{{ asset('images/no-preview2.png') }}';"
                             alt="">
-                        <div class="no-preview-2">No Preview/found Category Banner</div>
                         <!-- Fallback for missing image -->
                     </div>
                 </div>
             </div>
+
             <!-- Main Content -->
             <div class="ps-categogy__content pt-2">
                 <div class="row row-reverse">

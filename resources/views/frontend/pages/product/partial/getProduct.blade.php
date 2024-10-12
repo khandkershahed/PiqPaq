@@ -42,7 +42,7 @@
                     @if (Auth::check() && Auth::user()->status == 'active')
                         @if (!empty($product->box_discount_price))
                             <div class="ps-product__meta">
-                                <span class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
+                                <span class="ps-product__price  sale">£{{ $product->box_discount_price }}</span>
                                 <span class="ps-product__del">£{{ $product->box_price }}</span>
                             </div>
                         @else

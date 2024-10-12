@@ -46,7 +46,7 @@
                                                                 @endphp
                                                                 <img src="{{ $imageSrc }}"
                                                                     alt="{{ $related_product->meta_title }}"
-                                                                    width="210" height="210" />
+                                                                    width="210" height="210"  />
                                                             @endforeach
                                                         @endif
                                                     </figure>

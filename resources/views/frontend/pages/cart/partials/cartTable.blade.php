@@ -12,8 +12,8 @@
                         <div class="ps-product__thumbnail">
                             <a class="ps-product__image" href="{{ route('product.details', $item->model->slug) }}">
                                 <figure>
-                                    <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                                    <div class="no-preview-2">No Preview</div> <!-- Fallback for missing image -->
+                                    <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt
+                                    onerror="this.onerror=null; this.src='{{ asset('images/no-preview.png') }}';" />
                                 </figure>
                             </a>
                         </div>
@@ -54,8 +54,9 @@
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i class="icon-minus"></i>
                                         </button>
-                                        <input class="quantity" min="0" name="quantity" value="{{ $item->qty }}"
-                                            type="number" data-row_id="{{ $item->rowId }}" />
+                                        <input class="quantity" min="0" name="quantity"
+                                            value="{{ $item->qty }}" type="number"
+                                            data-row_id="{{ $item->rowId }}" />
                                         <button class="plus"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                             <i class="icon-plus"></i>
@@ -101,8 +102,9 @@
                             <td class="ps-product__thumbnail">
                                 <a class="ps-product__image" href="{{ route('product.details', $item->model->slug) }}">
                                     <figure>
-                                        <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                                        <div class="no-preview">No Preview</div> <!-- Fallback for missing image -->
+                                        <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt=""
+                                            onerror="this.onerror=null; this.src='{{ asset('images/no-preview.png') }}';" />
+                                        <!-- Fallback image -->
                                     </figure>
                                 </a>
                             </td>
