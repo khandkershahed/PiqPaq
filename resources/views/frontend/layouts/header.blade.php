@@ -211,7 +211,7 @@
                                 <input id="search_text" class="form-control ps-input search_text" type="text"
                                     placeholder="Search for products">
                                 <div class="input-group-append">
-                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    {{-- <a href="#"><i class="fa fa-search"></i></a> --}}
                                 </div>
                             </div>
                         </div>
