@@ -29,16 +29,20 @@
                                 @foreach ($wishlists as $wishlist)
                                     <li>
                                         <div class="ps-product ps-product--wishlist">
-                                            <div class="ps-product__remove"><a href="#"><i
-                                                        class="icon-cross"></i></a>
+                                            <div class="ps-product__remove">
+                                                <a href="{{ route('wishlist.destroy', $wishlist->id) }}">
+                                                    <i class="icon-cross delete"></i>
+                                                </a>
                                             </div>
-                                            <div class="ps-product__thumbnail"><a class="ps-product__image"
+                                            <div class="ps-product__thumbnail">
+                                                <a class="ps-product__image"
                                                     href="{{ route('product.details', $wishlist->product->slug) }}">
                                                     <figure>
                                                         <img src="{{ asset('storage/' . $wishlist->product->thumbnail) }}"
                                                             alt="alt">
                                                     </figure>
-                                                </a></div>
+                                                </a>
+                                            </div>
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
                                                     <a href="{{ route('product.details', $wishlist->product->slug) }}">
