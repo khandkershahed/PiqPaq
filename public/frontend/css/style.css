@@ -18372,8 +18372,8 @@ table.dataTable tbody td:last-child {
         max-width: 100% !important;
     }
     .ps-product__image figure {
-        width: 150px;
-        height: 150px;
+        width: 260px;
+        height: 210px;
         margin: 0;
         padding: 0;
         position: relative;
@@ -18390,7 +18390,6 @@ table.dataTable tbody td:last-child {
     padding: 10px;
     color: #3f51b5;
 }
-.category-title-text h3{
+.category-title-text h3 {
     color: #8cbf44 !important;
 }
-
