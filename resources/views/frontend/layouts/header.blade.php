@@ -205,7 +205,7 @@
                     </li>
                 </ul>
                 <div class="ps-header__search">
-                    <form action="do_action" method="post">
+                    <form action="do_action">
                         <div class="ps-search-table">
                             <div class="input-group rounded-pill">
                                 <input id="search_text" class="form-control ps-input search_text" type="text"
@@ -293,7 +293,7 @@
     <div class="ps-search__content ps-search--mobile"><a class="ps-search__close" href="#"
             id="close-search"><i class="icon-cross"></i></a>
         <h3>Search</h3>
-        <form action="#" method="post">
+        <form action="#">
             <div class="ps-search-table">
                 <div class="input-group">
                     <input id="search_text" class="form-control form-control search_text" type="text"
