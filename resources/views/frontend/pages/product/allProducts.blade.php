@@ -133,7 +133,7 @@
             <div class="ps-categogy__content pt-4">
                 <div class="row row-reverse">
                     <div class="col-md-9 col-12 order-12 order-lg-1">
-                        <div class="ps-categogy__wrapper d-flex justify-content-center px-1">
+                        <div class="ps-categogy__wrapper d-flex justify-content-center px-1 mt-4 mt-lg-0">
                             <div class="ps-categogy__sort w-100 text-left py-0">
                                 <form>
                                     <select id="sort-by" class="form-select">
@@ -248,7 +248,7 @@
                             <div class="ps-widget__block bg-white p-lg-3 p-0 ">
                                 <h4 class="ps-widget__title">By price</h4><a class="ps-block-control" href="#"><i
                                         class="fa fa-angle-down"></i></a>
-                                <div class="ps-widget__content">
+                                <div class="ps-widget__content priceing-filter">
                                     <div class="ps-widget__price">
                                         <div id="slide-price" class="noUi-target noUi-ltr noUi-horizontal"></div>
                                     </div>

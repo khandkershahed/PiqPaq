@@ -72,19 +72,22 @@
                                         @foreach ($product->multiImages as $image)
                                             <div class="main_product_img">
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
-                                                    alt="{{ $product->meta_title }}" />
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                             </div>
                                         @endforeach
                                     </div>
                                     <div class="slider-nav-thumbnails">
                                         <div>
                                             <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}"
-                                                alt="{{ $product->meta_title }}">
+                                                alt="{{ $product->meta_title }}"
+                                                onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                         </div>
                                         @foreach ($product->multiImages as $image)
                                             <div>
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
-                                                    alt="{{ $product->meta_title }}">
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                             </div>
                                         @endforeach
                                     </div>
@@ -109,7 +112,7 @@
                                         </div>
                                     </div> --}}
                                 </div>
-                                <div class="col-12 col-xl-5">
+                                <div class="col-12 col-xl-6">
                                     <div class="ps-product__info">
                                         <div class="ps-product__title text-22" style="height: auto;">
                                             {{ $product->name }}

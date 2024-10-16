@@ -217,7 +217,7 @@
                         </div>
                     </form>
                     <div id="search_container" class="ps-search--result search_container d-none"
-                        style="height: 60vh;overflow-y: auto;">
+                        style="height: 44vh;overflow-y: auto;">
                         <!-- Search results will be injected here -->
                     </div>
                 </div>
