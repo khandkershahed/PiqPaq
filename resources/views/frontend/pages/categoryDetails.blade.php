@@ -65,7 +65,7 @@
                                                         <div class="ps-product__thumbnail">
                                                             <a class="ps-product__image"
                                                                 href="{{ route('product.details', $category_product->slug) }}">
-                                                                <figure>
+                                                                <div>
                                                                     @if (!empty($category_product->thumbnail))
                                                                         @php
                                                                             $thumbnailPath =
@@ -79,7 +79,7 @@
                                                                         @endphp
                                                                         <img src="{{ $thumbnailSrc }}"
                                                                             alt="{{ $category_product->meta_title }}"
-                                                                            width="210" height="210" />
+                                                                            class="img-fluid" />
                                                                     @else
                                                                         @foreach ($category_product->multiImages->slice(0, 2) as $image)
                                                                             @php
@@ -97,7 +97,7 @@
                                                                                 width="210" height="210" />
                                                                         @endforeach
                                                                     @endif
-                                                                </figure>
+                                                                </div>
                                                             </a>
                                                             <div class="ps-product__actions">
                                                                 <div class="ps-product__item" data-toggle="tooltip"

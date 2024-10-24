@@ -136,7 +136,7 @@
                 </div>
             </section> --}}
             @if ($categorys->count() > 0)
-                <section class="ps-section--categories">
+                <section class="ps-section--categories bg-white py-5">
                     <h3 class="ps-section__title" style="font-size: 30px;">Popular categories</h3>
                     <div class="container">
                         <div class="ps-section__content pt-5">
@@ -242,12 +242,14 @@
                                                                 <span
                                                                     class="ps-product__price sale">£{{ $latest_product->box_discount_price }}</span>
                                                                 <span
-                                                                    class="ps-product__del">£{{ $latest_product->unit_price }} Per Unit</span>
+                                                                    class="ps-product__del">£{{ $latest_product->unit_price }}
+                                                                    Per Unit</span>
                                                             </div>
                                                         @else
                                                             <div class="ps-product__meta">
                                                                 <span
-                                                                    class="ps-product__price sale">£{{ $latest_product->unit_price }} Per Unit</span>
+                                                                    class="ps-product__price sale">£{{ $latest_product->unit_price }}
+                                                                    Per Unit</span>
                                                             </div>
                                                         @endif
                                                         <a href="{{ route('cart.store', $latest_product->id) }}"
@@ -385,12 +387,14 @@
                                                             <span
                                                                 class="ps-product__price sale">£{{ $categoryoneproduct->box_discount_price }}</span>
                                                             <span
-                                                                class="ps-product__del">£{{ $categoryoneproduct->unit_price }} Per Unit</span>
+                                                                class="ps-product__del">£{{ $categoryoneproduct->unit_price }}
+                                                                Per Unit</span>
                                                         </div>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <span
-                                                                class="ps-product__price sale">£{{ $categoryoneproduct->unit_price }} Per Unit</span>
+                                                                class="ps-product__price sale">£{{ $categoryoneproduct->unit_price }}
+                                                                Per Unit</span>
                                                         </div>
                                                     @endif
                                                     <a href="{{ route('cart.store', $categoryoneproduct->id) }}"
@@ -452,14 +456,14 @@
     @endif
     <div class="container">
         <div class="ps-delivery ps-delivery--info my-5"
-        data-background="https://nouthemes.net/html/mymedi/img/promotion/banner-delivery-3.jpg"
-        style="background-image: url(&quot;img/promotion/banner-delivery-3.jpg&quot;);">
-        <div class="ps-delivery__content">
-            <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
-                        delivery </strong>without contacting the courier</span></div><a
-                class="ps-delivery__more" href="#">More</a>
+            data-background="https://nouthemes.net/html/mymedi/img/promotion/banner-delivery-3.jpg"
+            style="background-image: url(&quot;img/promotion/banner-delivery-3.jpg&quot;);">
+            <div class="ps-delivery__content">
+                <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
+                            delivery </strong>without contacting the courier</span></div><a
+                    class="ps-delivery__more" href="#">More</a>
+            </div>
         </div>
-    </div>
     </div>
     <section class="ps-section--latest">
         <div class="container">
@@ -539,12 +543,14 @@
                                                             <span
                                                                 class="ps-product__price sale">£{{ $categorytwoproduct->box_discount_price }}</span>
                                                             <span
-                                                                class="ps-product__del">£{{ $categorytwoproduct->unit_price }} Per Unit</span>
+                                                                class="ps-product__del">£{{ $categorytwoproduct->unit_price }}
+                                                                Per Unit</span>
                                                         </div>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <span
-                                                                class="ps-product__price sale">£{{ $categorytwoproduct->unit_price }} Per Unit</span>
+                                                                class="ps-product__price sale">£{{ $categorytwoproduct->unit_price }}
+                                                                Per Unit</span>
                                                         </div>
                                                     @endif
                                                     <a href="{{ route('cart.store', $categorytwoproduct->id) }}"
@@ -562,7 +568,8 @@
                                                 @endauth
                                                 <div class="ps-product__actions ps-product__group-mobile">
                                                     <div class="ps-product__quantity">
-                                                        <div class="def-number-input number-input safari_only">
+                                                        <div
+                                                            class="def-number-input number-input safari_only">
                                                             <button class="minus"
                                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
                                                                     class="icon-minus"></i>
@@ -577,9 +584,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="ps-product__item cart" data-toggle="tooltip"
-                                                        data-placement="left" title="Add to cart"><a
-                                                            href="#"><i
+                                                    <div class="ps-product__item cart"
+                                                        data-toggle="tooltip" data-placement="left"
+                                                        title="Add to cart"><a href="#"><i
                                                                 class="fa fa-shopping-basket"></i></a>
                                                     </div>
                                                     <div class="ps-product__item" data-toggle="tooltip"
@@ -597,7 +604,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -610,139 +617,140 @@
         <div class="ps-home--block">
             <h3 class="ps-section__title text-center pb-5" style="font-size: 30px;">
                 {{ optional($categorythree)->name }}</h3>
-                <div class="ps-section__content">
-                    <div class="row m-0">
-                        @foreach ($categorythreeproducts as $categorythreeproduct)
-                            <div class="col-12 col-md-4 col-lg-3 dot4 p-0">
-                                <div class="ps-section__product">
-                                    <div class="ps-product ps-product--standard">
-                                        <div class="ps-product__thumbnail">
-                                            <a class="ps-product__image"
-                                                href="{{ route('product.details', $categorythreeproduct->slug) }}">
-                                                <figure>
-                                                    @if (!empty($categorythreeproduct->thumbnail))
+            <div class="ps-section__content">
+                <div class="row m-0">
+                    @foreach ($categorythreeproducts as $categorythreeproduct)
+                        <div class="col-12 col-md-4 col-lg-3 dot4 p-0">
+                            <div class="ps-section__product">
+                                <div class="ps-product ps-product--standard">
+                                    <div class="ps-product__thumbnail">
+                                        <a class="ps-product__image"
+                                            href="{{ route('product.details', $categorythreeproduct->slug) }}">
+                                            <figure>
+                                                @if (!empty($categorythreeproduct->thumbnail))
+                                                    @php
+                                                        $thumbnailPath = 'storage/' . $categorythreeproduct->thumbnail;
+                                                        $thumbnailSrc = file_exists(public_path($thumbnailPath))
+                                                            ? asset($thumbnailPath)
+                                                            : asset('frontend/img/no-product.jpg');
+                                                    @endphp
+                                                    <img src="{{ $thumbnailSrc }}"
+                                                        alt="{{ $categorythreeproduct->meta_title }}"
+                                                        width="210" height="210" />
+                                                @else
+                                                    @foreach ($categorythreeproduct->multiImages->slice(0, 2) as $image)
                                                         @php
-                                                            $thumbnailPath =
-                                                                'storage/' . $categorythreeproduct->thumbnail;
-                                                            $thumbnailSrc = file_exists(public_path($thumbnailPath))
-                                                                ? asset($thumbnailPath)
-                                                                : asset('frontend/img/no-product.jpg');
+                                                            $imagePath = 'storage/' . $image->photo;
+                                                            $imageSrc = file_exists(public_path($imagePath))
+                                                                ? asset($imagePath)
+                                                                : // : asset('frontend/img/no-product.jpg');
+                                                                asset('frontend/img/no-product.jpg');
                                                         @endphp
-                                                        <img src="{{ $thumbnailSrc }}"
+                                                        <img src="{{ $imageSrc }}"
                                                             alt="{{ $categorythreeproduct->meta_title }}"
                                                             width="210" height="210" />
-                                                    @else
-                                                        @foreach ($categorythreeproduct->multiImages->slice(0, 2) as $image)
-                                                            @php
-                                                                $imagePath = 'storage/' . $image->photo;
-                                                                $imageSrc = file_exists(public_path($imagePath))
-                                                                    ? asset($imagePath)
-                                                                    : // : asset('frontend/img/no-product.jpg');
-                                                                    asset('frontend/img/no-product.jpg');
-                                                            @endphp
-                                                            <img src="{{ $imageSrc }}"
-                                                                alt="{{ $categorythreeproduct->meta_title }}"
-                                                                width="210" height="210" />
-                                                        @endforeach
-                                                    @endif
-                                                </figure>
-                                            </a>
-                                            <div class="ps-product__actions">
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist">
-                                                    <a class="add_to_wishlist"
-                                                        href="{{ route('wishlist.store', $categorythreeproduct->id) }}"><i
-                                                            class="fa fa-heart-o"></i></a>
-                                                </div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Quick view">
-                                                    <a href="#" data-toggle="modal"
-                                                        data-target="#popupQuickview{{ $categorythreeproduct->id }}">
-                                                        <i class="fa fa-search"></i>
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                            @if (!empty($categorythreeproduct->box_discount_price))
-                                                <div class="ps-product__badge">
-                                                    <div class="ps-badge ps-badge--sale">Offer</div>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="ps-product__content">
-                                            <h5 class="ps-product__title">
-                                                <a
-                                                    href="{{ route('product.details', $categorythreeproduct->slug) }}">
-                                                    {{ implode(' ', array_slice(explode(' ', $categorythreeproduct->name), 0, 8)) }}
-                                                </a>
-                                            </h5>
-                                            @if (Auth::check() && Auth::user()->status == 'active')
-                                                @if (!empty($categorythreeproduct->box_discount_price))
-                                                    <div class="ps-product__meta">
-                                                        <span
-                                                            class="ps-product__price sale">£{{ $categorythreeproduct->box_discount_price }}</span>
-                                                        <span
-                                                            class="ps-product__del">£{{ $categorythreeproduct->unit_price }} Per Unit</span>
-                                                    </div>
-                                                @else
-                                                    <div class="ps-product__meta">
-                                                        <span
-                                                            class="ps-product__price sale">£{{ $categorythreeproduct->unit_price }} Per Unit</span>
-                                                    </div>
+                                                    @endforeach
                                                 @endif
-                                                <a href="{{ route('cart.store', $categorythreeproduct->id) }}"
-                                                    class="btn ps-btn--warning my-3 btn-block add_to_cart"
-                                                    data-product_id="{{ $categorythreeproduct->id }}"
-                                                    data-product_qty="1">
-                                                    Add To Cart
+                                            </figure>
+                                        </a>
+                                        <div class="ps-product__actions">
+                                            <div class="ps-product__item" data-toggle="tooltip"
+                                                data-placement="left" title="Wishlist">
+                                                <a class="add_to_wishlist"
+                                                    href="{{ route('wishlist.store', $categorythreeproduct->id) }}"><i
+                                                        class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip"
+                                                data-placement="left" title="Quick view">
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#popupQuickview{{ $categorythreeproduct->id }}">
+                                                    <i class="fa fa-search"></i>
                                                 </a>
+                                            </div>
+
+                                        </div>
+                                        @if (!empty($categorythreeproduct->box_discount_price))
+                                            <div class="ps-product__badge">
+                                                <div class="ps-badge ps-badge--sale">Offer</div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="ps-product__content">
+                                        <h5 class="ps-product__title">
+                                            <a
+                                                href="{{ route('product.details', $categorythreeproduct->slug) }}">
+                                                {{ implode(' ', array_slice(explode(' ', $categorythreeproduct->name), 0, 8)) }}
+                                            </a>
+                                        </h5>
+                                        @if (Auth::check() && Auth::user()->status == 'active')
+                                            @if (!empty($categorythreeproduct->box_discount_price))
+                                                <div class="ps-product__meta">
+                                                    <span
+                                                        class="ps-product__price sale">£{{ $categorythreeproduct->box_discount_price }}</span>
+                                                    <span
+                                                        class="ps-product__del">£{{ $categorythreeproduct->unit_price }}
+                                                        Per Unit</span>
+                                                </div>
                                             @else
                                                 <div class="ps-product__meta">
-                                                    <a href="{{ route('login') }}"
-                                                        class="btn btn-info btn-block">Login
-                                                        to view price</a>
+                                                    <span
+                                                        class="ps-product__price sale">£{{ $categorythreeproduct->unit_price }}
+                                                        Per Unit</span>
                                                 </div>
-                                            @endauth
-                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                <div class="ps-product__quantity">
-                                                    <div class="def-number-input number-input safari_only">
-                                                        <button class="minus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                class="icon-minus"></i>
-                                                        </button>
-                                                        <input class="quantity" min="0"
-                                                            name="quantity" value="1"
-                                                            type="number" />
-                                                        <button class="plus"
-                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                class="icon-plus"></i>
-                                                        </button>
-                                                    </div>
+                                            @endif
+                                            <a href="{{ route('cart.store', $categorythreeproduct->id) }}"
+                                                class="btn ps-btn--warning my-3 btn-block add_to_cart"
+                                                data-product_id="{{ $categorythreeproduct->id }}"
+                                                data-product_qty="1">
+                                                Add To Cart
+                                            </a>
+                                        @else
+                                            <div class="ps-product__meta">
+                                                <a href="{{ route('login') }}"
+                                                    class="btn btn-info btn-block">Login
+                                                    to view price</a>
+                                            </div>
+                                        @endauth
+                                        <div class="ps-product__actions ps-product__group-mobile">
+                                            <div class="ps-product__quantity">
+                                                <div class="def-number-input number-input safari_only">
+                                                    <button class="minus"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
+                                                            class="icon-minus"></i>
+                                                    </button>
+                                                    <input class="quantity" min="0"
+                                                        name="quantity" value="1"
+                                                        type="number" />
+                                                    <button class="plus"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
+                                                            class="icon-plus"></i>
+                                                    </button>
                                                 </div>
+                                            </div>
 
-                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                    data-placement="left" title="Add to cart"><a
-                                                        href="#"><i
-                                                            class="fa fa-shopping-basket"></i></a>
-                                                </div>
-                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                    data-placement="left" title="Wishlist"><a
-                                                        class="add_to_wishlist"
-                                                        href="{{ route('wishlist.store', $categorythreeproduct->id) }}"><i
-                                                            class="fa fa-heart-o"></i></a>
-                                                </div>
-                                                {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
+                                            <div class="ps-product__item cart" data-toggle="tooltip"
+                                                data-placement="left" title="Add to cart"><a
+                                                    href="#"><i
+                                                        class="fa fa-shopping-basket"></i></a>
+                                            </div>
+                                            <div class="ps-product__item" data-toggle="tooltip"
+                                                data-placement="left" title="Wishlist"><a
+                                                    class="add_to_wishlist"
+                                                    href="{{ route('wishlist.store', $categorythreeproduct->id) }}"><i
+                                                        class="fa fa-heart-o"></i></a>
+                                            </div>
+                                            {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
                                                             href="compare.html"><i
                                                                 class="fa fa-align-left"></i></a>
                                                     </div> --}}
-                                            </div>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
@@ -911,12 +919,14 @@
                                             <span
                                                 class="ps-product__price sale">£{{ $deal_product->box_discount_price }}</span>
                                             <span
-                                                class="ps-product__del">£{{ $deal_product->unit_price }} Per Unit</span>
+                                                class="ps-product__del">£{{ $deal_product->unit_price }}
+                                                Per Unit</span>
                                         </div>
                                     @else
                                         <div class="ps-product__meta">
                                             <span
-                                                class="ps-product__price sale">£{{ $deal_product->unit_price }} Per Unit</span>
+                                                class="ps-product__price sale">£{{ $deal_product->unit_price }}
+                                                Per Unit</span>
                                         </div>
                                     @endif
                                     <a href="{{ route('cart.store', $deal_product->id) }}"
@@ -965,51 +975,53 @@
 </div>
 @endif
 @if ($blog_posts->count() > 0)
-<section class="ps-section--blog container my-5">
-<div class="py-5">
-    <h3 class="ps-section__title" style="font-size: 30px;">From the blog</h3>
-</div>
-<div class="ps-section__carousel">
-    <div class="blog-slider owl-carousel">
-        @foreach ($blog_posts as $blog_post)
-            <div class="ps-section__item">
-                <div class="ps-blog--latset">
-                    <div class="ps-blog__thumbnail">
-                        <a href="{{ route('blog.details', $blog_post->slug) }}">
-                            <img src="{{ $blog_post->image ? asset('storage/' . $blog_post->image) : asset('frontend/img/no-blogs.jpg') }}"
-                                alt="Blog Post Image"
-                                onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-blogs.jpg') }}';">
-                        </a>
-                        @if ($blog_post->badge)
-                            <div class="ps-blog__badge">
-                                <span class="ps-badge__item">{{ $blog_post->badge }}</span>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="ps-blog__content">
-                        <div class="ps-blog__meta">
-                            <span
-                                class="ps-blog__date">{{ $blog_post->created_at->format('M d Y') }}</span>
-                            <a class="ps-blog__author" href="#">{{ $blog_post->author }}</a>
+<section class="ps-section--blog container-fluid bg-white py-5">
+<div class="container">
+    <div class="py-5">
+        <h3 class="ps-section__title" style="font-size: 30px;">From the blog</h3>
+    </div>
+    <div class="ps-section__carousel">
+        <div class="blog-slider owl-carousel">
+            @foreach ($blog_posts as $blog_post)
+                <div class="ps-section__item">
+                    <div class="ps-blog--latset">
+                        <div class="ps-blog__thumbnail">
+                            <a href="{{ route('blog.details', $blog_post->slug) }}">
+                                <img src="{{ $blog_post->image ? asset('storage/' . $blog_post->image) : asset('frontend/img/no-blogs.jpg') }}"
+                                    alt="Blog Post Image"
+                                    onerror="this.onerror=null; this.src='{{ asset('frontend/img/no-blogs.jpg') }}';">
+                            </a>
+                            @if ($blog_post->badge)
+                                <div class="ps-blog__badge">
+                                    <span class="ps-badge__item">{{ $blog_post->badge }}</span>
+                                </div>
+                            @endif
                         </div>
-                        <a class="ps-blog__title" style="font-size: 18px;"
-                            href="{{ route('blog.details', $blog_post->slug) }}">
-                            {{ $blog_post->title }}
-                        </a>
+                        <div class="ps-blog__content">
+                            <div class="ps-blog__meta">
+                                <span
+                                    class="ps-blog__date">{{ $blog_post->created_at->format('M d Y') }}</span>
+                                <a class="ps-blog__author" href="#">{{ $blog_post->author }}</a>
+                            </div>
+                            <a class="ps-blog__title" style="font-size: 18px;"
+                                href="{{ route('blog.details', $blog_post->slug) }}">
+                                {{ $blog_post->title }}
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
 
-    <div class="owl-nav">
-        <button type="button" role="presentation" class="owl-prev"><i
-                class="fa fa-chevron-left"></i></button>
-        <button type="button" role="presentation" class="owl-next"><i
-                class="fa fa-chevron-right"></i></button>
-    </div>
-    <div class="owl-dots">
-        <button role="button" class="owl-dot"><span></span></button>
+        <div class="owl-nav">
+            <button type="button" role="presentation" class="owl-prev"><i
+                    class="fa fa-chevron-left"></i></button>
+            <button type="button" role="presentation" class="owl-next"><i
+                    class="fa fa-chevron-right"></i></button>
+        </div>
+        <div class="owl-dots">
+            <button role="button" class="owl-dot"><span></span></button>
+        </div>
     </div>
 </div>
 </section>

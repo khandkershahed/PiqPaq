@@ -2980,8 +2980,6 @@ textarea.form-control {
         display: none;
         overflow: auto;
         background: #f1f1f1 !important;
-        position: relative;
-        z-index: 55;
     }
     .ps-product--detail .ps-tab-list {
         align-items: center !important;
@@ -3034,8 +3032,7 @@ textarea.form-control {
     max-height: -moz-max-content;
     max-height: max-content;
     overflow: hidden;
-    position: relative;
-    z-index: 55;
+
     background: white;
 }
 
