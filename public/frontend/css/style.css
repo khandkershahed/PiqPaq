@@ -2874,7 +2874,7 @@ textarea.form-control {
     margin-bottom: 0;
 }
 .ps-shopping__label p {
-    background-color: #fff;
+    background-color: #dfdfdf;
     padding: 22px;
     line-height: 20px;
     font-weight: 600;
@@ -6279,8 +6279,7 @@ textarea.form-control {
 
 .ps-table tbody tr td {
     border: none;
-    border-right: 1px solid rgba(16, 49, 120, 0.1);
-    border-bottom: 1px solid rgba(16, 49, 120, 0.1);
+    border: 1px solid rgba(16, 49, 120, 0.1);
     margin: 0 auto;
 }
 
@@ -6323,34 +6322,18 @@ textarea.form-control {
     font-size: 14px;
 }
 
-.ps-table--product {
-    border: none;
-}
-
 .ps-table--product thead tr th {
-    background-color: white;
+    background-color: #dfdfdf;
     font-weight: bold;
     font-size: 16px;
     color: #103178;
 }
 
 .ps-table--product tbody td {
+    background-color: #fff;
     padding: 25px 20px;
     vertical-align: middle;
-    border: none !important;
-    border-top: 1px solid #f0f2f5 !important;
-}
 
-.ps-table--product tbody td:first-child {
-    border-left: 1px solid #f0f2f5 !important;
-}
-
-.ps-table--product tbody td:last-child {
-    border-right: 1px solid #f0f2f5 !important;
-}
-
-.ps-table--product tbody tr:last-child {
-    border-bottom: 1px solid #f0f2f5;
 }
 
 .ps-table--product .ps-product__thumbnail {
@@ -7775,7 +7758,7 @@ textarea.form-control {
 
 .ps-shopping .ps-shopping__box {
     color: #103178;
-    background-color: #dfe9d2;
+    background-color: #fff;
     border: 1px solid #f0f2f5;
     border-radius: 4px;
     padding: 5px 20px 30px;
