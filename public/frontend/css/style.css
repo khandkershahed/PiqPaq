@@ -2953,9 +2953,9 @@ textarea.form-control {
     align-items: center;
     text-align: center;
 }
-.category_product_img {
-    width: 150px;
-    height: 150px;
+.ps-product__image .category_product_img {
+    width: 150px !important;
+    height: 150px !important;
     object-fit: contain;
 }
 
