@@ -37,10 +37,10 @@
                                             <div class="ps-product__thumbnail">
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $wishlist->product->slug) }}">
-                                                    <figure>
+                                                    <div>
                                                         <img src="{{ asset('storage/' . $wishlist->product->thumbnail) }}"
                                                             alt="alt">
-                                                    </figure>
+                                                    </div>
                                                 </a>
                                             </div>
                                             <div class="ps-product__content">

@@ -23,7 +23,7 @@
                                             <div class="ps-product__thumbnail">
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $related_product->slug) }}">
-                                                    <figure>
+                                                    <div>
                                                         @if (!empty($related_product->thumbnail))
                                                             @php
                                                                 $thumbnailPath =
@@ -49,7 +49,7 @@
                                                                     width="210" height="210"  />
                                                             @endforeach
                                                         @endif
-                                                    </figure>
+                                                    </div>
                                                 </a>
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"

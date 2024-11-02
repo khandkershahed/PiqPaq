@@ -11,10 +11,10 @@
                         </div>
                         <div class="ps-product__thumbnail">
                             <a class="ps-product__image" href="{{ route('product.details', $item->model->slug) }}">
-                                <figure>
+                                <div>
                                     <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt
                                     onerror="this.onerror=null; this.src='{{ asset('images/no-preview.png') }}';" />
-                                </figure>
+                                </div>
                             </a>
                         </div>
                         <div class="ps-product__content">
@@ -101,11 +101,11 @@
                             </td>
                             <td class="ps-product__thumbnail">
                                 <a class="ps-product__image" href="{{ route('product.details', $item->model->slug) }}">
-                                    <figure>
+                                    <div>
                                         <img src="{{ asset('storage/' . $item->model->thumbnail) }}" alt=""
                                             onerror="this.onerror=null; this.src='{{ asset('images/no-preview.png') }}';" />
                                         <!-- Fallback image -->
-                                    </figure>
+                                    </div>
                                 </a>
                             </td>
                             <td class="ps-product__name">

@@ -79,7 +79,7 @@
                                                                         @endphp
                                                                         <img src="{{ $thumbnailSrc }}"
                                                                             alt="{{ $category_product->meta_title }}"
-                                                                            class="img-fluid" />
+                                                                            class="img-fluid category_product_img" />
                                                                     @else
                                                                         @foreach ($category_product->multiImages->slice(0, 2) as $image)
                                                                             @php
@@ -92,7 +92,7 @@
                                                                                         'frontend/img/no-product.jpg',
                                                                                     );
                                                                             @endphp
-                                                                            <img src="{{ $imageSrc }}"
+                                                                            <img src="{{ $imageSrc }}" class="category_product_img"
                                                                                 alt="{{ $category_product->meta_title }}"
                                                                                 width="210" height="210" />
                                                                         @endforeach

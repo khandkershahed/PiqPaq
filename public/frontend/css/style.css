@@ -2953,12 +2953,13 @@ textarea.form-control {
     align-items: center;
     text-align: center;
 }
+.category_product_img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
 
 @media (min-width: 768px) {
-    tbody tr {
-        background: #8bc34a2e;
-        color: white;
-    }
     .ps-widget .ps-widget__title {
         font-size: 18px;
         line-height: 26px;
