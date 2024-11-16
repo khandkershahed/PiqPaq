@@ -66,7 +66,7 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
         ->name('password.store');
 });
 
-Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:admin'])->prefix(LaravelLocalization::setLocale() . '/admin')->name('admin.')->group(function () {
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -147,6 +147,8 @@ Route::middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewP
         Route::get('/order-management', 'index')->name('order-management.index');
         Route::get('/order/{id}/details', 'orderDetails')->name('orderDetails');
         Route::get('/order/report', 'orderReport')->name('orderReport');
+        Route::put('/order/update/{id}', 'statusUpdate')->name('order.update');
+
     });
 
     Route::get('active-mail-configuration', [EmailSettingController::class, 'activeMailConfiguration'])->name('active.mail.configuration');

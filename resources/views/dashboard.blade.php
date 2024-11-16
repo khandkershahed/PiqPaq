@@ -20,8 +20,9 @@
                 <div class="container">
                     <div class="row g-3 g-xl-4 tab-wrap">
                         <div class="col-lg-4 col-xl-3 sticky">
-                            <button class="setting-menu btn-solid btn-sm d-lg-none">Setting Menu <i
-                                    class="arrow"></i></button>
+                            <button class="d-lg-none d-sm-block setting-menu btn-solid btn-sm ">Setting Menu <i
+                                    class="arrow"></i>
+                                </button>
                             @include('user.layouts.sidebar')
                         </div>
                         <div class="col-lg-8 col-xl-9">

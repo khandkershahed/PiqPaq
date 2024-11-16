@@ -2,6 +2,12 @@
     .dropdown-item {
         font-size: 16px !important;
     }
+
+    ::placeholder {
+        color: #000 !important;
+        opacity: 1;
+        /* Firefox */
+    }
 </style>
 <header class="ps-header ps-header--2">
     @if (!empty(optional($setting)->website_name) || !empty(optional($setting)->site_motto))
@@ -43,11 +49,16 @@
                     </ul>
                 </div>
                 <ul class="menu-top">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('allBlog') }}">Blogs</a></li>
+                    @auth
+                    <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">My Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('user.order.history') }}">My Order History</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    @endauth
+                    <li class="nav-item"><a class="nav-link" href="{{ route('allBlog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('privacyPolicy') }}">Policy</a></li>
                 </ul>
                 @if (!empty(optional($setting)->primary_phone))
                     <div class="ps-header__text">Need help? <strong>{{ optional($setting)->primary_phone }}</strong>
@@ -74,7 +85,7 @@
                 <ul class="ps-header__icons">
                     <li>
                         {{-- Log Out --}}
-                        <a class="ps-header__item" href="#" id="login-modal">
+                        <a class="ps-header__item" href="javascript:void(0)" id="login-modal">
                             <i class="icon-user"></i>
                         </a>
                         @auth
@@ -167,8 +178,6 @@
                                         </form>
                                     </div>
                                 @endauth
-
-
                             </div>
                         @endauth
                     </li>
@@ -196,19 +205,19 @@
                     </li>
                 </ul>
                 <div class="ps-header__search">
-                    <form action="do_action" method="post">
+                    <form action="{{ route('allproducts') }}">
                         <div class="ps-search-table">
                             <div class="input-group rounded-pill">
-                                <input id="search_text" class="form-control ps-input" type="text"
+                                <input id="search_text" class="form-control ps-input search_text" type="text"
                                     placeholder="Search for products">
                                 <div class="input-group-append">
-                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    {{-- <a href="#"><i class="fa fa-search"></i></a> --}}
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div id="search_container" class="ps-search--result d-none"
-                        style="height: 60vh;overflow-y: auto;">
+                    <div id="search_container" class="ps-search--result search_container d-none"
+                        style="height: 44vh;overflow-y: auto;">
                         <!-- Search results will be injected here -->
                     </div>
                 </div>
@@ -242,6 +251,62 @@
         </div>
     </div>
 </header>
+<header class="ps-header ps-header--13 ps-header--mobile">
+    <div class="ps-noti">
+        <div class="container">
+            <p class="m-0">{{ optional($setting)->website_name }}, {{ optional($setting)->site_motto }}</p>
+        </div><a class="ps-noti__close"><i class="icon-cross"></i></a>
+    </div>
+    <div class="ps-header__middle">
+        <div class="container">
+            <div class="ps-header__left">
+                <ul class="ps-header__icons">
+                    <li>
+                        <a class="ps-header__item open-search" href="#">
+                            <i class="fa fa-search" aria-hidden="true" style="font-family: 'FontAwesome';">
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ps-logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{ !empty(optional($setting)->site_logo_black) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
+                        alt="">
+                </a>
+            </div>
+            <div class="ps-header__right">
+                <ul class="ps-header__icons">
+                    <li>
+                        <a class="ps-header__item" href="{{ asset('mycart') }}">
+                            <i class="icon-cart-empty"></i>
+                            <span class="badge cartCount">{{ Cart::instance('cart')->count() }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</header>
+<div class="ps-search">
+    <div class="ps-search__content ps-search--mobile"><a class="ps-search__close" href="#"
+            id="close-search"><i class="icon-cross"></i></a>
+        <h3>Search</h3>
+        <form action="{{ route('allproducts') }}">
+            <div class="ps-search-table">
+                <div class="input-group">
+                    <input id="search_text" class="form-control form-control search_text" type="text"
+                        placeholder="Search for products">
+                    <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a></div>
+                </div>
+            </div>
+        </form>
+        <div id="search_container" class="ps-search--result search_container d-none" style="height: 60vh;overflow-y: auto;">
+            <!-- Search results will be injected here -->
+        </div>
+    </div>
+</div>
 <script>
     function handleLogout() {
         fetch('{{ route('logout') }}', {

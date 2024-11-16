@@ -48,10 +48,6 @@
     .ps-social__link:hover {
         color: #ff0;
     }
-
-    .ps-footer--bottom img {
-        filter: brightness(0) invert(1);
-    }
 </style>
 <footer class="ps-footer ps-footer--13 ps-footer--14">
     <div class="ps-footer--top">
@@ -66,8 +62,7 @@
                                 class="icon-bag2"></i>Non-contact shipping</a></p>
                 </div>
                 <div class="col-12 col-sm-4 p-0">
-                    <p class="text-center"><a class="ps-footer__link" href="#"><i class="icon-truck"></i>Free
-                            delivery for order over £500</a></p>
+                    <p class="text-center"><a class="ps-footer__link" href="#"><i class="icon-truck"></i>Free Delivery UK Mainland</a></p>
                 </div>
             </div>
         </div>

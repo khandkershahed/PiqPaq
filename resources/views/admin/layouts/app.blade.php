@@ -3,21 +3,35 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description"
-        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-    <meta name="keywords"
-        content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title"
-        content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
-    <meta property="og:site_name" content="Keenthemes | Metronic" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="apple-touch-icon-precomposed">
-    <link href="https://i.ibb.co/52jNg3v/favicon.png" rel="shortcut icon" type="image/png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="{{ asset('storage/' . optional($setting)->site_favicon) }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ asset('storage/' . optional($setting)->site_favicon) }}" rel="shortcut icon" type="image/png">
+    <meta name="title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+    <meta name="description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ optional($setting)->site_url ?: config('app.url') }}" />
+    <meta property="og:title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+    <meta property="og:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
+    <meta property="og:image"
+        content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . optional($setting)->site_logo)) ? asset('storage/' . optional($setting)->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="{{ optional($setting)->site_url ?: config('app.url') }}" />
+    <meta property="twitter:title"
+        content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
+    <meta property="twitter:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
+    <meta property="twitter:image"
+        content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . optional($setting)->site_logo)) ? asset('storage/' . optional($setting)->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+
+    <title>{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}</title>
+
 
     <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap_icons.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/font_awesome_6.css') }}">
@@ -34,9 +48,7 @@
 
     <link href="{{ asset('admin/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-
-    @props(['title'])
-    <title>{{ $title ?? config('app.name', 'E-Commerce') }}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
 </head>
 
 <body id="kt_body"
@@ -124,8 +136,10 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script> --}}
     <script src="{{ asset('admin/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
-
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @include('toastr')
     @stack('scripts')
     <script>
@@ -306,7 +320,44 @@
             }
         }
     </script>
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
 
+                    toastr.options.timeOut = 10000;
+                    toastr.info("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+                    break;
+                case 'success':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.success("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'warning':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.warning("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+                case 'error':
+
+                    toastr.options.timeOut = 10000;
+                    toastr.error("{{ Session::get('message') }}");
+                    var audio = new Audio('audio.mp3');
+                    audio.play();
+
+                    break;
+            }
+        @endif
+    </script>
 
 </body>
 

@@ -836,18 +836,18 @@
                                 <div class="ps-checkout__row">
                                     <div class="ps-title">Subtotal</div>
                                     <input type="hidden" name="sub_total" id="sub_total"
-                                            value="{{ $subTotal }}">
+                                        value="{{ $subTotal }}">
                                     <div class="ps-product__price">£{{ number_format($subTotal, 2) }}</div>
                                 </div>
                                 <div class="ps-checkout__row">
                                     <div class="ps-title">Shipping <span class="text-danger">*</span></div>
                                     <div class="ps-checkout__checkbox">
-                                        @foreach ($shippingmethods as $shippingmethod)
+                                        @foreach ($shippingmethods as $index => $shippingmethod)
                                             <div class="form-check">
                                                 <input class="form-check-input" name="shipping_id" type="radio"
                                                     id="shipping-{{ $shippingmethod->id }}"
                                                     data-shipping_price="{{ $shippingmethod->price }}"
-                                                    value="{{ $shippingmethod->id }}" />
+                                                    value="{{ $shippingmethod->id }}" @checked($loop->first)/>
                                                 <label class="form-check-label"
                                                     for="shipping-{{ $shippingmethod->id }}">{{ $shippingmethod->title }}
                                                     <span>(£{{ number_format($shippingmethod->price, 2) }})</span></label>
@@ -869,21 +869,21 @@
                                     <div class="ps-checkout__row">
                                         <div class="ps-title">Payment Method</div>
                                         <div class="ps-checkout__checkbox">
-                                            <div class="form-check">
+                                            {{-- <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"
                                                     id="cod" value="cod" checked />
                                                 <label class="form-check-label" for="cod">COD</label>
-                                            </div>
+                                            </div> --}}
                                             <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"
-                                                    id="stripe" value="stripe" />
-                                                <label class="form-check-label" for="stripe">Stripe</label>
+                                                    id="stripe" value="stripe" checked/>
+                                                <label class="form-check-label mt-0" for="stripe">Credit/Debit Card</label>
                                             </div>
-                                            <div class="form-check">
+                                            {{-- <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"
                                                     id="paypal" value="paypal" />
                                                 <label class="form-check-label" for="paypal">PayPal</label>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="check-faq">

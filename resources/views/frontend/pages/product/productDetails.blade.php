@@ -1,4 +1,55 @@
-<x-frontend-app-layout :title="'Product Details'">
+<x-frontend-app-layout :title="'Product Details'" :product="$product">
+    @push('heads')
+        @php
+            $isProductPage = true; // Flag to indicate this is a product details page
+            $metaTitle = $product->meta_title ?? $product->name;
+            $metaDescription = $product->meta_description ?? substr($product->description, 0, 150);
+            $metaImage = $product->thumbnail ?? ''; // Default image
+        @endphp
+    @endpush
+    <style>
+        .slider-nav-thumbnails {
+            margin-top: 10px;
+        }
+
+        .slider-nav-thumbnails .slick-slide {
+            cursor: pointer;
+            outline: none;
+        }
+
+        .slider-nav-thumbnails .slick-slide.slick-current.slick-active {
+            opacity: 1;
+        }
+
+        .slider-nav-thumbnails .slick-slide img {
+            padding: 5px;
+            background: transparent;
+        }
+
+        .slider-nav-thumbnails .slick-slide.slick-current.slick-active img {
+            background: #8cbf44;
+        }
+
+        .slider-nav-thumbnails img {
+            width: 100px;
+            object-fit: cover;
+            margin: 0 5px;
+        }
+
+        .slider-nav-thumbnails .slick-slide:first-child img {
+            margin-left: 0;
+        }
+
+        .slider-nav-thumbnails .slick-slide:last-child img {
+            margin-right: 0;
+        }
+
+        .main_product_img img {
+            width: 530px;
+            height: 430px;
+            object-fit: contain;
+        }
+    </style>
     <div class="ps-page--product3">
         <div class="container">
             <ul class="ps-breadcrumb">
@@ -12,9 +63,36 @@
                         <div class="col-12 col-md-9">
                             <div class="row">
                                 <div class="col-12 col-xl-6">
-                                    <div class="ps-product--gallery">
+
+                                    <div class="videos-slider-2">
+                                        <div class="main_product_img">
+                                            <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}"
+                                                alt="{{ $product->meta_title }}" />
+                                        </div>
+                                        @foreach ($product->multiImages as $image)
+                                            <div class="main_product_img">
+                                                <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="slider-nav-thumbnails">
+                                        <div>
+                                            <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}"
+                                                alt="{{ $product->meta_title }}"
+                                                onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
+                                        </div>
+                                        @foreach ($product->multiImages as $image)
+                                            <div>
+                                                <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    {{-- <div class="ps-product--gallery">
                                         <div class="ps-product__thumbnail">
-                                            {{-- <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->meta_title }}"> --}}
                                             @foreach ($product->multiImages as $image)
                                                 <div class="slide">
                                                     <img src="{{ asset('storage/' . $image->photo) }}"
@@ -32,7 +110,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-12 col-xl-6">
                                     <div class="ps-product__info">
@@ -41,13 +119,13 @@
                                         </div>
                                         <table class="table ps-table ps-table--oriented m-0">
                                             <tbody>
-                                                @if (!empty($product->sku_code ))
+                                                @if (!empty($product->sku_code))
                                                     <tr>
                                                         <th class="ps-table__th">CODE</th>
                                                         <td>{{ $product->sku_code }}</td>
                                                     </tr>
                                                 @endif
-                                                @if (!empty($product->barcode_id ))
+                                                @if (!empty($product->barcode_id))
                                                     <tr>
                                                         <th class="ps-table__th">BARCODE </th>
                                                         <td>{{ $product->barcode_id }}</td>
@@ -100,7 +178,7 @@
                                         <div class="ps-product__group mt-20">
                                             <table class="table ps-table ps-table--oriented m-0">
                                                 <tr>
-                                                    <th>Case Qty.</th>
+                                                    <th>Carton / Box</th>
                                                     <th>Unit Price</th>
                                                     <th>Stock</th>
                                                 </tr>
@@ -111,7 +189,7 @@
                                                             {{ $product->unit_price }}
                                                         @else
                                                             <a href="{{ route('login') }}"
-                                                                class="btn btn-warning btn-block">Login</a>
+                                                                class="btn btn-info btn-block">Login</a>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -178,27 +256,28 @@
                                 <ul class="ps-product__bundle">
                                     <li><i class="icon-wallet"></i>100% Money back Guaranteed</li>
                                     <li><i class="icon-bag2"></i>Non-contact shipping</li>
-                                    <li><i class="icon-truck"></i>Free delivery order over £500</li>
+                                    <li><i class="icon-truck"></i>Free Delivery All Over UK Mainland (2-3 Days)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="ps-product__content">
-                        <ul class="nav nav-tabs ps-tab-list" id="productContentTabs" role="tablist">
-                            <li class="nav-item" role="presentation">
+                        <ul class="nav nav-tabs ps-tab-list bg-white p-3" id="productContentTabs" role="tablist">
+                            <li class="nav-item ml-3 pr-info-tabs" role="presentation">
                                 <a class="nav-link active" id="description-tab" data-toggle="tab"
                                     href="#description-content" role="tab" aria-controls="description-content"
                                     aria-selected="true">
-                                    Overview
+                                    Key Features
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
-                                    role="tab" aria-controls="information-content" aria-selected="false">
+                            <li class="nav-item ml-3 pr-info-tabs" role="presentation">
+                                <a class="nav-link" id="information-tab" data-toggle="tab"
+                                    href="#information-content" role="tab" aria-controls="information-content"
+                                    aria-selected="false">
                                     Description
                                 </a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item ml-3 pr-inf-tabs" role="presentation">
                                 <a class="nav-link" id="specification-tab" data-toggle="tab"
                                     href="#specification-content" role="tab"
                                     aria-controls="specification-content" aria-selected="false">
@@ -212,7 +291,7 @@
                                 </a>
                             </li> --}}
                         </ul>
-                        <div class="tab-content" id="productContent">
+                        <div class="tab-content bg-white p-5" id="productContent">
                             <div class="tab-pane fade show active" id="description-content" role="tabpanel"
                                 aria-labelledby="description-tab">
                                 <div class="ps-document">
@@ -311,7 +390,7 @@
                     <section class="ps-section--also" data-background="img/related-bg.jpg">
                         <div class="container">
                             <h3 class="ps-section__title">Customer also bought</h3>
-                            <div class="dealCarousel owl-carousel">
+                            <div class="owl-carousel">
                                 @foreach ($related_products as $related_product)
                                     <div class="ps-section__product">
                                         <div class="ps-product ps-product--standard">
@@ -319,20 +398,7 @@
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $related_product->slug) }}">
                                                     <figure>
-                                                        @if (count($related_product->multiImages) > 0)
-                                                            @foreach ($related_product->multiImages->slice(0, 2) as $image)
-                                                                @php
-                                                                    $imagePath = 'storage/' . $image->photo;
-                                                                    $imageSrc = file_exists(public_path($imagePath))
-                                                                        ? asset($imagePath)
-                                                                        : asset('frontend/img/no-product.jpg');
-                                                                @endphp
-                                                                <img src="{{ $imageSrc }}"
-                                                                    alt="{{ $related_product->meta_title }}"
-                                                                    width="210" height="210"
-                                                                    style="object-fit: cover;" />
-                                                            @endforeach
-                                                        @else
+                                                        @if (!empty($related_product->thumbnail))
                                                             @php
                                                                 $thumbnailPath =
                                                                     'storage/' . $related_product->thumbnail;
@@ -342,8 +408,20 @@
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
                                                                 alt="{{ $related_product->meta_title }}"
-                                                                width="210" height="210"
-                                                                style="object-fit: cover;" />
+                                                                width="210" height="210" />
+                                                        @else
+                                                            @foreach ($related_product->multiImages->slice(0, 2) as $image)
+                                                                @php
+                                                                    $imagePath = 'storage/' . $image->photo;
+                                                                    $imageSrc = file_exists(public_path($imagePath))
+                                                                        ? asset($imagePath)
+                                                                        : // : asset('frontend/img/no-product.jpg');
+                                                                        asset('frontend/img/no-product.jpg');
+                                                                @endphp
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $related_product->meta_title }}"
+                                                                    width="210" height="210" />
+                                                            @endforeach
                                                         @endif
                                                     </figure>
                                                 </a>
@@ -371,7 +449,7 @@
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
                                                     <a href="{{ route('product.details', $related_product->slug) }}">
-                                                        {{ $related_product->name }}
+                                                        {{ implode(' ', array_slice(explode(' ', $related_product->name), 0, 8)) }}
                                                     </a>
                                                 </h5>
                                                 @if (Auth::check() && Auth::user()->status == 'active')
@@ -424,10 +502,10 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                     </div>
-                                                    <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                    {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
                                                             href="compare.html"><i class="fa fa-align-left"></i></a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -438,7 +516,8 @@
                     </section>
                 </div>
             </div>
-            <div class="ps-delivery" data-background="{{ asset('frontend/promotion/banner-delivery-2.jpg') }}">
+            <div class="ps-delivery"
+                style="background-image: url({{ asset('frontend/img/promotion/banner-delivery-2.jpg') }})">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a
@@ -532,7 +611,7 @@
                                             </div>
                                             <h5 class="ps-product__title">
                                                 <a href="{{ route('product.details', $related_product->slug) }}">
-                                                    {{ $related_product->name }}
+                                                    {{ implode(' ', array_slice(explode(' ', $related_product->name), 0, 8)) }}
                                                 </a>
                                             </h5>
                                             <div class="ps-product__desc">
@@ -599,4 +678,93 @@
             </div>
         </div>
     @endforeach
+
+    @push('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.8.4/swiper-bundle.min.js"></script>
+        <script>
+            //メインスライド
+            var slider = new Swiper('.gallery-slider', {
+                slidesPerView: 1,
+                centeredSlides: true,
+                loop: true,
+                loopedSlides: 6, //スライドの枚数と同じ値を指定
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            //サムネイルスライド
+            var thumbs = new Swiper('.gallery-thumbs', {
+                slidesPerView: 'auto',
+                spaceBetween: 10,
+                centeredSlides: true,
+                loop: true,
+                slideToClickedSlide: true,
+            });
+
+            //3系
+            //slider.params.control = thumbs;
+            //thumbs.params.control = slider;
+
+            //4系～
+            slider.controller.control = thumbs;
+            thumbs.controller.control = slider;
+        </script>
+        <script>
+            $('.videos-slider-2').slick({
+                autoplay: true,
+                slidesToScroll: 1,
+                slidesToShow: 1,
+                arrows: false,
+                dots: false,
+                asNavFor: '.slider-nav-thumbnails',
+            });
+
+            $('.slider-nav-thumbnails').slick({
+                autoplay: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                asNavFor: '.videos-slider-2',
+                dots: false,
+                arrows: false,
+                focusOnSelect: true,
+                variableWidth: true
+            });
+
+            // Remove active class from all thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+
+            // Set active class to first thumbnail slides
+            $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
+
+            // On before slide change match active thumbnail to current slide
+            $('.videos-slider-2').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+                var mySlideNumber = nextSlide;
+                $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".owl-carousel").owlCarousel({
+                    items: 4, // Change this to 4
+                    loop: true,
+                    nav: true,
+                    dots: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 4 // Change this to 4 as well
+                        }
+                    }
+                });
+            });
+        </script>
+    @endpush
 </x-frontend-app-layout>

@@ -13,8 +13,11 @@ use App\Models\ShippingMethod;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\UserOrderMail;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
@@ -144,6 +147,7 @@ class CartController extends Controller
     }
     public function checkoutStore(Request $request)
     {
+        ini_set('max_execution_time', 300);
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'billing_email' => 'required|email',
@@ -211,13 +215,14 @@ class CartController extends Controller
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
                 Session::flash('error', $message);
+                // flash()->error($message);
+                // Session::flush();
             }
             return redirect()->back()->withInput();
         }
 
         // Begin a database transaction
         DB::beginTransaction();
-
         try {
             $typePrefix = 'PQ';
             $year = date('Y'); // Get the last two digits of the year (e.g., '24' for 2024)
@@ -279,25 +284,33 @@ class CartController extends Controller
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item->id,
-                    'user_id' => auth()->id(), // Assuming user is logged in
+                    'user_id' => auth()->id(),
                     'product_name' => $item->name,
                     'product_color' => $item->model->color ?? null,
                     'product_sku' => $item->model->sku ?? null,
                     'price' => $item->price,
-                    'tax' => $item->tax ?? 0, // Default tax to 0 if not provided
+                    'tax' => $item->tax ?? 0,
                     'quantity' => $item->qty,
-                    'subtotal' => $item->qty * $item->price, // Ensure subtotal is a float
+                    'subtotal' => $item->qty * $item->price,
+                ]);
+
+                // Update product stock
+                $product = Product::find($item->id);
+                $product->update([
+                    'box_stock' => $product->box_stock - $item->qty,
                 ]);
             }
 
             // Commit the transaction
-            DB::commit();
+            DB::commit(); 
 
             // Clear the cart after successful order
             Cart::instance('cart')->destroy();
+            $order = Order::with('orderItems')->where('id', $order->id)->first();
+            $user = Auth::user();
             $data = [
-                'order' => Order::with('orderItems')->where('id', $order->id)->first(),
-                'user'  => Auth::user(),
+                'order' =>  $order,
+                'user'  => $user,
             ];
             // dd($data['order']);
             // return view('pdf.invoice', $data);
@@ -318,15 +331,43 @@ class CartController extends Controller
                 ]);
             } catch (\Exception $e) {
                 // Handle PDF save exception
+                // flash()->error('Failed to generate PDF: ' . $e->getMessage());
                 Session::flash('error', 'Failed to generate PDF: ' . $e->getMessage());
+                // Session::flush();
+            }
+            try {
+                $setting = Setting::first();
+                $data = [
+                    'order'       => $order,
+                    'order_items' => $order->orderItems,
+                    'user'        => $user,
+                ];
+                Mail::to([$request->input('billing_email'), $user->email])->send(new UserOrderMail($user->name, $data, $setting));
+            } catch (\Exception $e) {
+                // Handle PDF save exception
+                // flash()->error('Failed to generate PDF: ' . $e->getMessage());
+                Session::flash('error', 'Failed to send Mail: ' . $e->getMessage());
+                // Session::flush();
             }
             // Redirect to a confirmation page or thank you page
-            return redirect()->route('checkout.success', $order->order_number)->with('success', 'Order placed successfully!');
+            if ($order->payment_method == "stripe") {
+                Session::flash('success', 'Order placed successfully!');
+                // Session::flush();
+                // flash()->success('Order placed successfully!');
+                return redirect()->route('stripe.payment', $order->order_number);
+            } else if ($order->payment_method == "paypal") {
+                return view('frontend.pages.cart.paypal', $data);
+            } else {
+                // flash()->success('Order placed successfully!');
+                Session::flash('success', 'Order placed successfully!');
+                // Session::flush();
+                return redirect()->route('checkout.success', $order->order_number);
+            }
         } catch (\Exception $e) {
             DB::rollback();
-
             Session::flash('error', $e->getMessage());
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            // Session::flush();
+            return redirect()->route('cart')->withInput();
         }
     }
 

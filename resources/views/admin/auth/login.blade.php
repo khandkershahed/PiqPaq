@@ -8,12 +8,12 @@
                         <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
                             action="{{ route('admin.login') }}" method="POST" id="kt_sign_in_form">
                             @csrf
-
-
                             <div class="card-body">
                                 <div class="py-20">
-                                    <img width="200px" class="img-fluid" src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : 'https://i.ibb.co/MfYCzZB/logo.png' }}"
+                                    <img width="200px" class="img-fluid" src="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . optional($setting)->site_logo_black)) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/img/logo.png') }}"
                                         alt="">
+                                    {{-- <img width="200px" class="img-fluid" src="{{ !empty($site->site_logo_white) && file_exists(public_path('storage/settings/' . $site->site_logo_white)) ? asset('storage/settings/' . $site->site_logo_white) : asset('frontend/img/logo.png') }}"
+                                        alt=""> --}}
                                 </div>
                                 <div class="text-start mb-10">
                                     <h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-in-title">

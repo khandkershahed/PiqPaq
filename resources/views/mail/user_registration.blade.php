@@ -25,7 +25,7 @@
                         <div style="padding-bottom: 30px; font-size: 17px;">
                             <strong>Hi {{ $data }}</strong>
                         </div>
-                        <div style="padding-bottom: 30px">Welcome to Piqpaq! We're thrilled to have you on board.</div>
+                        <div style="padding-bottom: 30px">Welcome to {{optional($setting)->website_name}}! We're thrilled to have you on board.</div>
                         <div style="padding-bottom: 30px">
                             Your account has been successfully created. You can now access your personalized dashboard
                             packed with features to enhance your experience.
@@ -37,22 +37,37 @@
                                 Login To Your Dashboard
                             </a>
                         </div>
-                        <div style="padding-bottom: 30px">Need Help?</div>
+                        <div style="padding-bottom: 30px">
+                            Hi,
+                        </div>
+                        <div style="padding-bottom: 30px">
+                            Thank you for registering with {{optional($setting)->website_name}}! Your account is currently pending approval. We will review your information and notify you as soon as your account is activated.
+                        </div>
+                        <div style="padding-bottom: 40px; text-align:center;">
+                            <a href="{{ route('contact') }}" rel="noopener"
+                                style="text-decoration:none;display:inline-block;text-align:center;padding:0.75575rem 1.3rem;font-size:0.925rem;line-height:1.5;border-radius:0.35rem;color:#ffffff;background-color:#009EF7;border:0px;margin-right:0.75rem!important;font-weight:600!important;outline:none!important;vertical-align:middle"
+                                target="_blank">
+                                Contact Us
+                            </a>
+                        </div>
+                        <div style="padding-bottom: 30px">
+                            Need Help?
+                        </div>
                         <div style="padding-bottom: 30px">
                             Our friendly support team is always happy to assist you. You can find answers to most
                             questions and contact us through
                             <a href="{{ route('contact') }}" rel="noopener" target="_blank"
-                                style="text-decoration:none;color: #009EF7">Piqpaq Contact</a>.
+                                style="text-decoration:none;color: #009EF7">{{optional($setting)->website_name}} Contact</a>.
                         </div>
                         <!--end:Email content-->
-                        <div style="padding-bottom: 10px">Sincerely,<br>The Piqpaq Team.</div>
+                        <div style="padding-bottom: 10px">Sincerely,<br>The {{optional($setting)->website_name}} Team.</div>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td align="center" valign="center"
                     style="font-size: 13px; text-align:center;padding: 20px; color: #6d6e7c;">
-                    <p>Copyright © <a href="{{ route('home') }}" rel="noopener" target="_blank">Piqpaq</a>.</p>
+                    <p>Copyright © <a href="{{ route('home') }}" rel="noopener" target="_blank">{{optional($setting)->website_name}}</a>.</p>
                 </td>
             </tr>
         </tbody>

@@ -94,7 +94,8 @@ class SettingController extends Controller
                 'reddit_url'           => $request->reddit_url,
                 'tumblr_url'           => $request->tumblr_url,
                 'tiktok_url'           => $request->tiktok_url,
-
+                'user_verification'    => !empty($request->user_verification) ? $request->user_verification : 0 ,
+                'minimum_order_amount' => !empty($request->minimum_order_amount) ? $request->minimum_order_amount : 0 ,
                 'start_time_monday'    => $request->start_time_monday,
                 'monday'               => $request->monday,
                 'end_time_monday'      => $request->end_time_monday,
@@ -128,7 +129,7 @@ class SettingController extends Controller
             return redirect()->back()->with('success', $toastrMessage);
         } catch (\Exception $e) {
             Session::flash('error', [$messages = $e->getMessage()]);
-            return redirect()->back()->with('error', [$messages = $e->getMessage()]);
+            return redirect()->back()->withInput()->with('error', [$messages = $e->getMessage()]);
         }
     }
 }

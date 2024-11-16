@@ -23,31 +23,33 @@
                                             <div class="ps-product__thumbnail">
                                                 <a class="ps-product__image"
                                                     href="{{ route('product.details', $related_product->slug) }}">
-                                                    <figure>
-                                                        @if (count($related_product->multiImages) > 0)
-                                                            @foreach ($related_product->multiImages->slice(0, 2) as $image)
-                                                                @php
-                                                                    $imagePath = 'storage/' . $image->photo;
-                                                                    $imageSrc = file_exists(public_path($imagePath))
-                                                                        ? asset($imagePath)
-                                                                        : asset('frontend/img/no-product.jpg');
-                                                                @endphp
-                                                                <img src="{{ $imageSrc }}"
-                                                                    alt="{{ $related_product->meta_title }}" width="210"
-                                                                    height="210" style="object-fit: cover;" />
-                                                            @endforeach
-                                                        @else
+                                                    <div>
+                                                        @if (!empty($related_product->thumbnail))
                                                             @php
-                                                                $thumbnailPath = 'storage/' . $related_product->thumbnail;
+                                                                $thumbnailPath =
+                                                                    'storage/' . $related_product->thumbnail;
                                                                 $thumbnailSrc = file_exists(public_path($thumbnailPath))
                                                                     ? asset($thumbnailPath)
                                                                     : asset('frontend/img/no-product.jpg');
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
                                                                 alt="{{ $related_product->meta_title }}" width="210"
-                                                                height="210" style="object-fit: cover;" />
+                                                                height="210" />
+                                                        @else
+                                                            @foreach ($related_product->multiImages->slice(0, 2) as $image)
+                                                                @php
+                                                                    $imagePath = 'storage/' . $image->photo;
+                                                                    $imageSrc = file_exists(public_path($imagePath))
+                                                                        ? asset($imagePath)
+                                                                        : // : asset('frontend/img/no-product.jpg');
+                                                                        asset('frontend/img/no-product.jpg');
+                                                                @endphp
+                                                                <img src="{{ $imageSrc }}"
+                                                                    alt="{{ $related_product->meta_title }}"
+                                                                    width="210" height="210"  />
+                                                            @endforeach
                                                         @endif
-                                                    </figure>
+                                                    </div>
                                                 </a>
                                                 <div class="ps-product__actions">
                                                     <div class="ps-product__item" data-toggle="tooltip"
@@ -125,10 +127,10 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                     </div>
-                                                    <div class="ps-product__item rotate" data-toggle="tooltip"
+                                                    {{-- <div class="ps-product__item rotate" data-toggle="tooltip"
                                                         data-placement="left" title="Add to compare"><a
                                                             href="compare.html"><i class="fa fa-align-left"></i></a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>

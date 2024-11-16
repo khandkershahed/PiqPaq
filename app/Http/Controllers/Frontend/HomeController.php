@@ -3,30 +3,57 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Faq;
+use App\Models\Brand;
+use App\Models\Order;
 use App\Models\BlogTag;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\BlogPost;
 use App\Models\Category;
+use App\Models\DealBanner;
 use App\Models\PageBanner;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
+use App\Models\ShippingMethod;
 use App\Models\TermsAndCondition;
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\DealBanner;
-use App\Models\Order;
-use App\Models\ShippingMethod;
-use Illuminate\Support\Facades\Cache;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        // $latest_products = Product::latest('id')->where('status','published')->get(['slug','meta_title','name','box_discount_price','box_price']);
+        $categoryone = Category::inRandomOrder()->active()->first();
 
+        if ($categoryone) {
+            $categoryoneproducts = $categoryone->products()->inRandomOrder()->paginate(8);
+        }
+
+        if ($categoryone) {
+            $categorytwo = Category::where('id', '!=', $categoryone->id)
+                ->inRandomOrder()->active()->first();
+
+            if ($categorytwo) {
+                $categorytwoproducts = $categorytwo->products()->inRandomOrder()->paginate(8);
+            }
+        }
+
+        if (isset($categoryone, $categorytwo)) {
+            $categorythree = Category::where('id', '!=', $categoryone->id)
+                ->where('id', '!=', $categorytwo->id)
+                ->inRandomOrder()->active()->first();
+
+            if ($categorythree) {
+                $categorythreeproducts = $categorythree->products()->inRandomOrder()->paginate(8);
+            }
+        }
+        $categoryoneproducts = $categoryoneproducts ?? collect(); // Empty collection if categoryone is null
+        $categorytwoproducts = $categorytwoproducts ?? collect(); // Empty collection if categorytwo is null
+        $categorythreeproducts = $categorythreeproducts ?? collect();
         $data = [
 
             'sliders'                   => PageBanner::active()->where('page_name', 'home_slider')->latest('id')->get(),
@@ -37,8 +64,14 @@ class HomeController extends Controller
             'deals'                     => DealBanner::active()->inRandomOrder()->limit(7)->get(),
             'blog'                      => BlogPost::inRandomOrder()->active()->first(),
             'categorys'                 => Category::orderBy('name', 'ASC')->active()->get(),
-            'latest_products'           => Product::with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
-            'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->latest('id')->limit(10)->get(),
+            'categoryone'               => $categoryone ?? '',
+            'categoryoneproducts'       => $categoryoneproducts,
+            'categorytwo'               => $categorytwo ?? '',
+            'categorytwoproducts'       => $categorytwoproducts,
+            'categorythree'             => $categorythree ?? '',
+            'categorythreeproducts'     => $categorythreeproducts,
+            'latest_products'           => Product::with('multiImages')->inRandomOrder()->where('status', 'published')->paginate(8),
+            'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->inRandomOrder()->limit(10)->get(),
         ];
         // dd($data['deal_products']);
         return view('frontend.pages.home', $data);
@@ -50,7 +83,10 @@ class HomeController extends Controller
     }
     public function aboutUs()
     {
-        return view('frontend.pages.aboutUs');
+        $data = [
+            'blog_posts'     => BlogPost::latest('id')->where('status', 'publish')->get(),
+        ];
+        return view('frontend.pages.aboutUs', $data);
     }
     public function returnPolicy()
     {
@@ -59,6 +95,7 @@ class HomeController extends Controller
     public function privacyPolicy()
     {
         $data = [
+            'banner'  => PageBanner::active()->where('page_name', 'privacy')->latest('id')->first(),
             'privacy' => PrivacyPolicy::latest('id')->where('status', 'active')->first(),
         ];
         return view('frontend.pages.privacyPolicy', $data);
@@ -66,14 +103,16 @@ class HomeController extends Controller
     public function termsCondition()
     {
         $data = [
-            'terms' => TermsAndCondition::latest('id')->where('status', 'active')->first(),
+            'banner'  => PageBanner::active()->where('page_name', 'terms')->latest('id')->first(),
+            'terms'   => TermsAndCondition::latest('id')->where('status', 'active')->first(),
         ];
         return view('frontend.pages.termsCondition', $data);
     }
     public function faq()
     {
         $data = [
-            'faqs' => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
+            'banner'  => PageBanner::active()->where('page_name', 'faq')->latest('id')->first(),
+            'faqs'    => Faq::orderBy('order', 'asc')->where('status', 'active')->get(),
         ];
         return view('frontend.pages.faq', $data);
     }
@@ -99,7 +138,7 @@ class HomeController extends Controller
     public function productDetails($slug)
     {
         $data = [
-            'product'               => Product::where('slug', $slug)->first(),
+            'product'          => Product::where('slug', $slug)->first(),
             'related_products' => Product::select('id', 'slug', 'meta_title', 'thumbnail', 'name', 'box_discount_price', 'box_price')->with('multiImages')->where('status', 'published')->inRandomOrder()->limit(12)->get(),
         ];
         return view('frontend.pages.product.productDetails', $data);
@@ -133,10 +172,14 @@ class HomeController extends Controller
     }
     public function checkout()
     {
+        $setting = Setting::first();
+        $minimumOrderAmount = $setting->minimum_order_amount ?? 0;
+
         $formattedSubtotal = Cart::instance('cart')->subtotal();
         $cleanSubtotal = preg_replace('/[^\d.]/', '', $formattedSubtotal);
         $subTotal = (float)$cleanSubtotal;
-        if ($subTotal > 500) {
+
+        if ($subTotal > $minimumOrderAmount) {
             $data = [
                 'shippingmethods' => ShippingMethod::active()->get(),
                 'cartItems'       => Cart::instance('cart')->content(),
@@ -144,16 +187,16 @@ class HomeController extends Controller
                 'cartCount'       => Cart::instance('cart')->count(),
                 'user'            => Auth::user(),
                 'subTotal'        => $subTotal,
-                // 'subTotal'        => Cart::instance('cart')->subtotal(),
             ];
-            // dd(Cart::instance('cart'));
             return view('frontend.pages.cart.checkout', $data);
         } else {
-
-            flash()->error('The added product price must be greater than 500£ to proceed to check out.');
-            return redirect()->back()->withInput();
+            // Redirect back with error message
+            Session::flash('error', 'The added product price must be greater than 500£ to proceed to check out.');
+            // Session::flush();
+            return redirect()->back();
         }
     }
+
 
     public function checkoutSuccess($id)
     {

@@ -24,7 +24,7 @@
                         @include('user.layouts.sidebar')
                     </div>
                     <div class="col-lg-8 col-xl-9">
-                        <div class="dashboard-tab">
+                        <div class="dashboard-tab bg-white p-5">
                             <div class="title-box3">
                                 <h3>Your Accounts Details</h3>
                                 <p>
@@ -49,7 +49,7 @@
                                                                 <h4>Account Information</h4>
                                                                 <hr>
                                                             </div>
-                                                            <div class="col-4 col-md-4">
+                                                            <div class="col-12 col-md-4">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">First name
                                                                         <span class="text-danger">*</span> </label>
@@ -58,7 +58,7 @@
                                                                         type="text" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-4 col-md-4">
+                                                            <div class="col-12 col-md-4">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Last name
                                                                         <span class="text-danger">*</span> </label>
@@ -67,7 +67,7 @@
                                                                         type="text" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-4">
+                                                            <div class="col-12">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Phone <span
                                                                             class="text-danger">*</span> </label>
@@ -76,7 +76,7 @@
                                                                         type="text" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col-12 col-lg-6">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Company Name
                                                                         <span class="text-danger">*</span> </label>
@@ -85,7 +85,7 @@
                                                                         type="text" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col-12 col-lg-6">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Company
                                                                         Registration Number</label>
@@ -95,7 +95,7 @@
                                                                         type="text">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col-12 col-lg-6">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Company VAT
                                                                         Number</label>
@@ -105,7 +105,7 @@
                                                                         type="text">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col-12 col-lg-6">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Website
                                                                         Address</label>
@@ -120,7 +120,7 @@
                                                                 <h4>Billing Information</h4>
                                                                 <hr>
                                                             </div>
-                                                            <div class="col-3">
+                                                            <div class="col-12 col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">House/Block/Road
                                                                         <span class="text-danger">*</span> </label>
@@ -131,7 +131,7 @@
                                                                         required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-3 col-md-3">
+                                                            <div class="col-12 col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">Postcode
                                                                         <span class="text-danger">*</span> </label>
@@ -140,7 +140,7 @@
                                                                         type="text" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-3 col-md-3">
+                                                            <div class="col-12 col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">State
                                                                         <span class="text-danger">*</span> </label>
@@ -149,7 +149,7 @@
                                                                         type="text" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-3 col-md-3">
+                                                            <div class="col-12 col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="ps-checkout__label">City/Country
                                                                         <span class="text-danger">*</span> </label>
@@ -185,7 +185,7 @@
                                                                         value="*****">
                                                                     <div class="input-group-append">
                                                                         <button id="toggle-password"
-                                                                            class="btn btn-info" type="button">
+                                                                            class="bg-warning border-0 text-white" type="button">
                                                                             <i id="password-icon"
                                                                                 class="fa fa-eye"></i>
                                                                         </button>
@@ -194,7 +194,7 @@
                                                             </div>
                                                             <div class="col-12 mt-4">
                                                                 <input type="submit" value="Save Changes"
-                                                                    class="updatebutton btn btn-block btn-lg btn-success">
+                                                                    class="updatebutton btn btn-info w-100">
                                                             </div>
                                                         </div>
                                                     </div>
