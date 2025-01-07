@@ -4,11 +4,11 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="javascript:void(0)">
+                        {{-- <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3">
                                 <i class="fa-solid fa-money-bill fs-3 text-white" aria-hidden="true"></i>
                             </span>
-                        </a>
+                        </a> --}}
                         <div class="flex-grow-1">
                             <a href="#" class="text-white fs-7 fw-bold lh-0">Total Sale
                                 <span class="text-white fw-semibold d-block fs-7 pt-4">{{ date('d M Y') }}</span>
@@ -29,10 +29,10 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="javascript:void(0)">
+                        {{-- <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3"><i
                                     class="fa-brands fa-product-hunt fs-3 text-white" aria-hidden="true"></i></span>
-                        </a>
+                        </a> --}}
                         <div class="flex-grow-1">
                             <a href="#" class="text-white fs-7 fw-bold lh-0">Total Order
                                 <span class="text-white fw-semibold d-block fs-7 pt-4">{{ date('d M Y') }}</span>
@@ -53,10 +53,10 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="javascript:void(0)">
+                        {{-- <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3"><i
                                     class="fa-solid fa-clock-rotate-left fs-3 text-white" aria-hidden="true"></i></span>
-                        </a>
+                        </a> --}}
                         <div class="flex-grow-1">
                             <a href="#" class="text-white fs-7 fw-bold lh-0">Total Order Pending
                                 <span class="text-white fw-semibold d-block fs-7 pt-4">{{ date('d M Y') }}</span>
@@ -77,11 +77,11 @@
             <div class="card-body p-0">
                 <div class="d-flex flex-stack justify-content-between">
                     <div class="d-flex align-items-center me-3 p-8 px-5 rounded-3 bg-dark">
-                        <a href="javascript:void(0)">
+                        {{-- <a href="javascript:void(0)">
                             <span class="bg-black rounded-3 p-3 me-3">
                                 <i class="fa-solid fa-truck text-white fs-3" aria-hidden="true"></i>
                             </span>
-                        </a>
+                        </a> --}}
                         <div class="flex-grow-1">
                             <a href="#" class="fs-7 fw-bold lh-0 text-white">Total Order Delivered
                                 <span class="text-white fw-semibold d-block fs-7 pt-4">{{ date('d M Y') }}</span>

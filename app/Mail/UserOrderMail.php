@@ -43,5 +43,9 @@ class UserOrderMail extends Mailable
                 'order_items'   => $this->data['order_items'],
                 'user'          => $this->data['user'],  // Add user data if needed
             ]);
+            // ->view('mail.user_order')
+            // ->with([
+            //     'data' => $this->data,
+            // ]);
     }
 }

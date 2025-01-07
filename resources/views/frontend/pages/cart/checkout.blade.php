@@ -847,7 +847,7 @@
                                                 <input class="form-check-input" name="shipping_id" type="radio"
                                                     id="shipping-{{ $shippingmethod->id }}"
                                                     data-shipping_price="{{ $shippingmethod->price }}"
-                                                    value="{{ $shippingmethod->id }}"/>
+                                                    value="{{ $shippingmethod->id }}" @checked($loop->first)/>
                                                 <label class="form-check-label"
                                                     for="shipping-{{ $shippingmethod->id }}">{{ $shippingmethod->title }}
                                                     <span>(£{{ number_format($shippingmethod->price, 2) }})</span></label>
@@ -877,7 +877,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"
                                                     id="stripe" value="stripe" checked/>
-                                                <label class="form-check-label" for="stripe">Stripe</label>
+                                                <label class="form-check-label mt-0" for="stripe">Credit/Debit Card</label>
                                             </div>
                                             {{-- <div class="form-check">
                                                 <input class="form-check-input" name="payment_method" type="radio"

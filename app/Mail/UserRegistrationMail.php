@@ -13,8 +13,8 @@ class UserRegistrationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data, $setting;
-
+    public $data;
+    public $setting;
     /**
      * Create a new notification instance.
      */
@@ -36,6 +36,7 @@ class UserRegistrationMail extends Mailable
             ->subject('Welcome to'.$this->setting->website_name)
             ->view('mail.user_registration', [
                 'data' => $this->data,
+                'setting'=> $this->setting,
             ]);
     }
 

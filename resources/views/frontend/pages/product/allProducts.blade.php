@@ -20,6 +20,7 @@
             transition: background 0.2s ease, border-color 0.2s ease;
             display: inline-block;
             background: #fff;
+            width: 100%;
             position: relative;
         }
 
@@ -131,11 +132,10 @@
             </div>
             <div class="ps-categogy__content pt-4">
                 <div class="row row-reverse">
-                    <div class="col-12 col-md-9">
-                        <div class="ps-categogy__wrapper d-flex justify-content-center">
+                    <div class="col-md-9 col-12 order-12 order-lg-1">
+                        <div class="ps-categogy__wrapper d-flex justify-content-center px-1 mt-4 mt-lg-0">
                             <div class="ps-categogy__sort w-100 text-left py-0">
                                 <form>
-                                    <span>Sort by</span>
                                     <select id="sort-by" class="form-select">
                                         <option value="latest">Latest</option>
                                         <option value="oldest">Oldest</option>
@@ -144,11 +144,12 @@
                                         <option value="price-asc">Price: low to high</option>
                                         <option value="price-desc">Price: high to low</option>
                                     </select>
+                                    {{-- <span>Sort by</span> --}}
                                 </form>
                             </div>
                             <div class="ps-categogy__show w-100 text-right py-0">
                                 <form>
-                                    <span>Show</span>
+                                    {{-- <span>Show</span> --}}
                                     <select id="show-per-page" class="form-select w-auto show_per_page">
                                         <option value="10" selected>10</option>
                                         <option value="20">20</option>
@@ -161,6 +162,9 @@
                         <div id="productContainer">
                             @include('frontend.pages.product.partial.getProduct')
                         </div>
+                        <div class="ps-pagination">
+                            {{ $products->links() }}
+                        </div>
                         <div class="ps-delivery"
                             style="background-image: url({{ asset('frontend/img/promotion/banner-delivery-2.jpg') }});">
                             <div class="ps-delivery__content">
@@ -170,11 +174,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-md-3 col-12 order-1 order-lg-12">
                         <div class="ps-widget ps-widget--product">
                             <div class="ps-widget__block">
-                                <h4 class="ps-widget__title">Categories</h4><a class="ps-block-control"
-                                    href="#"><i class="fa fa-angle-down"></i></a>
+                                <h4 class="ps-widget__title">Categories</h4>
+                                <a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i>
+                                </a>
                                 <div class="ps-widget__content ps-widget__category">
                                     <ul class="">
                                         @foreach ($categories as $category)
@@ -240,10 +245,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="ps-widget__block">
+                            <div class="ps-widget__block bg-white p-lg-3 p-0 ">
                                 <h4 class="ps-widget__title">By price</h4><a class="ps-block-control" href="#"><i
                                         class="fa fa-angle-down"></i></a>
-                                <div class="ps-widget__content">
+                                <div class="ps-widget__content priceing-filter">
                                     <div class="ps-widget__price">
                                         <div id="slide-price" class="noUi-target noUi-ltr noUi-horizontal"></div>
                                     </div>
@@ -254,7 +259,7 @@
                                         <input type="hidden" id="price-min" name="price_min" value="1" />
                                         <input type="hidden" id="price-max" name="price_max" value="10000" />
                                     </div>
-                                    <button id="price-filter" class="ps-widget__filter">Filter</button>
+                                    {{-- <button id="price-filter" class="ps-widget__filter">Filter</button> --}}
                                 </div>
                             </div>
                             <div class="ps-widget__block">

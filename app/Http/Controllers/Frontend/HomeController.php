@@ -27,8 +27,33 @@ class HomeController extends Controller
 {
     public function home()
     {
-        // $latest_products = Product::latest('id')->where('status','published')->get(['slug','meta_title','name','box_discount_price','box_price']);
+        $categoryone = Category::inRandomOrder()->active()->first();
 
+        if ($categoryone) {
+            $categoryoneproducts = $categoryone->products()->inRandomOrder()->paginate(8);
+        }
+
+        if ($categoryone) {
+            $categorytwo = Category::where('id', '!=', $categoryone->id)
+                ->inRandomOrder()->active()->first();
+
+            if ($categorytwo) {
+                $categorytwoproducts = $categorytwo->products()->inRandomOrder()->paginate(8);
+            }
+        }
+
+        if (isset($categoryone, $categorytwo)) {
+            $categorythree = Category::where('id', '!=', $categoryone->id)
+                ->where('id', '!=', $categorytwo->id)
+                ->inRandomOrder()->active()->first();
+
+            if ($categorythree) {
+                $categorythreeproducts = $categorythree->products()->inRandomOrder()->paginate(8);
+            }
+        }
+        $categoryoneproducts = $categoryoneproducts ?? collect(); // Empty collection if categoryone is null
+        $categorytwoproducts = $categorytwoproducts ?? collect(); // Empty collection if categorytwo is null
+        $categorythreeproducts = $categorythreeproducts ?? collect();
         $data = [
 
             'sliders'                   => PageBanner::active()->where('page_name', 'home_slider')->latest('id')->get(),
@@ -39,8 +64,14 @@ class HomeController extends Controller
             'deals'                     => DealBanner::active()->inRandomOrder()->limit(7)->get(),
             'blog'                      => BlogPost::inRandomOrder()->active()->first(),
             'categorys'                 => Category::orderBy('name', 'ASC')->active()->get(),
-            'latest_products'           => Product::with('multiImages')->latest('id')->where('status', 'published')->limit(10)->get(),
-            'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->latest('id')->limit(10)->get(),
+            'categoryone'               => $categoryone ?? '',
+            'categoryoneproducts'       => $categoryoneproducts,
+            'categorytwo'               => $categorytwo ?? '',
+            'categorytwoproducts'       => $categorytwoproducts,
+            'categorythree'             => $categorythree ?? '',
+            'categorythreeproducts'     => $categorythreeproducts,
+            'latest_products'           => Product::with('multiImages')->inRandomOrder()->where('status', 'published')->paginate(8),
+            'deal_products'             => Product::with('multiImages')->whereNotNull('box_discount_price')->where('status', 'published')->inRandomOrder()->limit(10)->get(),
         ];
         // dd($data['deal_products']);
         return view('frontend.pages.home', $data);

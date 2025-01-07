@@ -12,34 +12,41 @@
         <div class="container pt-0 pt-lg-5">
             <div class="row align-items-center">
                 <div class="col-lg-3">
-                    <!-- Breadcrumbs -->
-                    <ul class="ps-breadcrumb">
-                        <li class="ps-breadcrumb__item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="ps-breadcrumb__item active" aria-current="page">{{ $category->name }}</li>
-                    </ul>
-                    <!-- Category Title -->
-                    <h1 class="ps-categogy__name" style="font-size: 25px">
-                        {{ $category->name }}<sup>({{ $category->products()->count() }})</sup>
-                    </h1>
+                    <div class="bg-white">
+                        <!-- Breadcrumbs -->
+                        <ul class="ps-breadcrumb pl-3">
+                            <li class="ps-breadcrumb__item pl-4"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="ps-breadcrumb__item active" aria-current="page">{{ $category->name }}</li>
+                        </ul>
+                        <!-- Category Title -->
+                        <h1 class="ps-categogy__name pl-4" style="font-size: 25px">
+                            {{ $category->name }}<sup>({{ $category->products()->count() }})</sup>
+                        </h1>
+                    </div>
                 </div>
                 <div class="col-lg-9">
-                    <div>
+                    <div class="category-banner">
                         {{-- <img class="img-fluid" style="object-fit: cover;height: 125px;width: 100%;"
                             src="{{ asset('storage/' . $category->banner_image) }}" alt=""> --}}
-                        <img class="img-fluid ps-categogy__banner" style="object-fit: cover;height: 200px;width: 100%;"
-                            src="{{ asset('storage/' . $category->banner_image) }}" alt="">
+                        <img class="img-fluid ps-categogy__banner"
+                            style="object-fit: cover; height: 200px; width: 100%;"
+                            src="{{ asset('storage/' . $category->banner_image) }}"
+                            onerror="this.onerror=null; this.src='{{ asset('images/no-preview2.png') }}';"
+                            alt="">
+                        <!-- Fallback for missing image -->
                     </div>
                 </div>
             </div>
+
             <!-- Main Content -->
             <div class="ps-categogy__content pt-2">
                 <div class="row row-reverse">
                     <!-- Products Section -->
-                    <div class="col-12 col-md-9">
+                    <div class="col-md-9 col-12 order-12 order-lg-1">
                         <div class="tab-content" id="myTabContent">
                             @foreach ($categories as $allcategory)
                                 @php
-                                    $catProducts = $allcategory->products()->paginate(12);
+                                    $catProducts = $allcategory->products()->get(); // Fetch all products
                                 @endphp
                                 <div class="tab-pane fade {{ $allcategory->id == $category->id ? 'show active' : '' }}"
                                     id="home{{ $allcategory->id }}" role="tabpanel"
@@ -51,14 +58,14 @@
                                     <!-- Products Grid -->
                                     <div class="ps-categogy--grid">
                                         <div class="row m-0">
-
-                                            @forelse ($catProducts as $category_product)
-                                                <div class="col-12 col-lg-4 col-xl-3 p-0">
+                                            @forelse ($catProducts as $key => $category_product)
+                                                <div
+                                                    class="col-12 col-lg-4 col-xl-3 p-0 product-item {{ $key >= 4 ? 'd-none' : '' }}">
                                                     <div class="ps-product ps-product--standard">
                                                         <div class="ps-product__thumbnail">
                                                             <a class="ps-product__image"
                                                                 href="{{ route('product.details', $category_product->slug) }}">
-                                                                <figure>
+                                                                <div>
                                                                     @if (!empty($category_product->thumbnail))
                                                                         @php
                                                                             $thumbnailPath =
@@ -72,7 +79,7 @@
                                                                         @endphp
                                                                         <img src="{{ $thumbnailSrc }}"
                                                                             alt="{{ $category_product->meta_title }}"
-                                                                            width="210" height="210" />
+                                                                            class="img-fluid category_product_img" />
                                                                     @else
                                                                         @foreach ($category_product->multiImages->slice(0, 2) as $image)
                                                                             @php
@@ -81,17 +88,16 @@
                                                                                     public_path($imagePath),
                                                                                 )
                                                                                     ? asset($imagePath)
-                                                                                    : // : asset('frontend/img/no-product.jpg');
-                                                                                    asset(
+                                                                                    : asset(
                                                                                         'frontend/img/no-product.jpg',
                                                                                     );
                                                                             @endphp
-                                                                            <img src="{{ $imageSrc }}"
+                                                                            <img src="{{ $imageSrc }}" class="category_product_img"
                                                                                 alt="{{ $category_product->meta_title }}"
                                                                                 width="210" height="210" />
                                                                         @endforeach
                                                                     @endif
-                                                                </figure>
+                                                                </div>
                                                             </a>
                                                             <div class="ps-product__actions">
                                                                 <div class="ps-product__item" data-toggle="tooltip"
@@ -101,12 +107,6 @@
                                                                         <i class="fa fa-heart-o"></i>
                                                                     </a>
                                                                 </div>
-                                                                {{-- <div class="ps-product__item" data-toggle="tooltip"
-                                                                    data-placement="left" title="Quick view"><a
-                                                                        href="#" data-toggle="modal"
-                                                                        data-target="#popupQuickview{{ $category_product->id }}"><i
-                                                                            class="fa fa-search"></i></a></div> --}}
-
                                                             </div>
                                                             @if (!empty($category_product->box_discount_price))
                                                                 <div class="ps-product__badge">
@@ -118,7 +118,7 @@
                                                             <h5 class="ps-product__title">
                                                                 <a
                                                                     href="{{ route('product.details', $category_product->slug) }}">
-                                                                    {{ $category_product->name }}
+                                                                    {{ implode(' ', array_slice(explode(' ', $category_product->name), 0, 8)) }}
                                                                 </a>
                                                             </h5>
                                                             @if (Auth::check() && Auth::user()->status == 'active')
@@ -127,64 +127,32 @@
                                                                         <span
                                                                             class="ps-product__price sale">£{{ $category_product->box_discount_price }}</span>
                                                                         <span
-                                                                            class="ps-product__del">£{{ $category_product->box_price }}</span>
+                                                                            class="ps-product__del">£{{ $category_product->unit_price }}
+                                                                            Per Unit</span>
                                                                     </div>
                                                                 @else
                                                                     <div class="ps-product__meta">
                                                                         <span
-                                                                            class="ps-product__price sale">£{{ $category_product->box_price }}</span>
+                                                                            class="ps-product__price sale">£{{ $category_product->unit_price }}
+                                                                            Per Unit</span>
                                                                     </div>
                                                                 @endif
                                                                 <a href="{{ route('cart.store', $category_product->id) }}"
                                                                     class="btn ps-btn--warning my-3 btn-block add_to_cart"
                                                                     data-product_id="{{ $category_product->id }}"
-                                                                    data-product_qty="1">Add To
-                                                                    Cart</a>
+                                                                    data-product_qty="1">Add To Cart</a>
                                                             @else
                                                                 <div class="ps-product__meta">
                                                                     <a href="{{ route('login') }}"
-                                                                        class="btn btn-info btn-block">Login
-                                                                        to view price</a>
+                                                                        class="btn btn-info btn-block">Login to view
+                                                                        price</a>
                                                                 </div>
                                                             @endif
-                                                            <div class="ps-product__actions ps-product__group-mobile">
-                                                                <div class="ps-product__quantity">
-                                                                    <div
-                                                                        class="def-number-input number-input safari_only">
-                                                                        <button class="minus"
-                                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"><i
-                                                                                class="icon-minus"></i></button>
-                                                                        <input class="quantity" min="0"
-                                                                            name="quantity" value="1"
-                                                                            type="number" />
-                                                                        <button class="plus"
-                                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"><i
-                                                                                class="icon-plus"></i></button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ps-product__item cart" data-toggle="tooltip"
-                                                                    data-placement="left" title="Add to cart"><a
-                                                                        href="#"><i
-                                                                            class="fa fa-shopping-basket"></i></a>
-                                                                </div>
-                                                                <div class="ps-product__item" data-toggle="tooltip"
-                                                                    data-placement="left" title="Wishlist">
-                                                                    <a class="add_to_wishlist"
-                                                                        href="{{ route('wishlist.store', $category_product->id) }}">
-                                                                        <i class="fa fa-heart-o"></i>
-                                                                    </a>
-                                                                </div>
-                                                                {{-- <div class="ps-product__item rotate"
-                                                                    data-toggle="tooltip" data-placement="left"
-                                                                    title="Add to compare"><a href="compare.html"><i
-                                                                            class="fa fa-align-left"></i></a>
-                                                                </div> --}}
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             @empty
-                                                <div class="col-12 text-center">
+                                                <div class="col-12 text-center bg-white if-show-img">
                                                     <img class="" style="width: 320px;"
                                                         src="{{ asset('frontend/img/no-products-category.jpg') }}"
                                                         alt="">
@@ -192,10 +160,19 @@
                                             @endforelse
                                         </div>
                                     </div>
-                                    <!-- Pagination -->
-                                    <div class="ps-pagination">
-                                        {{ $catProducts->links() }}
-                                    </div>
+                                    <!-- "Show All" Button for this tab -->
+                                    @if ($catProducts->count() > 4)
+                                        <!-- "Show All" Button for this tab -->
+                                        <div class="text-center my-4 if-show-none">
+                                            <button id="showAllBtn{{ $allcategory->id }}"
+                                                class="btn ps-btn--warning my-3 py-3 show-all-btn"
+                                                data-category-id="{{ $allcategory->id }}">Show All Product</button>
+
+                                            <button id="showLessBtn{{ $allcategory->id }}"
+                                                class="btn ps-btn--warning my-3 py-3 show-less-btn d-none"
+                                                data-category-id="{{ $allcategory->id }}">Show Less Product</button>
+                                        </div>
+                                    @endif
                                     <!-- Delivery Info -->
                                     <div class="ps-delivery ps-delivery--info"
                                         data-background="{{ asset('frontend/img/promotion/banner-delivery-3.jpg') }}">
@@ -210,19 +187,22 @@
                                 </div>
                             @endforeach
                         </div>
+
                     </div>
 
                     <!-- Sidebar Widgets -->
-                    <div class="col-12 col-md-3">
-                        <p class="mb-0 text-dark">All Category</p>
+                    <div class="col-md-3 col-12 order-1 order-lg-12">
+                        <div class="category-title-text mb-2">
+                            <h4 class="mb-0 text-dark">Category</h4>
+                        </div>
                         <div class="ps-widget ps-widget--product px-0">
-                            <div class="ps-widget__block pb-0">
+                            <div class="ps-widget__block pb-0 px-0">
                                 <a class="ps-block-control" href="#"><i class="fa fa-angle-down"></i></a>
                                 <div class="ps-widget__content ps-widget__category">
                                     <ul class="menu--mobile nav nav-tabs border-0" id="myTab" role="tablist">
                                         @foreach ($categories as $allcategory)
                                             <li class="nav-item col-12 py-0 mb-0">
-                                                <a class="nav-link p-4 {{ $allcategory->id == $category->id ? 'active' : '' }}"
+                                                <a class="nav-link p-4 category-menus {{ $allcategory->id == $category->id ? 'active' : '' }}"
                                                     id="home-tab{{ $allcategory->id }}" data-toggle="tab"
                                                     href="#home{{ $allcategory->id }}" role="tab"
                                                     aria-controls="home{{ $allcategory->id }}"
@@ -237,11 +217,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-        {{-- @foreach ($catProducts as $category_product)
+    {{-- @foreach ($catProducts as $category_product)
             <div class="modal fade" id="popupQuickview{{ $category_product->id }}" data-backdrop="static"
                 data-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered ps-quickview">
@@ -338,12 +319,12 @@
                                                             <span
                                                                 class="ps-product__price sale">£{{ $category_product->box_discount_price }}</span>
                                                             <span
-                                                                class="ps-product__del">£{{ $category_product->box_price }}</span>
+                                                                class="ps-product__del">£{{ $category_product->unit_price }} Per Unit</span>
                                                         </div>
                                                     @else
                                                         <div class="ps-product__meta">
                                                             <span
-                                                                class="ps-product__price sale">£{{ $category_product->box_price }}</span>
+                                                                class="ps-product__price sale">£{{ $category_product->unit_price }} Per Unit</span>
                                                         </div>
                                                     @endif
 
@@ -456,6 +437,41 @@
                         var categoryId = targetPane.getAttribute('data-category-id');
                         updateCategoryContent(categoryId);
                     });
+                });
+            });
+            // Listen for clicks on all "Show All" buttons
+            // Listen for clicks on all "Show All" / "Show Less" buttons
+            document.querySelectorAll('.show-all-btn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const categoryId = this.dataset.categoryId;
+                    const hiddenItems = document.querySelectorAll('#home' + categoryId +
+                        ' .product-item.d-none');
+
+                    hiddenItems.forEach(function(item) {
+                        item.classList.remove('d-none'); // Show hidden items
+                    });
+
+                    // Hide the "Show All" button and show the "Show Less" button
+                    this.classList.add('d-none');
+                    document.querySelector('#showLessBtn' + categoryId).classList.remove('d-none');
+                });
+            });
+
+            // Add functionality for "Show Less" button
+            document.querySelectorAll('.show-less-btn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const categoryId = this.dataset.categoryId;
+                    const items = document.querySelectorAll('#home' + categoryId + ' .product-item');
+
+                    items.forEach(function(item, index) {
+                        if (index >= 4) {
+                            item.classList.add('d-none'); // Hide items after the first 4
+                        }
+                    });
+
+                    // Show the "Show All" button and hide the "Show Less" button
+                    document.querySelector('#showAllBtn' + categoryId).classList.remove('d-none');
+                    this.classList.add('d-none');
                 });
             });
         </script>

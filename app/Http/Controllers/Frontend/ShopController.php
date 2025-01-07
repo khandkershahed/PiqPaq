@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Brand;
-use App\Models\Product;
+use App\Models\Product; 
 use App\Models\Category;
 use App\Models\DealBanner;
 use Illuminate\Http\Request;

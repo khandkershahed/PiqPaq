@@ -36,7 +36,7 @@ class PageBannerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'page_name'   => 'nullable',
-            'image'       => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
+            'image'       => 'nullable|file|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'badge'       => 'nullable|string|max:191',
             'button_name' => 'nullable|string|max:200',
             'button_link' => 'nullable|string',
@@ -127,7 +127,7 @@ class PageBannerController extends Controller
         $banner = PageBanner::findOrFail($id);
         $validator = Validator::make($request->all(), [
             'page_name'   => 'nullable',
-            'image'       => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048',
+            'image'       => 'nullable|file|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'badge'       => 'nullable|string|max:191',
             'button_name' => 'nullable|string|max:200',
             'button_link' => 'nullable|string',

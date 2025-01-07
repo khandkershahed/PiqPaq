@@ -49,8 +49,13 @@
                     </ul>
                 </div>
                 <ul class="menu-top">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    @auth
+                    <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">My Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('user.order.history') }}">My Order History</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    @endauth
                     <li class="nav-item"><a class="nav-link" href="{{ route('allBlog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
@@ -200,19 +205,19 @@
                     </li>
                 </ul>
                 <div class="ps-header__search">
-                    <form action="do_action" method="post">
+                    <form action="{{ route('allproducts') }}">
                         <div class="ps-search-table">
                             <div class="input-group rounded-pill">
-                                <input id="search_text" class="form-control ps-input" type="text"
+                                <input id="search_text" class="form-control ps-input search_text" type="text"
                                     placeholder="Search for products">
                                 <div class="input-group-append">
-                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    {{-- <a href="#"><i class="fa fa-search"></i></a> --}}
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div id="search_container" class="ps-search--result d-none"
-                        style="height: 60vh;overflow-y: auto;">
+                    <div id="search_container" class="ps-search--result search_container d-none"
+                        style="height: 44vh;overflow-y: auto;">
                         <!-- Search results will be injected here -->
                     </div>
                 </div>
@@ -249,15 +254,18 @@
 <header class="ps-header ps-header--13 ps-header--mobile">
     <div class="ps-noti">
         <div class="container">
-            <p class="m-0">Welcome to PiqPaq, Your <strong>Premier Wholesale</strong> Destination!</p>
+            <p class="m-0">{{ optional($setting)->website_name }}, {{ optional($setting)->site_motto }}</p>
         </div><a class="ps-noti__close"><i class="icon-cross"></i></a>
     </div>
     <div class="ps-header__middle">
         <div class="container">
             <div class="ps-header__left">
                 <ul class="ps-header__icons">
-                    <li><a class="ps-header__item open-search" href="#"><i class="fa fa-search"
-                                aria-hidden="true" style="font-family: 'FontAwesome';"></i></a>
+                    <li>
+                        <a class="ps-header__item open-search" href="#">
+                            <i class="fa fa-search" aria-hidden="true" style="font-family: 'FontAwesome';">
+                            </i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -269,89 +277,33 @@
             </div>
             <div class="ps-header__right">
                 <ul class="ps-header__icons">
-                    <li><a class="ps-header__item" href="{{ asset('mycart') }}"><i class="icon-cart-empty"></i><span
-                                class="badge">{{ Cart::instance('cart')->count() }}</span></a></li>
+                    <li>
+                        <a class="ps-header__item" href="{{ asset('mycart') }}">
+                            <i class="icon-cart-empty"></i>
+                            <span class="badge cartCount">{{ Cart::instance('cart')->count() }}</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
+
 </header>
 <div class="ps-search">
     <div class="ps-search__content ps-search--mobile"><a class="ps-search__close" href="#"
             id="close-search"><i class="icon-cross"></i></a>
         <h3>Search</h3>
-        <form action="http://nouthemes.net/html/mymedi/do_action" method="post">
+        <form action="{{ route('allproducts') }}">
             <div class="ps-search-table">
                 <div class="input-group">
-                    <input class="form-control form-control" type="text" placeholder="Search for products">
+                    <input id="search_text" class="form-control form-control search_text" type="text"
+                        placeholder="Search for products">
                     <div class="input-group-append"><a href="#"><i class="fa fa-search"></i></a></div>
                 </div>
             </div>
         </form>
-        <div class="ps-search__result">
-            <div class="ps-search__item">
-                <div class="ps-product ps-product--horizontal">
-                    <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                            <figure><img src="img/products/052.jpg" alt="alt"></figure>
-                        </a></div>
-                    <div class="ps-product__content">
-                        <h5 class="ps-product__title"><a>3-layer <span class="hightlight">mask</span> with an elastic
-                                band (1 piece)</a></h5>
-                        <p class="ps-product__desc">Study history up to 30 days Up to 5 users simultaneously Has HEALTH
-                            certificate</p>
-                        <div class="ps-product__meta"><span class="ps-product__price">$38.24</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ps-search__item">
-                <div class="ps-product ps-product--horizontal">
-                    <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                            <figure><img src="img/products/033.jpg" alt="alt"></figure>
-                        </a></div>
-                    <div class="ps-product__content">
-                        <h5 class="ps-product__title"><a>3 Layer Disposable Protective Face <span
-                                    class="hightlight">mask</span>s</a></h5>
-                        <p class="ps-product__desc">Study history up to 30 days Up to 5 users simultaneously Has HEALTH
-                            certificate</p>
-                        <div class="ps-product__meta"><span class="ps-product__price sale">$14.52</span><span
-                                class="ps-product__del">$17.24</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ps-search__item">
-                <div class="ps-product ps-product--horizontal">
-                    <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                            <figure><img src="img/products/051.jpg" alt="alt"></figure>
-                        </a></div>
-                    <div class="ps-product__content">
-                        <h5 class="ps-product__title"><a>3-Ply Ear-Loop Disposable Blue Face <span
-                                    class="hightlight">mask</span></a></h5>
-                        <p class="ps-product__desc">Study history up to 30 days Up to 5 users simultaneously Has HEALTH
-                            certificate</p>
-                        <div class="ps-product__meta"><span class="ps-product__price sale">$14.99</span><span
-                                class="ps-product__del">$38.24</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ps-search__item">
-                <div class="ps-product ps-product--horizontal">
-                    <div class="ps-product__thumbnail"><a class="ps-product__image" href="#">
-                            <figure><img src="img/products/050.jpg" alt="alt"></figure>
-                        </a></div>
-                    <div class="ps-product__content">
-                        <h5 class="ps-product__title"><a>Disposable Face <span class="hightlight">mask</span> for
-                                Unisex</a></h5>
-                        <p class="ps-product__desc">Study history up to 30 days Up to 5 users simultaneously Has HEALTH
-                            certificate</p>
-                        <div class="ps-product__meta"><span class="ps-product__price sale">$8.15</span><span
-                                class="ps-product__del">$12.24</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="search_container" class="ps-search--result search_container d-none" style="height: 60vh;overflow-y: auto;">
+            <!-- Search results will be injected here -->
         </div>
     </div>
 </div>

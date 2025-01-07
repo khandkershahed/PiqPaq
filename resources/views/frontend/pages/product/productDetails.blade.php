@@ -47,7 +47,7 @@
         .main_product_img img {
             width: 530px;
             height: 430px;
-            object-fit: cover;
+            object-fit: contain;
         }
     </style>
     <div class="ps-page--product3">
@@ -72,19 +72,22 @@
                                         @foreach ($product->multiImages as $image)
                                             <div class="main_product_img">
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
-                                                    alt="{{ $product->meta_title }}" />
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                             </div>
                                         @endforeach
                                     </div>
                                     <div class="slider-nav-thumbnails">
                                         <div>
                                             <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}"
-                                                alt="{{ $product->meta_title }}">
+                                                alt="{{ $product->meta_title }}"
+                                                onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                         </div>
                                         @foreach ($product->multiImages as $image)
                                             <div>
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
-                                                    alt="{{ $product->meta_title }}">
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                             </div>
                                         @endforeach
                                     </div>
@@ -109,7 +112,7 @@
                                         </div>
                                     </div> --}}
                                 </div>
-                                <div class="col-12 col-xl-5">
+                                <div class="col-12 col-xl-6">
                                     <div class="ps-product__info">
                                         <div class="ps-product__title text-22" style="height: auto;">
                                             {{ $product->name }}
@@ -446,7 +449,7 @@
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
                                                     <a href="{{ route('product.details', $related_product->slug) }}">
-                                                        {{ $related_product->name }}
+                                                        {{ implode(' ', array_slice(explode(' ', $related_product->name), 0, 8)) }}
                                                     </a>
                                                 </h5>
                                                 @if (Auth::check() && Auth::user()->status == 'active')
@@ -608,7 +611,7 @@
                                             </div>
                                             <h5 class="ps-product__title">
                                                 <a href="{{ route('product.details', $related_product->slug) }}">
-                                                    {{ $related_product->name }}
+                                                    {{ implode(' ', array_slice(explode(' ', $related_product->name), 0, 8)) }}
                                                 </a>
                                             </h5>
                                             <div class="ps-product__desc">

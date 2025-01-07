@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="{{ asset('storage/' . $setting->site_favicon) }}" rel="apple-touch-icon-precomposed">
-    <link href="{{ asset('storage/' . $setting->site_favicon) }}" rel="shortcut icon" type="image/png">
+    <link href="{{ asset('storage/' . optional($setting)->site_favicon) }}" rel="apple-touch-icon-precomposed">
+    <link href="{{ asset('storage/' . optional($setting)->site_favicon) }}" rel="shortcut icon" type="image/png">
 
     @stack('heads')
     @props(['product'])
@@ -45,7 +45,7 @@
         <meta property="og:title" content="{{ optional($setting)->site_title ?: config('app.name', 'E-Commerce') }}" />
         <meta property="og:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
         <meta property="og:image"
-            content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+            content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . optional($setting)->site_logo_black)) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
@@ -55,7 +55,7 @@
         <meta property="twitter:description"
             content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
         <meta property="twitter:image"
-            content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . $setting->site_logo_black)) ? asset('storage/' . $setting->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
+            content="{{ optional($setting)->site_logo_black && file_exists(public_path('storage/' . optional($setting)->site_logo_black)) ? asset('storage/' . optional($setting)->site_logo_black) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" />
     @endif
 
     <title>
@@ -89,6 +89,22 @@
     <script src="https://kit.fontawesome.com/69b7156a94.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--Start of Tawk.to Script-->
+    {{-- <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/66fa6576e5982d6c7bb68965/1i911om0h';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script> --}}
+    <!--End of Tawk.to Script-->
+
     <style>
         .swal2-popup {
             font-size: 1.3rem !important;
@@ -129,6 +145,7 @@
     <div id="preloader">
         <img width="100px" src="{{ asset('frontend/img/loader.gif') }}" alt="Loading...">
     </div>
+
     <div id="main-content" style="display: none;">
         <div class="ps-page">
             {{-- Header --}}
@@ -140,6 +157,10 @@
             {{-- Footer --}}
         </div>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top" style="display: none;">↑</a>
+
     @include('frontend.layouts.extra')
     <script src="{{ asset('frontend/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
@@ -159,6 +180,76 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @stack('scripts')
+
+    <script>
+        function addToCart(e, csrfToken, cartUrl) {
+            e.preventDefault(); // Prevent the default action of the link
+
+            var button = e.currentTarget; // Get the button that triggered the event
+            var product_id = button.getAttribute('data-product_id');
+            var qty = button.getAttribute('data-product_qty'); // Get the quantity value
+            var cartHeader = document.querySelector('.miniCart');
+
+            // Check if quantity is valid
+            if (qty <= 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Invalid Quantity',
+                    text: 'Please select a valid quantity.'
+                });
+                return;
+            }
+
+            // AJAX request
+            fetch(cartUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token for security
+                    },
+                    body: JSON.stringify({
+                        quantity: qty
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const Toast = Swal.mixin({
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    if (data.success) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: data.success
+                        });
+                        button.disabled = true; // Disable the button
+                        button.innerText = 'Already added'; // Change button text
+                        document.querySelector(".cartCount").innerHTML = data.cartCount;
+                        cartHeader.innerHTML = data.cartHeader;
+                    } else if (data.error) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: data.error
+                        });
+                    }
+                })
+                .catch(xhr => {
+                    let errorMessage = 'An unexpected error occurred.';
+
+                    // Check if the response is JSON and contains an error message
+                    if (xhr.response && xhr.response.error) {
+                        errorMessage = xhr.response.error;
+                    }
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: errorMessage
+                    });
+                });
+        }
+    </script>
     {{-- Preloader --}}
     @if (session('error'))
         <script>
@@ -438,7 +529,6 @@
             });
         });
     </script>
-
     <script>
         $(document).ready(function() {
             $('.add_to_wishlist').click(function(e) {
@@ -579,7 +669,6 @@
         miniCart();
     </script> --}}
     {{-- //MiNiCart Remove  --}}
-
     {{-- Search Script --}}
     <script>
         $(document).ready(function() {
@@ -589,9 +678,9 @@
                 }
             });
 
-            var searchContainer = $('#search_container');
+            var searchContainer = $('.search_container');
             var path = "{{ route('global.search') }}";
-            var searchInput = $('#search_text');
+            var searchInput = $('.search_text');
 
             searchInput.autocomplete({
                 source: function(request, response) {
@@ -776,8 +865,9 @@
             }
         @endif
     </script>
+    {!! optional($setting)->google_analytics !!}
+    {!! optional($setting)->google_adsense !!}
     {{-- add_to_cart_btn_product_single --}}
 </body>
-
 
 </html>
