@@ -112,7 +112,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td class="text-end">
-                                                                    {{ optional($item)->product->sku_code }} </td>
+                                                                    {{ optional($item->product)->sku_code }} </td>
                                                                 <td class="text-end">
                                                                     {{ optional($item)->quantity }}
                                                                 </td>

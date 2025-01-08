@@ -769,7 +769,7 @@
             @foreach ($deals->slice(0, 3) as $deal)
                 <div class="col-12 col-md-4">
                     <div class="ps-promo__item">
-                        <a href="{{ route('product.details', $deal->product->slug) }}">
+                        <a href="{{ route('product.details', optional($deal->product)->slug) }}">
                             @if ($deal->image)
                                 <img class="ps-promo__banner"
                                     src="{{ asset('storage/' . $deal->image) }}" alt="alt" />
@@ -799,7 +799,7 @@
                                         href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
                                 @elseif (!empty($deal->product_id))
                                     <a class="btn-green ps-promo__btn"
-                                        href="{{ route('product.details', $deal->product->slug) }}">Buy
+                                        href="{{ route('product.details', optional($deal->product)->slug) }}">Buy
                                         now</a>
                                 @endif
                             </div>
@@ -835,7 +835,7 @@
                                     href="{{ $deal->button_link }}">{{ $deal->button_name }}</a>
                             @elseif (!empty($deal->product_id))
                                 <a class="btn-green ps-promo__btn"
-                                    href="{{ route('product.details', $deal->product->slug) }}">Buy
+                                    href="{{ route('product.details', optional($deal->product)->slug) }}">Buy
                                     now</a>
                             @endif
                         </div>

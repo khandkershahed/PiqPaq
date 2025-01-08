@@ -221,7 +221,7 @@
                                     <div class="d-flex align-items-center gap-3">
                                         <a href="#"
                                             class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
-                                            <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
+                                            <img src="{{ asset('storage/' . optional($item->product)->thumbnail) }}"
                                                 alt="" data-kt-docs-datatable-subtable="template_image" />
                                         </a>
                                         <div class="d-flex flex-column text-muted">
@@ -229,7 +229,7 @@
                                                 data-kt-docs-datatable-subtable="template_name">Product name</a>
                                             <div class="fs-7"
                                                 data-kt-docs-datatable-subtable="template_description">
-                                                {{ $item->product->name }}</div>
+                                                {{ optional($item->product)->name }}</div>
                                         </div>
                                     </div>
                                 </td>
