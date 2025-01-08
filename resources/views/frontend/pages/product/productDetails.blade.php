@@ -1,4 +1,12 @@
-<x-frontend-app-layout :title="'Product Details'">
+<x-frontend-app-layout :title="'Product Details'" :product="$product">
+    @push('heads')
+        @php
+            $isProductPage = true; // Flag to indicate this is a product details page
+            $metaTitle = $product->meta_title ?? $product->name;
+            $metaDescription = $product->meta_description ?? substr($product->description, 0, 150);
+            $metaImage = $product->thumbnail ?? ''; // Default image
+        @endphp
+    @endpush
     <style>
         .slider-nav-thumbnails {
             margin-top: 10px;
@@ -39,7 +47,7 @@
         .main_product_img img {
             width: 530px;
             height: 430px;
-            object-fit: cover;
+            object-fit: contain;
         }
     </style>
     <div class="ps-page--product3">
@@ -64,19 +72,22 @@
                                         @foreach ($product->multiImages as $image)
                                             <div class="main_product_img">
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
-                                                    alt="{{ $product->meta_title }}" />
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                             </div>
                                         @endforeach
                                     </div>
                                     <div class="slider-nav-thumbnails">
                                         <div>
                                             <img class="img-fluid" src="{{ asset('storage/' . $product->thumbnail) }}"
-                                                alt="{{ $product->meta_title }}">
+                                                alt="{{ $product->meta_title }}"
+                                                onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                         </div>
                                         @foreach ($product->multiImages as $image)
                                             <div>
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->photo) }}"
-                                                    alt="{{ $product->meta_title }}">
+                                                    alt="{{ $product->meta_title }}"
+                                                    onerror="this.onerror=null;this.src='{{ asset('images/no-preview.png') }}';" />
                                             </div>
                                         @endforeach
                                     </div>
@@ -101,7 +112,7 @@
                                         </div>
                                     </div> --}}
                                 </div>
-                                <div class="col-12 col-xl-5">
+                                <div class="col-12 col-xl-6">
                                     <div class="ps-product__info">
                                         <div class="ps-product__title text-22" style="height: auto;">
                                             {{ $product->name }}
@@ -178,7 +189,7 @@
                                                             {{ $product->unit_price }}
                                                         @else
                                                             <a href="{{ route('login') }}"
-                                                                class="btn btn-warning btn-block">Login</a>
+                                                                class="btn btn-info btn-block">Login</a>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -252,20 +263,21 @@
                     </div>
                     <div class="ps-product__content">
                         <ul class="nav nav-tabs ps-tab-list bg-white p-3" id="productContentTabs" role="tablist">
-                            <li class="nav-item ml-3" role="presentation">
+                            <li class="nav-item ml-3 pr-info-tabs" role="presentation">
                                 <a class="nav-link active" id="description-tab" data-toggle="tab"
                                     href="#description-content" role="tab" aria-controls="description-content"
                                     aria-selected="true">
-                                    Overview
+                                    Key Features
                                 </a>
                             </li>
-                            <li class="nav-item ml-3" role="presentation">
-                                <a class="nav-link" id="information-tab" data-toggle="tab" href="#information-content"
-                                    role="tab" aria-controls="information-content" aria-selected="false">
+                            <li class="nav-item ml-3 pr-info-tabs" role="presentation">
+                                <a class="nav-link" id="information-tab" data-toggle="tab"
+                                    href="#information-content" role="tab" aria-controls="information-content"
+                                    aria-selected="false">
                                     Description
                                 </a>
                             </li>
-                            <li class="nav-item ml-3" role="presentation">
+                            <li class="nav-item ml-3 pr-inf-tabs" role="presentation">
                                 <a class="nav-link" id="specification-tab" data-toggle="tab"
                                     href="#specification-content" role="tab"
                                     aria-controls="specification-content" aria-selected="false">
@@ -396,8 +408,7 @@
                                                             @endphp
                                                             <img src="{{ $thumbnailSrc }}"
                                                                 alt="{{ $related_product->meta_title }}"
-                                                                width="210" height="210"
-                                                                />
+                                                                width="210" height="210" />
                                                         @else
                                                             @foreach ($related_product->multiImages->slice(0, 2) as $image)
                                                                 @php
@@ -409,8 +420,7 @@
                                                                 @endphp
                                                                 <img src="{{ $imageSrc }}"
                                                                     alt="{{ $related_product->meta_title }}"
-                                                                    width="210" height="210"
-                                                                    />
+                                                                    width="210" height="210" />
                                                             @endforeach
                                                         @endif
                                                     </figure>
@@ -439,7 +449,7 @@
                                             <div class="ps-product__content">
                                                 <h5 class="ps-product__title">
                                                     <a href="{{ route('product.details', $related_product->slug) }}">
-                                                        {{ $related_product->name }}
+                                                        {{ implode(' ', array_slice(explode(' ', $related_product->name), 0, 8)) }}
                                                     </a>
                                                 </h5>
                                                 @if (Auth::check() && Auth::user()->status == 'active')
@@ -507,7 +517,7 @@
                 </div>
             </div>
             <div class="ps-delivery"
-                style="background-image: url('{{ asset('frontend/promotion/banner-delivery-2.jpg') }}')">
+                style="background-image: url({{ asset('frontend/img/promotion/banner-delivery-2.jpg') }})">
                 <div class="ps-delivery__content">
                     <div class="ps-delivery__text"> <i class="icon-shield-check"></i><span> <strong>100% Secure
                                 delivery </strong>without contacting the courier</span></div><a
@@ -601,7 +611,7 @@
                                             </div>
                                             <h5 class="ps-product__title">
                                                 <a href="{{ route('product.details', $related_product->slug) }}">
-                                                    {{ $related_product->name }}
+                                                    {{ implode(' ', array_slice(explode(' ', $related_product->name), 0, 8)) }}
                                                 </a>
                                             </h5>
                                             <div class="ps-product__desc">

@@ -2,7 +2,7 @@
     "use strict";
 
     function owlCarouselConfig() {
-        var target = $(".owl-carousel");
+        var target = $(".owl-carousel-banner");
         if (target.length > 0) {
             target.each(function () {
                 var el = $(this),
@@ -39,42 +39,45 @@
                         .length >= 2
                 ) {
                     el.owlCarousel({
-                        animateIn: dataAnimateIn,
-                        animateOut: dataAnimateOut,
-                        margin: dataGap,
-                        autoplay: dataAuto,
-                        autoplayTimeout: dataSpeed,
-                        autoplayHoverPause: true,
-                        loop: dataLoop,
-                        nav: dataNav,
-                        mouseDrag: datamouseDrag,
-                        touchDrag: true,
-                        autoplaySpeed: duration,
-                        navSpeed: duration,
-                        dotsSpeed: duration,
-                        dragEndSpeed: duration,
-                        navText: [dataNavLeft, dataNavRight],
-                        dots: dataDots,
-                        items: dataDefaultItem,
-                        center: Boolean(center),
+                        animateIn: "fadeIn", // Animation when slide appears
+                        animateOut: "fadeOut", // Animation when slide disappears
+                        margin: 10, // Space between items in pixels
+                        autoplay: true, // Enables automatic sliding
+                        autoplayTimeout: 5000, // Time between slides in milliseconds (5 seconds)
+                        autoplayHoverPause: true, // Pauses autoplay on mouse hover
+                        loop: true, // Enables infinite loop
+                        nav: true, // Displays next/prev navigation buttons
+                        mouseDrag: true, // Allows sliding by dragging with the mouse
+                        touchDrag: true, // Allows sliding by dragging with touch
+                        autoplaySpeed: 1000, // Speed of autoplay transition
+                        navSpeed: 800, // Speed of navigation button transitions
+                        dotsSpeed: 800, // Speed of dots/pagination transitions
+                        dragEndSpeed: 600, // Speed when dragging ends
+                        navText: [
+                            '<i class="fa fa-chevron-left"></i>',
+                            '<i class="fa fa-chevron-right"></i>',
+                        ],
+                        dots: true, // Shows pagination dots
+                        items: 3, // Number of items displayed per slide
+                        center: true, // Center the active item
                         responsive: {
                             0: {
-                                items: dataItemXS,
+                                items: 1,
                             },
                             480: {
-                                items: dataItemSM,
+                                items: 1,
                             },
                             768: {
-                                items: dataItemMD,
+                                items: 1,
                             },
                             992: {
-                                items: dataItemLG,
+                                items: 1,
                             },
                             1200: {
-                                items: dataItemXL,
+                                items: 1,
                             },
                             1680: {
-                                items: dataDefaultItem,
+                                items: 1,
                             },
                         },
                     });
@@ -327,34 +330,45 @@
     }
 
     function stickyMenu() {
-        $(window).scroll(function (event) {
-            var scroll = $(window).scrollTop();
-            var innerWidth = $(window).innerWidth();
+        // $(window).scroll(function () {
+        //     var scroll = $(window).scrollTop();
+        //     var innerWidth = $(window).innerWidth();
 
-            if (scroll > 100 && innerWidth > 760) {
-                $(".ps-header").addClass("ps-header--sticky");
-            } else if (scroll > 600 && innerWidth < 660) {
-                $(".ps-header").addClass("ps-header--sticky");
-                $(".ps-search--result").removeClass("active");
-            } else {
-                $(".ps-header").removeClass("ps-header--sticky");
-            }
+        //     if (scroll > 100 && innerWidth > 760) {
+        //         $(".ps-header").addClass("ps-header--sticky");
+        //         setTimeout(function () {
+        //             $(".ps-header").addClass("active"); // For smooth transition
+        //         }, 10);
+        //     } else if (scroll > 600 && innerWidth < 660) {
+        //         $(".ps-header").addClass("ps-header--sticky");
+        //         setTimeout(function () {
+        //             $(".ps-header").addClass("active");
+        //         }, 10);
+        //         $(".ps-search--result").removeClass("active");
+        //     } else {
+        //         $(".ps-header").removeClass("active");
+        //         setTimeout(function () {
+        //             $(".ps-header").removeClass("ps-header--sticky");
+        //         }, 500);
+        //     }
 
-            if (scroll > 100) {
-                $(".scroll-top").fadeIn(1000); // Fade in with 300ms duration
-            } else {
-                $(".scroll-top").fadeOut(1000); // Fade out with 300ms duration
-            }
-        });
+        //     // Scroll top button functionality
+        //     if (scroll > 100) {
+        //         $(".scroll-top").fadeIn(1000); // Show button with fade-in effect
+        //     } else {
+        //         $(".scroll-top").fadeOut(1000); // Hide button with fade-out effect
+        //     }
+        // });
 
         $(".ps-menu--sticky").on("click", function (event) {
             event.preventDefault();
             $(".ps-navigation").slideToggle();
         });
 
+        // Scroll to top functionality
         $(".scroll-top").on("click", function (e) {
             e.preventDefault();
-            $("html,body").animate({ scrollTop: 0 }, 500);
+            $("html,body").animate({ scrollTop: 0 }, 500); // Smooth scroll to the top
         });
 
         $('a[href="#home-block"]').on("click", function (event) {

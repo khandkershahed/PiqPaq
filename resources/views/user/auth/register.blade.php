@@ -6,6 +6,13 @@
             background-image: url('{{ asset('frontend/img/bg3.png') }}');
             background-repeat: no-repeat;
         }
+
+        ::placeholder {
+            color: #707070 !important;
+            opacity: 1;
+            font-size: 16px;
+            /* Firefox */
+        }
     </style>
     <div class="ps-account register-bg">
         <div class="container">
@@ -13,8 +20,6 @@
                 <div class="col-lg-12">
                     <div class="text-center pb-5">
                         <h1>Please Complete the Form Below, <br> to Register for an Account.</h1>
-                        <p>Please note: our minimum order quantities are <br> £500 (UK mainland), £750 (restricted
-                            postcodes, Ireland and Northern Ireland).</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-8 offset-lg-2 mx-auto">
@@ -38,8 +43,8 @@
                                     <x-input-label class="ps-form__label" for="first_name">First Name <span
                                             class="text-danger">*</span></x-input-label>
                                     <input id="first_name" class="form-control ps-form__input" type="text"
-                                        name="first_name" :value="old('first_name')" autofocus required
-                                        autocomplete="first_name" />
+                                        name="first_name" value="{{ old('first_name') }}" autofocus required
+                                        autocomplete="first_name" placeholder="Enter Your First Name" />
                                     <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                                 </div>
 
@@ -47,7 +52,7 @@
                                 <div class="ps-form__group col-12 col-xl-5">
                                     <x-input-label class="ps-form__label" for="last_name" :value="__('Last Name')" />
                                     <input id="last_name" class="form-control ps-form__input" type="text"
-                                        name="last_name" :value="old('last_name')" autofocus autocomplete="last_name" />
+                                        name="last_name" placeholder="Enter Your Last Name" value="{{ old('last_name') }}" autofocus autocomplete="last_name" />
                                     <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                                 </div>
 
@@ -56,7 +61,7 @@
                                     <label class="ps-form__label" for="email">Email<span
                                             class="text-danger">*</span></label>
                                     <input id="email" class="form-control ps-form__input" type="email"
-                                        name="email" :value="old('email')" autocomplete="email" required />
+                                        name="email" placeholder="Enter Your Email" value="{{ old('email') }}" autocomplete="email" required />
                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
 
@@ -66,7 +71,7 @@
                                     <x-input-label class="ps-form__label" for="phone" :value="__('Phone')" />
                                     <div class="input-group">
                                         <input id="phone" class="form-control ps-form__input" type="tel"
-                                            name="phone" :value="old('phone')" autocomplete="tel" />
+                                            name="phone" placeholder="Enter Your Phone Number" value="{{ old('phone') }}" autocomplete="tel" />
                                     </div>
                                     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                 </div>
@@ -76,7 +81,7 @@
                                     <x-input-label class="ps-form__label" for="password" :value="__('Password')" />
                                     <div class="input-group">
                                         <input id="password" class="form-control ps-form__input" type="password"
-                                            name="password" :value="old('password')" autocomplete="new-password" />
+                                            name="password" value="{{ old('password') }}" autocomplete="new-password" />
                                         <div class="input-group-append">
                                             <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
                                         </div>
@@ -91,7 +96,7 @@
                                     <div class="input-group">
                                         <input id="password_confirmation" class="form-control ps-form__input"
                                             type="password" name="password_confirmation"
-                                            :value="old('password_confirmation')" autocomplete="new-password" />
+                                            value="{{ old('password_confirmation') }}" autocomplete="new-password" />
                                         <div class="input-group-append">
                                             <a class="fa fa-eye-slash toogle-password" href="javascript:void(0);"></a>
                                         </div>
@@ -108,7 +113,7 @@
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="address_one" class="form-control ps-form__input" type="text"
-                                            :value="old('address_one')" name="address_one" autocomplete="address_one"
+                                            value="{{ old('address_one') }}" placeholder="Enter Your House No / Road Name"  name="address_one" autocomplete="address_one"
                                             required />
                                     </div>
                                     <x-input-error :messages="$errors->get('address_one')" class="mt-2" />
@@ -130,7 +135,7 @@
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="address_two" class="form-control ps-form__input" type="text"
-                                            name="address_two" :value="old('address_two')" autocomplete="address_two"
+                                            name="address_two" placeholder="Enter Your City Name" value="{{ old('address_two') }}" autocomplete="address_two"
                                             required />
                                     </div>
                                     <x-input-error :messages="$errors->get('address_two')" class="mt-2" />
@@ -141,9 +146,17 @@
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input id="zipcode" class="form-control ps-form__input" type="text"
-                                            :value="old('zipcode')" name="zipcode" autocomplete="zipcode" required />
+                                            value="{{ old('zipcode') }}" placeholder="Enter Your Post Code" name="zipcode" autocomplete="zipcode" required />
                                     </div>
                                     <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
+                                </div>
+                                <div class="ps-form__group col-12 col-xl-3">
+                                    <label class="ps-form__label" for="state">County</label>
+                                    <div class="input-group">
+                                        <input id="state" class="form-control ps-form__input" type="text"
+                                            value="{{ old('state') }}" placeholder="Enter Your County" name="state" autocomplete="state" />
+                                    </div>
+                                    <x-input-error :messages="$errors->get('state')" class="mt-2" />
                                 </div>
                                 <div class="ps-form__group col-12 col-xl-3">
                                     <label class="ps-form__label" for="Country">Country<span
@@ -386,7 +399,8 @@
                                             <option value="Uganda">Uganda</option>
                                             <option value="Ukraine">Ukraine</option>
                                             <option value="United Arab Emirates">United Arab Emirates</option>
-                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="United Kingdom" selected>United Kingdom</option>
+                                            <option value="United State" >United State</option>
                                             <option value="Uruguay">Uruguay</option>
                                             <option value="U.S. Minor Outlying Islands">U.S. Minor Outlying Islands
                                             </option>
@@ -405,14 +419,6 @@
                                     </div>
                                     <x-input-error :messages="$errors->get('country')" class="mt-2" />
                                 </div>
-                                <div class="ps-form__group col-12 col-xl-3">
-                                    <label class="ps-form__label" for="state">County</label>
-                                    <div class="input-group">
-                                        <input id="state" class="form-control ps-form__input" type="text"
-                                            :value="old('state')" name="state" autocomplete="state" />
-                                    </div>
-                                    <x-input-error :messages="$errors->get('state')" class="mt-2" />
-                                </div>
                                 <div class="col-12 col-xl-12">
                                     <p>Company & My Details</p>
                                 </div>
@@ -420,7 +426,7 @@
                                     <x-input-label class="ps-form__label" for="company_name" :value="__('Company Name')" />
                                     <div class="input-group">
                                         <input id="company_name" class="form-control ps-form__input" type="text"
-                                            name="company_name" autocomplete="company_name" />
+                                            name="company_name" value="{{ old('company_name') }}" placeholder="Enter Your Company Name" autocomplete="company_name" />
                                     </div>
                                     <x-input-error :messages="$errors->get('company_name')" class="mt-2" />
                                 </div>
@@ -429,8 +435,8 @@
                                     <x-input-label class="ps-form__label" for="company_registration_number"
                                         :value="__('Company Reg Number')" />
                                     <div class="input-group">
-                                        <input id="company_registration_number" class="form-control ps-form__input"
-                                            type="text" name="company_registration_number"
+                                        <input id="company_registration_number" class="form-control ps-form__input" value="{{ old('company_registration_number') }}"
+                                            type="text" placeholder="Enter Your Company Reg Number" name="company_registration_number"
                                             autocomplete="company_registration_number" />
                                     </div>
                                     <x-input-error :messages="$errors->get('company_registration_number')" class="mt-2" />
@@ -441,8 +447,8 @@
                                         :value="__('Company VAT Number')" />
                                     <div class="input-group">
                                         <input id="company_vat_number" class="form-control ps-form__input"
-                                            type="text" name="company_vat_number"
-                                            autocomplete="company_vat_number" />
+                                            type="text" placeholder="Enter Your Company VAT Number" name="company_vat_number"
+                                            autocomplete="company_vat_number" value="{{ old('company_vat_number') }}"/>
                                     </div>
                                     <x-input-error :messages="$errors->get('company_vat_number')" class="mt-2" />
                                 </div>
@@ -542,8 +548,8 @@
                                 <div class="ps-form__group col-12 col-xl-6">
                                     <x-input-label class="ps-form__label" for="website_address" :value="__('Website Address')" />
                                     <div class="input-group">
-                                        <input id="website_address" class="form-control ps-form__input"
-                                            type="url" name="website_address" autocomplete="website_address" />
+                                        <input id="website_address" class="form-control ps-form__input" value="{{ old('website_address') }}"
+                                            type="url" placeholder="Enter Your Website Address" name="website_address" autocomplete="website_address" />
                                     </div>
                                     <x-input-error :messages="$errors->get('website_address')" class="mt-2" />
                                 </div>
@@ -602,7 +608,7 @@
                                     </div> <br>
                                     <div class="form-check ml-0">
                                         <input type="radio" class="form-check-input" id="newsletterNo"
-                                            name="newsletter_preference" value="no">
+                                            name="newsletter_preference" value="no" checked>
                                         <label class="form-check-label" for="newsletterNo">No thanks,
                                             please
                                             don't send me email newsletters</label>
@@ -614,7 +620,7 @@
                                 <div class="col-12 col-xl-12">
                                     <div class="form-check ml-0">
                                         <input type="checkbox" class="form-check-input" id="terms_condition"
-                                            name="terms_condition" value="yes" required>
+                                            name="terms_condition" value="yes" required checked>
                                         <label class="form-check-label" for="terms_condition">I accept the
                                             Terms and Conditions & Privacy Policy. <span
                                                 class="text-danger">*</span></label>

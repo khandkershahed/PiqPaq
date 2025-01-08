@@ -1,9 +1,9 @@
 <x-frontend-app-layout :title="'Make Payment'">
     <div class="container">
         <div class="row py-5 my-5">
-            <div class="col-lg-8 offset-lg-2">
-                <div class="d-flex align-items-center">
-                    <div class="card my-5 p-5 border-0 shadow-sm w-50 bg-light" style="height: 300px">
+            <div class="col-lg-8 col-12 offset-lg-2">
+                <div class="d-flex align-items-center payment-mobile">
+                    <div class="card my-5 p-5 border-0 shadow-sm pay-half bg-light" style="height: 300px">
                         <div class="card-body">
                             <h3 class="mb-5">Payment Info</h3>
                             <div class="d-flex justify-content-between align-items-center ">
@@ -12,7 +12,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center pb-4">
                                 <h5>Total Ammount</h5>
-                                <h5>€ <span class="text-info">{{ $order->total_amount }}</span></h5>
+                                <h5>£ <span class="text-info">{{ $order->total_amount }}</span></h5>
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between align-items-center pt-4">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card my-5 border-0 shadow-lg w-50">
+                    <div class="card my-5 border-0 shadow-lg pay-half">
                         <div class="card-body p-5">
                             <h3>Payment Methods (Stripe)</h3>
                             <div class="row pt-5">
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="mt-5 col-12">
                                         <button id='pay-btn' class="btn btn-warning w-100 p-4 text-white"
-                                            onclick="createToken()">Pay € {{ $order->total_amount }}</button>
+                                            onclick="createToken()">Pay £ {{ $order->total_amount }}</button>
                                     </div>
                                 </form>
                             </div>

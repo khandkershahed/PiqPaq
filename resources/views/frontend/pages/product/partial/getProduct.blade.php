@@ -29,7 +29,12 @@
                             </a>
                         </h5>
                         <div class="ps-product__desc">
-                            {!! $product->short_description !!}
+                            @php
+                                $description = strip_tags($product->short_description); // Strip any HTML tags
+                                $words = explode(' ', $description); // Convert the description into an array of words
+                                $limitedWords = implode(' ', array_slice($words, 0, 20)); // Get the first 15 words and join them back into a string
+                            @endphp
+                            {!! $limitedWords !!}...
                         </div>
                     </div>
                 </div>
@@ -37,7 +42,7 @@
                     @if (Auth::check() && Auth::user()->status == 'active')
                         @if (!empty($product->box_discount_price))
                             <div class="ps-product__meta">
-                                <span class="ps-product__price sale">£{{ $product->box_discount_price }}</span>
+                                <span class="ps-product__price  sale">£{{ $product->box_discount_price }}</span>
                                 <span class="ps-product__del">£{{ $product->box_price }}</span>
                             </div>
                         @else
@@ -88,6 +93,6 @@
         </div>
     @endif
 </div>
-<div class="ps-pagination">
+{{-- <div class="ps-pagination">
     {{ $products->links() }}
-</div>
+</div> --}}

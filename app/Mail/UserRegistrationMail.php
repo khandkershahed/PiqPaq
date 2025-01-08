@@ -14,13 +14,14 @@ class UserRegistrationMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
-
+    public $setting;
     /**
      * Create a new notification instance.
      */
-    public function __construct($data)
+    public function __construct($data, $setting)
     {
         $this->data = $data;
+        $this->setting = $setting;
     }
 
     /**
@@ -31,17 +32,18 @@ class UserRegistrationMail extends Mailable
 
     public function build()
     {
-        return $this->from('support@neezpackages.com', 'NeezPackages')
-            ->subject('Welcome to NeezPackages!')
+        return $this->from('support@neezpackages.com', $this->setting->website_name)
+            ->subject('Welcome to'.$this->setting->website_name)
             ->view('mail.user_registration', [
                 'data' => $this->data,
+                'setting'=> $this->setting,
             ]);
     }
 
     public function envelope()
     {
         return new Envelope(
-            subject: 'Welcome to NeezPackages!',
+            subject: 'Welcome to'.$this->setting->website_name,
         );
     }
 

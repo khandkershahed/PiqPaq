@@ -144,10 +144,59 @@
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                     <i class="fa-solid fa-eye" title="Order Details"></i>
                                 </a>
-                                <a data-bs-toggle="modal" data-bs-target="#changeDeliveryStatus"
+                                <a data-bs-toggle="modal" data-bs-target="#changeDeliveryStatus-{{ $order->id }}"
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
                                     <i class="fa-solid fa-cog" title="Order Details"></i>
                                 </a>
+                                <div class="modal fade" id="changeDeliveryStatus-{{ $order->id }}" tabindex="-1"
+                                    aria-labelledby="changeDeliveryStatusLabel" aria-hidden="true">
+                                    <div class="modal-dialog        ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="changeDeliveryStatusLabel">Change Delvery
+                                                    Status</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="kt_ecommerce_add_product_form" method="post"
+                                                    action="{{ route('admin.order.update', $order->id) }}"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="card-body pt-0">
+                                                        <div>
+                                                            <div class="text-muted fs-7">Change The Delivery Status
+                                                            </div>
+                                                            <x-metronic.select-option
+                                                                id="kt_ecommerce_add_product_status_select"
+                                                                class="form-select mb-2" data-control="select2"
+                                                                data-hide-search="true" name="status"
+                                                                data-placeholder="Select an option">
+                                                                <option></option>
+                                                                <option value="processing">Processing</option>
+                                                                <option value="shipped">Shipped</option>
+                                                                {{-- <option value="en_route">En Route</option> --}}
+                                                                <option value="delivered">Delivered</option>
+                                                                <option value="cancelled">Cancelled</option>
+                                                                <option value="returned">Returned</option>
+                                                            </x-metronic.select-option>
+                                                        </div>
+                                                        <div class="mt-4">
+                                                            <x-metronic.label class="form-label">Delivery Tracking
+                                                                Id</x-metronic.label>
+                                                            <x-metronic.input type="text" name="external_order_id"
+                                                                class="form-control mb-2"
+                                                                placeholder="Add Product Delivery ID By Royel Mail">
+                                                            </x-metronic.input>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 {{-- <a href="javascript:void(0)">
                                     <button
                                         class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px">
@@ -170,14 +219,16 @@
                             <tr data-kt-docs-datatable-subtable="subtable_template" class="d-none bg-light">
                                 <td colspan="3">
                                     <div class="d-flex align-items-center gap-3">
-                                        <a href="#" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
+                                        <a href="#"
+                                            class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
                                             <img src="{{ asset('storage/' . $item->product->thumbnail) }}"
                                                 alt="" data-kt-docs-datatable-subtable="template_image" />
                                         </a>
                                         <div class="d-flex flex-column text-muted">
                                             <a href="#" class="text-gray-900 text-hover-primary fw-bold"
                                                 data-kt-docs-datatable-subtable="template_name">Product name</a>
-                                            <div class="fs-7" data-kt-docs-datatable-subtable="template_description">
+                                            <div class="fs-7"
+                                                data-kt-docs-datatable-subtable="template_description">
                                                 {{ $item->product->name }}</div>
                                         </div>
                                     </div>
@@ -208,44 +259,7 @@
     </div>
     <!-- Button trigger modal -->
     <!-- Modal -->
-    <div class="modal fade" id="changeDeliveryStatus" tabindex="-1" aria-labelledby="changeDeliveryStatusLabel"
-        aria-hidden="true">
-        <div class="modal-dialog        ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="changeDeliveryStatusLabel">Change Delvery Status</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="kt_ecommerce_add_product_form" method="post" action=""
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="card-body pt-0">
-                            <div>
-                                <div class="text-muted fs-7">Change The Delivery Status</div>
-                                <x-metronic.select-option id="kt_ecommerce_add_product_status_select"
-                                    class="form-select mb-2" data-control="select2" data-hide-search="true"
-                                    name="delivery_status" data-placeholder="Select an option">
-                                    <option></option>
-                                    <option value="Processing">Processing</option>
-                                    <option value="Shipped">Shipped</option>
-                                    <option value="en_route">En Route</option>
-                                    <option value="deliver">Deliver</option>
-                                </x-metronic.select-option>
-                            </div>
-                            <div class="mt-4">
-                                <x-metronic.label class="form-label">Delivery Tracking Id</x-metronic.label>
-                                <x-metronic.input type="text" name="delivery_id" class="form-control mb-2"
-                                    placeholder="Add Product Delivery ID By Royel Mail">
-                                </x-metronic.input>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
     @include('admin.pages.orderManagement.partial.invoice')
     @push('scripts')
         <script>

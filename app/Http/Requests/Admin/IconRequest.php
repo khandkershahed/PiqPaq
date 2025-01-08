@@ -26,7 +26,7 @@ class IconRequest extends FormRequest
 
         return [
             'name' => ['required', 'string', 'max:30', Rule::unique('icons', 'name')->ignore($iconId)],
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg,webp,bmp,tiff,ico|max:2048',
             'status' => 'required|in:0,1',
         ];
     }

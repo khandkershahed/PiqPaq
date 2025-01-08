@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Setting;
+use App\Mail\UserVerifyMail;
 use Illuminate\Http\Request;
 use App\Events\ActivityLogged;
 use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Mail\UserVerifyMail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
@@ -176,7 +177,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->status = $user->status == 'active' ? 'inactive' : 'active';
         $user->save();
-        Mail::to($user->email)->send(new UserVerifyMail($user->name));
+        $setting = Setting::first();
+        Mail::to($user->email)->send(new UserVerifyMail($user->name, $setting));
         return response()->json(['success' => true]);
     }
 }

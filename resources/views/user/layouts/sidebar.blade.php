@@ -107,7 +107,7 @@
         </li> --}}
         <li class="nav-item" role="presentation">
             <a href="{{ route('user.view.catalouge') }}" class="nav-link {{ Route::is('user.view.catalouge') ? 'active' : '' }}">
-                View Catalogue
+                Product Data
             </a>
         </li>
         <li class="nav-item" role="presentation">

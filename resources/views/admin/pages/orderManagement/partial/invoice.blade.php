@@ -20,13 +20,13 @@
 
                                             <div class="text-sm-end fw-semibold fs-4 text-muted mt-7">
                                                 <div>
-                                                    {{ $setting->address_line_one }}
-                                                    @if ($setting->address_line_two)
-                                                        , {{ $setting->address_line_two }}
+                                                    {{ optional($setting)->address_line_one }}
+                                                    @if (optional($setting)->address_line_two)
+                                                        , {{ optional($setting)->address_line_two }}
                                                     @endif
                                                 </div>
 
-                                                <div>{{ $setting->primary_phone }}</div>
+                                                <div>{{ optional($setting)->primary_phone }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
-                                © NeezPackages, LTD 2024.
+                                © {{optional($setting)->website_name}}, LTD 2024.
                             </div>
                         </div>
                     </div>

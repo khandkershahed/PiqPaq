@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('barcode')->nullable();
             $table->json('tags')->nullable();
             $table->json('color')->nullable();
+            $table->text('video_link')->nullable();
             $table->text('short_description')->nullable();
             $table->longText('overview')->nullable();
             $table->longText('description')->nullable();

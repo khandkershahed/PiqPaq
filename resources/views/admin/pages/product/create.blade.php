@@ -229,6 +229,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-12">
+                                                <div class="fv-row pt-5">
+                                                    <x-metronic.label for="video_link" class="form-label">Product Video
+                                                        Link</x-metronic.label>
+                                                    <input type="text" name="video_link" class="form-control mb-2"
+                                                        placeholder="Product Video Link" id="video_link"
+                                                        value="{{ old('video_link') }}">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@
     <meta name="author" content="" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <title>NeezPackages</title>
+    <title>{{optional($setting)->website_name}}</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Jost:400,500,600,700&amp;display=swap&amp;ver=1607580870">
     <link rel="stylesheet" href="{{ asset('frontend/plugins/bootstrap4/css/bootstrap.min.css') }}">
@@ -100,11 +100,11 @@
                     <div class="col-lg-6">
                         <div class="text-right">
                             <span class="font-weight-bold">Shipping From:</span>
-                            <p class="mb-0">NeezPackages</p>
-                            <p class="mb-0">{{ $setting->primary_phone }}</p>
-                            <p class="mb-0">{{ $setting->contact_email }}</p>
-                            <p class="mb-0">{{ $setting->address_line_one }}</p>
-                            <p class="mb-0">{{ $setting->address_line_two }}</p>
+                            <p class="mb-0">{{ optional($setting)->website_name}}</p>
+                            <p class="mb-0">{{ optional($setting)->primary_phone }}</p>
+                            <p class="mb-0">{{ optional($setting)->contact_email }}</p>
+                            <p class="mb-0">{{ optional($setting)->address_line_one }}</p>
+                            <p class="mb-0">{{ optional($setting)->address_line_two }}</p>
                         </div>
                     </div>
                 </div>
@@ -204,7 +204,7 @@
                 </div>
             </div>
             <div class="card-footer p-4 text-center border-0" style="background-color: #e1ecff;">
-                © NeezPackages, LTD 2024.
+                © {{optional($setting)->website_name}}, LTD 2024.
             </div>
         </div>
     </div>

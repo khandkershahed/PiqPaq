@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = [
-            'products'     => DB::table('products')->where('status', 'published')->latest('id')->get(),
+            'products'     => DB::table('products')->latest('id')->get(),
         ];
         return view('admin.pages.product.index', $data);
     }
@@ -75,6 +75,7 @@ class ProductController extends Controller
                 'barcode_id'                => $request->input('barcode_id'),
                 'tags'                      => $request->input('tags'),
                 'color'                     => $request->input('color'),
+                'video_link'                => $request->input('video_link'),
                 'short_description'         => $request->input('short_description'),
                 'overview'                  => $request->input('overview'),
                 'description'               => $request->input('description'),
@@ -198,6 +199,7 @@ class ProductController extends Controller
                 'barcode_id'                => $request->input('barcode_id'),
                 'tags'                      => $request->input('tags'),
                 'color'                     => $request->input('color'),
+                'video_link'                => $request->input('video_link'),
                 'short_description'         => $request->input('short_description'),
                 'overview'                  => $request->input('overview'),
                 'description'               => $request->input('description'),
