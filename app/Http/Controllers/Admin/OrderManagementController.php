@@ -52,10 +52,9 @@ class OrderManagementController extends Controller
         ];
         if ($request->ajax()) {
             return view('admin.pages.orderManagement.partial.orderReportTable', $data)->render();
-        }else{
+        } else {
             return view('admin.pages.orderManagement.orderReport', $data);
         }
-
     }
 
     /**
@@ -113,6 +112,16 @@ class OrderManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $order = Order::with('orderItems')->findOrFail($id);
+
+        // Check if orderItems exist and delete each one
+        if ($order->orderItems) {
+            foreach ($order->orderItems as $orderItem) {
+                $orderItem->delete();
+            }
+        }
+
+        // Delete the order itself
+        $order->delete();
     }
 }

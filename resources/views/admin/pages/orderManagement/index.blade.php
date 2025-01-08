@@ -135,6 +135,11 @@
                                 @endif
                             </td>
                             <td>
+                                <a href="{{ route('admin.order.destroy', $order->id) }}"
+                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
+                                    data-kt-docs-table-filter="delete_row">
+                                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                                </a>
                                 <button
                                     class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px"
                                     data-bs-toggle="modal" data-bs-target="#printInovice{{ $order->id }}">
