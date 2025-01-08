@@ -53,7 +53,7 @@
                                         alt="{{ $banner->page_name }}">
                                 </td> --}}
                                 <td>
-                                    {{ $banner->product->name }}
+                                    {{ optional($banner->product)->name }}
                                 </td>
                                 <td>
                                     {{ $banner->price }}
