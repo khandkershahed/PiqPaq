@@ -148,9 +148,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/order/{id}/details', 'orderDetails')->name('orderDetails');
         Route::get('/order/report', 'orderReport')->name('orderReport');
         Route::put('/order/update/{id}', 'statusUpdate')->name('order.update');
-        Route::delete('order/delete/{id}', )->name('order.destroy');
-
     });
+    Route::delete('order/delete/{id}', [OrderManagementController::class, 'destroy'])->name('order.destroy');
 
     Route::get('active-mail-configuration', [EmailSettingController::class, 'activeMailConfiguration'])->name('active.mail.configuration');
     Route::put('email-settings', [EmailSettingController::class, 'emailUpdateOrCreate'])->name('email.settings.updateOrCreate');
