@@ -184,7 +184,7 @@
                                             </td>
                                             <td>{{ optional($order->user)->first_name }}
                                                 {{ optional($order->user)->last_name }}</td>
-                                            <td>{{ $order->created_at->format('d M, Y') }}</td>
+                                            <td>{{ optional($order->created_at)->format('d M, Y') }}</td>
                                             <td><span class="text-info fw-bold">£</span>{{ $order->total_amount }}
                                             </td>
                                             <td>{{ $order->quantity }}</td>
