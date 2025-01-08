@@ -128,8 +128,10 @@
                                     data-placeholder="Select an option" data-allow-clear="true">
                                     @php
                                         $categoryIds = is_string($product->category_id)
-                                            ? json_decode($product->category_id, true) // Convert JSON string to array
-                                            : $product->category_id;
+                                            ? json_decode($product->category_id, true) ?? [] // Default to an empty array if json_decode returns null
+                                            : (is_array($product->category_id)
+                                                ? $product->category_id
+                                                : []); // Check if it's already an array, otherwise default to an empty array
                                     @endphp
 
                                     @if (count($categories) > 0)
@@ -140,6 +142,7 @@
                                             </option>
                                         @endforeach
                                     @endif
+
 
                                 </x-metronic.select-option>
                             </div>
@@ -321,7 +324,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="fv-row pt-5">
-                                                    <x-metronic.label for="video_link" class="form-label">Product Video
+                                                    <x-metronic.label for="video_link" class="form-label">Product
+                                                        Video
                                                         Link</x-metronic.label>
                                                     <input type="text" name="video_link" class="form-control mb-2"
                                                         placeholder="Product Video Link" id="video_link"
@@ -428,14 +432,14 @@
                                             <x-metronic.label class="form-label">Vat</x-metronic.label>
                                             <x-metronic.input type="number" name="vat" id="vat"
                                                 class="form-control mb-2" placeholder="how much the vat"
-                                                :value="old('vat',$product->vat)"></x-metronic.file-input>
+                                                :value="old('vat', $product->vat)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much box vat. Eg: 5%</div>
                                         </div>
                                         <div class="mb-5 fv-row col-4">
                                             <x-metronic.label class="form-label">Tax</x-metronic.label>
                                             <x-metronic.input type="number" name="tax" id="tax"
                                                 class="form-control mb-2" placeholder="how much the tax "
-                                                :value="old('tax',$product->tax)"></x-metronic.file-input>
+                                                :value="old('tax', $product->tax)"></x-metronic.file-input>
                                                 <div class="text-muted fs-7">How much tax Eg: 5%</div>
                                         </div>
                                         <div class="fv-row col-4 mt-10">
@@ -503,7 +507,8 @@
                                             <div class="col-lg-6">
                                                 <div>
                                                     <img class="img-fluid w-100"
-                                                        src="{{ asset('frontend/img/box_size.png') }}" alt="">
+                                                        src="{{ asset('frontend/img/box_size.png') }}"
+                                                        alt="">
                                                 </div>
                                             </div>
                                         </div>
