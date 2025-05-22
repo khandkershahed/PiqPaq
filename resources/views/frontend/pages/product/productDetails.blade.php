@@ -284,12 +284,7 @@
                                     Specification
                                 </a>
                             </li>
-                            {{-- <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews-content"
-                                    role="tab" aria-controls="reviews-content" aria-selected="false">
-                                    Reviews (5)
-                                </a>
-                            </li> --}}
+                            
                         </ul>
                         <div class="tab-content bg-white p-5" id="productContent">
                             <div class="tab-pane fade show active" id="description-content" role="tabpanel"
