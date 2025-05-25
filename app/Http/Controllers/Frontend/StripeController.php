@@ -27,7 +27,7 @@ class StripeController extends Controller
         // dd(Cart::instance('cart'));
         return view('frontend.pages.cart.stripe', $data);
     }
-    public function stripePost(Request $request): RedirectResponse
+    public function stripePost(Request $request)
     {
         // Validate request
 
@@ -35,11 +35,11 @@ class StripeController extends Controller
             // Set Stripe API key
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             $amount = intval($request->amount * 100);
-           
+
             $token = $_POST['stripeToken'];
             $charge = \Stripe\Charge::create([
                 'amount' => $amount,
-                'currency' => 'usd',
+                'currency' => 'gbp',
                 'description' => 'Payment Successful for Order '.$request->order_number,
                 'source' => $token,
                 'metadata' => ['order_id' => uniqid()],

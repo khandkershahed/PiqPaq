@@ -302,7 +302,7 @@ class CartController extends Controller
             }
 
             // Commit the transaction
-            DB::commit(); 
+            DB::commit();
 
             // Clear the cart after successful order
             Cart::instance('cart')->destroy();
