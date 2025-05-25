@@ -29,27 +29,31 @@ class StripeController extends Controller
     }
     public function stripePost(Request $request)
     {
-        // Validate request
-
+        $request->validate([
+            'order_number'  => 'required|string|exists:orders,order_number',
+        ]);
         try {
-            // Set Stripe API key
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $order = Order::with('orderItems')->where('order_number', $request->order_number)->first();
+
+            if (!$order) {
+                flash()->error('Order not found!');
+                return view('frontend.pages.cart.checkoutFailure');
+            }
+
+            // $amount = intval($order->total * 100);
             $amount = intval($request->amount * 100);
 
             $token = $_POST['stripeToken'];
             $charge = \Stripe\Charge::create([
                 'amount' => $amount,
                 'currency' => 'gbp',
-                'description' => 'Payment Successful for Order '.$request->order_number,
+                'description' => 'Payment Successful for Order ' . $request->order_number,
                 'source' => $token,
                 'metadata' => ['order_id' => uniqid()],
             ]);
 
-            // Find the order
-            $order = Order::with('orderItems')->where('order_number', $request->order_number)->first();
-
             if ($order) {
-                // Update order status
                 $order->update([
                     'payment_status' => 'paid',
                 ]);
@@ -82,11 +86,9 @@ class StripeController extends Controller
             //     flash()->error('Network communication error: ' . $e->getMessage());
             //     return view('frontend.pages.cart.checkoutFailure');
         } catch (\Exception $e) {
-            // Handle general errors
             Session::flash('error', $e->getMessage());
             flash()->error('An unexpected error occurred: ' . $e->getMessage());
             return redirect()->back();
-            // return view('frontend.pages.cart.checkoutFailure');
         }
     }
 }

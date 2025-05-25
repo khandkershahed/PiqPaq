@@ -215,8 +215,6 @@ class CartController extends Controller
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
                 Session::flash('error', $message);
-                // flash()->error($message);
-                // Session::flush();
             }
             return redirect()->back()->withInput();
         }
@@ -224,7 +222,7 @@ class CartController extends Controller
         // Begin a database transaction
         DB::beginTransaction();
         try {
-            $typePrefix = 'PQ';
+            $typePrefix = 'ARS';
             $year = date('Y'); // Get the last two digits of the year (e.g., '24' for 2024)
 
             // Find the most recent code for the given type and year
